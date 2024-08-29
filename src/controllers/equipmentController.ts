@@ -28,8 +28,6 @@ import {
 } from '../models/justGainsBasicResponse';
 import { optional, string } from '../schema';
 import { BaseController } from './baseController';
-import { EquipmentTranslations400Error } from '../errors/equipmentTranslations400Error';
-import { EquipmentTranslations404Error } from '../errors/equipmentTranslations404Error';
 import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseError';
 
 export class EquipmentController extends BaseController {
@@ -165,8 +163,8 @@ export class EquipmentController extends BaseController {
       equipmentCode: [equipmentCode, string()],
     });
     req.appendTemplatePath`/equipment/${mapped.equipmentCode}/translations`;
-    req.throwOn(400, EquipmentTranslations400Error, 'Bad request');
-    req.throwOn(404, EquipmentTranslations404Error, 'Equipment not found');
+    req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
+    req.throwOn(404, JustGainsErrorResponseError, 'Equipment not found');
     req.authenticate(false);
     return req.callAsJson(
       equipmentTranslationListResponseSchema,

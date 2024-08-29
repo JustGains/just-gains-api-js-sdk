@@ -101,7 +101,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExerciseMetrics400Error2Error`](../../doc/models/exercise-metrics-400-error-2-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update an Exercise Metric

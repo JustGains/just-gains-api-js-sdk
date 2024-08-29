@@ -20,7 +20,6 @@ import {
 } from '../models/justGainsResponse';
 import { optional, string } from '../schema';
 import { BaseController } from './baseController';
-import { ExerciseMetrics400Error2Error } from '../errors/exerciseMetrics400Error2Error';
 import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseError';
 
 export class ExerciseMetricsController extends BaseController {
@@ -54,7 +53,7 @@ export class ExerciseMetricsController extends BaseController {
     const mapped = req.prepareArgs({ body: [body, exerciseMetricSchema] });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.throwOn(400, ExerciseMetrics400Error2Error, 'Bad request');
+    req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
     req.authenticate([{ bearerAuth: true }]);
     return req.callAsJson(justGainsBasicResponseSchema, requestOptions);
   }

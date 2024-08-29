@@ -300,8 +300,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`EquipmentTranslations400Error`](../../doc/models/equipment-translations-400-error.md) |
-| 404 | Equipment not found | [`EquipmentTranslations404Error`](../../doc/models/equipment-translations-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Equipment not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update Equipment Translations
