@@ -16,7 +16,7 @@ export {
   ResponseValidationError,
 } from './core';
 export * from './defaultConfiguration';
-export * from './controllers/authenticationNewController';
+export * from './controllers/authenticationController';
 export * from './controllers/equipmentController';
 export * from './controllers/equipmentEquipmentGroupsController';
 export * from './controllers/exerciseCategoriesController';

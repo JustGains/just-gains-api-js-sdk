@@ -1,22 +1,24 @@
-# Authentication New
+# Authentication
+
+Updated endpoints for user authentication, including registration, login, logout, and token refresh.
 
 ```ts
-const authenticationNewController = new AuthenticationNewController(client);
+const authenticationController = new AuthenticationController(client);
 ```
 
 ## Class Name
 
-`AuthenticationNewController`
+`AuthenticationController`
 
 ## Methods
 
-* [Register a New User](../../doc/controllers/authentication-new.md#register-a-new-user)
-* [Sign in a User](../../doc/controllers/authentication-new.md#sign-in-a-user)
-* [Resend Confirmation Email](../../doc/controllers/authentication-new.md#resend-confirmation-email)
-* [Initiate Forgot Password Process](../../doc/controllers/authentication-new.md#initiate-forgot-password-process)
-* [Reset User Password](../../doc/controllers/authentication-new.md#reset-user-password)
-* [Refresh Authentication Token](../../doc/controllers/authentication-new.md#refresh-authentication-token)
-* [Sign Out the Current User](../../doc/controllers/authentication-new.md#sign-out-the-current-user)
+* [Register a New User](../../doc/controllers/authentication.md#register-a-new-user)
+* [Sign in a User](../../doc/controllers/authentication.md#sign-in-a-user)
+* [Resend Confirmation Email](../../doc/controllers/authentication.md#resend-confirmation-email)
+* [Initiate Forgot Password Process](../../doc/controllers/authentication.md#initiate-forgot-password-process)
+* [Reset User Password](../../doc/controllers/authentication.md#reset-user-password)
+* [Refresh Authentication Token](../../doc/controllers/authentication.md#refresh-authentication-token)
+* [Sign Out the Current User](../../doc/controllers/authentication.md#sign-out-the-current-user)
 
 
 # Register a New User
@@ -52,7 +54,7 @@ const body: UserRegisterRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await authenticationNewController.registerANewUser(body);
+  const { result, ...httpResponse } = await authenticationController.registerANewUser(body);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -99,7 +101,7 @@ const body: UserLoginRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await authenticationNewController.signInAUser(body);
+  const { result, ...httpResponse } = await authenticationController.signInAUser(body);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -145,7 +147,7 @@ const body: ConfirmEmailRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await authenticationNewController.resendConfirmationEmail(body);
+  const { result, ...httpResponse } = await authenticationController.resendConfirmationEmail(body);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -191,7 +193,7 @@ const body: ForgotPasswordRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await authenticationNewController.initiateForgotPasswordProcess(body);
+  const { result, ...httpResponse } = await authenticationController.initiateForgotPasswordProcess(body);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -237,7 +239,7 @@ const body: ResetPasswordRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await authenticationNewController.resetUserPassword(body);
+  const { result, ...httpResponse } = await authenticationController.resetUserPassword(body);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -277,7 +279,7 @@ async refreshAuthenticationToken(requestOptions?: RequestOptions): Promise<ApiRe
 
 ```ts
 try {
-  const { result, ...httpResponse } = await authenticationNewController.refreshAuthenticationToken();
+  const { result, ...httpResponse } = await authenticationController.refreshAuthenticationToken();
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -317,7 +319,7 @@ async signOutTheCurrentUser(requestOptions?: RequestOptions): Promise<ApiRespons
 
 ```ts
 try {
-  const { result, ...httpResponse } = await authenticationNewController.signOutTheCurrentUser();
+  const { result, ...httpResponse } = await authenticationController.signOutTheCurrentUser();
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {

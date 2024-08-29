@@ -52,6 +52,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 
 | Name | Description |
 |  --- | --- |
+| authentication | Gets AuthenticationController |
 | users | Gets UsersController |
 | usersCreatorProfiles | Gets UsersCreatorProfilesController |
 | exercises | Gets ExercisesController |
@@ -69,7 +70,6 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | programsProgramWeeks | Gets ProgramsProgramWeeksController |
 | programsProgramAnalytics | Gets ProgramsProgramAnalyticsController |
 | status | Gets StatusController |
-| authenticationNew | Gets AuthenticationNewController |
 | userManagement | Gets UserManagementController |
 | mediaAssets | Gets MediaAssetsController |
 | locales | Gets LocalesController |

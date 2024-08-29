@@ -41,7 +41,7 @@ import {
 import { BaseController } from './baseController';
 import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseError';
 
-export class AuthenticationNewController extends BaseController {
+export class AuthenticationController extends BaseController {
   /**
    * @param body
    * @return Response from the API call

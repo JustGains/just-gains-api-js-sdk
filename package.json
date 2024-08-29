@@ -1,5 +1,5 @@
 {
-  "version": "0.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "sideEffects": false,
   "main": "dist/cjs/index.js",
@@ -33,8 +33,7 @@
   "description": "SDK to connect to the JustGains API",
   "author": {
     "name": "Just Super Human Foundation",
-    "email": "dev@justsuperhuman.com",
-    "url": "https://justgains.com"
+    "email": "dev@justsuperhuman.com"
   },
   "devDependencies": {
     "@apimatic/test-utilities": "^0.0.1",
@@ -58,8 +57,7 @@
     "url": "https://github.com/JustGains/just-gains-api-js-sdk.git"
   },
   "bugs": {
-    "url": "https://justgains.com",
-    "email": "dev@justgains.com"
+    "email": "support@apimatic.io"
   },
   "homepage": "https://justgains.com",
   "keywords": [
