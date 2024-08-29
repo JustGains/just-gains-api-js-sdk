@@ -18,7 +18,7 @@ Returns a simple message to indicate that the API is working.
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async checkServerAlive(requestOptions?: RequestOptions): Promise<ApiResponse<Response>>
+async checkServerAlive(requestOptions?: RequestOptions): Promise<ApiResponse<string>>
 ```
 
 ## Parameters
@@ -29,7 +29,7 @@ async checkServerAlive(requestOptions?: RequestOptions): Promise<ApiResponse<Res
 
 ## Response Type
 
-[`Response`](../../doc/models/response.md)
+`string`
 
 ## Example Usage
 
@@ -46,10 +46,16 @@ try {
 }
 ```
 
+## Example Response
+
+```
+"All is working!"
+```
+
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`M400Error`](../../doc/models/m400-error.md) |
-| 404 | Not found | [`M404Error`](../../doc/models/m404-error.md) |
+| 400 | Bad request | `ApiError` |
+| 404 | Not found | `ApiError` |
 

@@ -27,7 +27,7 @@ const equipmentController = new EquipmentController(client);
 
 ```ts
 async getEquipments(  localeCode?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentListResponse>>
 ```
 
 ## Parameters
@@ -39,7 +39,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentResponse>>
 
 ## Response Type
 
-[`EquipmentResponse`](../../doc/models/equipment-response.md)
+[`EquipmentListResponse`](../../doc/models/equipment-list-response.md)
 
 ## Example Usage
 
@@ -63,7 +63,7 @@ try {
 
 ```ts
 async createEquipment(  body: Equipment,
-requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -75,7 +75,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentResponse1>>
 
 ## Response Type
 
-[`EquipmentResponse1`](../../doc/models/equipment-response-1.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -105,7 +105,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid request data. | [`Equipment400Error`](../../doc/models/equipment-400-error.md) |
+| 400 | Invalid request data. | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Get Equipment
@@ -115,7 +115,7 @@ try {
 ```ts
 async getEquipment(  equipmentCode: string,
   localeCode?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentResponse>>
 ```
 
 ## Parameters
@@ -128,7 +128,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentResponse1>>
 
 ## Response Type
 
-[`EquipmentResponse1`](../../doc/models/equipment-response-1.md)
+[`EquipmentResponse`](../../doc/models/equipment-response.md)
 
 ## Example Usage
 
@@ -156,7 +156,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Equipment not found with the given code. | [`Equipment404Error`](../../doc/models/equipment-404-error.md) |
+| 404 | Equipment not found with the given code. | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update Equipment
@@ -164,7 +164,7 @@ try {
 ```ts
 async updateEquipment(  equipmentCode: string,
   body: Equipment,
-requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -177,7 +177,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentResponse1>>
 
 ## Response Type
 
-[`EquipmentResponse1`](../../doc/models/equipment-response-1.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -212,16 +212,16 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request. Invalid input data. | [`Equipment400Error`](../../doc/models/equipment-400-error.md) |
-| 404 | Equipment not found with the given code. | [`Equipment404Error`](../../doc/models/equipment-404-error.md) |
-| 409 | Conflict. The equipment code already exists for a different equipment. | [`Equipment409Error`](../../doc/models/equipment-409-error.md) |
+| 400 | Bad request. Invalid input data. | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Equipment not found with the given code. | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 409 | Conflict. The equipment code already exists for a different equipment. | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Delete Equipment
 
 ```ts
 async deleteEquipment(  equipmentCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentResponse4>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -233,7 +233,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentResponse4>>
 
 ## Response Type
 
-[`EquipmentResponse4`](../../doc/models/equipment-response-4.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -256,7 +256,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to delete the equipment or equipment does not exist. | [`Equipment400Error`](../../doc/models/equipment-400-error.md) |
+| 400 | Failed to delete the equipment or equipment does not exist. | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Get Equipment Translations
@@ -265,7 +265,7 @@ try {
 
 ```ts
 async getEquipmentTranslations(  equipmentCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentTranslationsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentTranslationListResponse>>
 ```
 
 ## Parameters
@@ -277,7 +277,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentTranslationsRespo
 
 ## Response Type
 
-[`EquipmentTranslationsResponse`](../../doc/models/equipment-translations-response.md)
+[`EquipmentTranslationListResponse`](../../doc/models/equipment-translation-list-response.md)
 
 ## Example Usage
 
@@ -311,7 +311,7 @@ try {
 ```ts
 async updateEquipmentTranslations(  equipmentCode: string,
   body: EquipmentTranslation,
-requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentTranslationsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -324,7 +324,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentTranslationsRespo
 
 ## Response Type
 
-[`EquipmentTranslationsResponse1`](../../doc/models/equipment-translations-response-1.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -332,7 +332,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentTranslationsRespo
 const equipmentCode = 'equipmentCode6';
 
 const body: EquipmentTranslation = {
-  equipmentName: 'equipmentName6',
+  equipmentName: 'Barbell',
+  localeCode: 'en-US',
 };
 
 try {
@@ -354,6 +355,6 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`EquipmentTranslations400Error`](../../doc/models/equipment-translations-400-error.md) |
-| 404 | Equipment not found | [`EquipmentTranslations404Error`](../../doc/models/equipment-translations-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Equipment not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

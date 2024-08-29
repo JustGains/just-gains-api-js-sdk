@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "sideEffects": false,
   "main": "dist/cjs/index.js",
@@ -59,7 +59,7 @@
   },
   "bugs": {
     "url": "https://justgains.com",
-    "email": "james@justsuperhuman.com"
+    "email": "dev@justgains.com"
   },
   "homepage": "https://justgains.com",
   "keywords": [

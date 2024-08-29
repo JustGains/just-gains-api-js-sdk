@@ -9,13 +9,11 @@ const exerciseDraftsController = new ExerciseDraftsController(client);
 `ExerciseDraftsController`
 
 
-# Exercise Draft Format
-
-Create or Update an existing exercise with the Exercise Draft format
+# Create Update an Existing Exercise With the Exercise Draft Format
 
 ```ts
-async exerciseDraftFormat(  body: ExerciseDraftDTO,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseDraftResponse>>
+async createUpdateAnExistingExerciseWithTheExerciseDraftFormat(  body: ExerciseDraftDTO,
+requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseResponse>>
 ```
 
 ## Parameters
@@ -27,7 +25,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseDraftResponse>>
 
 ## Response Type
 
-[`ExerciseDraftResponse`](../../doc/models/exercise-draft-response.md)
+[`ExerciseResponse`](../../doc/models/exercise-response.md)
 
 ## Example Usage
 
@@ -35,7 +33,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseDraftResponse>>
 const body: ExerciseDraftDTO = {};
 
 try {
-  const { result, ...httpResponse } = await exerciseDraftsController.exerciseDraftFormat(body);
+  const { result, ...httpResponse } = await exerciseDraftsController.createUpdateAnExistingExerciseWithTheExerciseDraftFormat(body);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -50,6 +48,6 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExerciseDraft400Error`](../../doc/models/exercise-draft-400-error.md) |
-| 404 | Exercise not found | [`ExerciseDraft404Error`](../../doc/models/exercise-draft-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

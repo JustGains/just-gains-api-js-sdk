@@ -25,7 +25,7 @@ const authenticationNewController = new AuthenticationNewController(client);
 
 ```ts
 async registerANewUser(  body: UserRegisterRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<AuthSignupResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<UserInfoResponse>>
 ```
 
 ## Parameters
@@ -37,7 +37,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<AuthSignupResponse>>
 
 ## Response Type
 
-[`AuthSignupResponse`](../../doc/models/auth-signup-response.md)
+[`UserInfoResponse`](../../doc/models/user-info-response.md)
 
 ## Example Usage
 
@@ -67,7 +67,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid parameters | [`AuthSignup400Error`](../../doc/models/auth-signup-400-error.md) |
+| 400 | Invalid parameters | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Sign in a User
@@ -76,7 +76,7 @@ try {
 
 ```ts
 async signInAUser(  body: UserLoginRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<AuthSigninResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<AuthResponse>>
 ```
 
 ## Parameters
@@ -88,7 +88,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<AuthSigninResponse>>
 
 ## Response Type
 
-[`AuthSigninResponse`](../../doc/models/auth-signin-response.md)
+[`AuthResponse`](../../doc/models/auth-response.md)
 
 ## Example Usage
 
@@ -114,7 +114,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid credentials | [`AuthSignin400Error`](../../doc/models/auth-signin-400-error.md) |
+| 400 | Invalid credentials | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Resend Confirmation Email
@@ -123,7 +123,7 @@ try {
 
 ```ts
 async resendConfirmationEmail(  body: ConfirmEmailRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<AuthResendConfirmationEmailResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -135,7 +135,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<AuthResendConfirmationEmai
 
 ## Response Type
 
-[`AuthResendConfirmationEmailResponse`](../../doc/models/auth-resend-confirmation-email-response.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -160,7 +160,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to send confirmation email | [`AuthResendConfirmationEmail400Error`](../../doc/models/auth-resend-confirmation-email-400-error.md) |
+| 400 | Failed to send confirmation email | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Initiate Forgot Password Process
@@ -169,7 +169,7 @@ try {
 
 ```ts
 async initiateForgotPasswordProcess(  body: ForgotPasswordRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<AuthForgotPasswordResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
 ## Parameters
@@ -181,7 +181,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<AuthForgotPasswordResponse
 
 ## Response Type
 
-[`AuthForgotPasswordResponse`](../../doc/models/auth-forgot-password-response.md)
+[`JustGainsResponse`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -202,6 +202,12 @@ try {
 }
 ```
 
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 404 | Failed to send password reset email | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+
 
 # Reset User Password
 
@@ -209,7 +215,7 @@ try {
 
 ```ts
 async resetUserPassword(  body: ResetPasswordRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<AuthResetPasswordResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -221,7 +227,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<AuthResetPasswordResponse>
 
 ## Response Type
 
-[`AuthResetPasswordResponse`](../../doc/models/auth-reset-password-response.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -246,7 +252,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to reset password | [`AuthResetPassword400Error`](../../doc/models/auth-reset-password-400-error.md) |
+| 400 | Failed to reset password | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Refresh Authentication Token
@@ -254,7 +260,7 @@ try {
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async refreshAuthenticationToken(requestOptions?: RequestOptions): Promise<ApiResponse<AuthRefreshTokenResponse>>
+async refreshAuthenticationToken(requestOptions?: RequestOptions): Promise<ApiResponse<AuthResponse>>
 ```
 
 ## Parameters
@@ -265,7 +271,7 @@ async refreshAuthenticationToken(requestOptions?: RequestOptions): Promise<ApiRe
 
 ## Response Type
 
-[`AuthRefreshTokenResponse`](../../doc/models/auth-refresh-token-response.md)
+[`AuthResponse`](../../doc/models/auth-response.md)
 
 ## Example Usage
 
@@ -282,13 +288,19 @@ try {
 }
 ```
 
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Failed to refresh token | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+
 
 # Sign Out the Current User
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async signOutTheCurrentUser(requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsDefaultResponse>>
+async signOutTheCurrentUser(requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -299,7 +311,7 @@ async signOutTheCurrentUser(requestOptions?: RequestOptions): Promise<ApiRespons
 
 ## Response Type
 
-[`JustGainsDefaultResponse`](../../doc/models/just-gains-default-response.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -316,12 +328,9 @@ try {
 }
 ```
 
-## Example Response *(as JSON)*
+## Errors
 
-```json
-{
-  "status": "OK",
-  "message": "User was successfully signed out!"
-}
-```
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Failed to sign out user | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

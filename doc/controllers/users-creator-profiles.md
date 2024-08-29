@@ -24,7 +24,7 @@ const usersCreatorProfilesController = new UsersCreatorProfilesController(client
 ```ts
 async getCreatorProfiles(  page?: number,
   limit?: number,
-requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfilesResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileListResponse>>
 ```
 
 ## Parameters
@@ -37,7 +37,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfilesResponse>>
 
 ## Response Type
 
-[`CreatorProfilesResponse`](../../doc/models/creator-profiles-response.md)
+[`CreatorProfileListResponse`](../../doc/models/creator-profile-list-response.md)
 
 ## Example Usage
 
@@ -65,15 +65,14 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`CreatorProfiles400Error`](../../doc/models/creator-profiles-400-error.md) |
-| 500 | An unexpected error occurred | [`CreatorProfiles500Error`](../../doc/models/creator-profiles-500-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Create Creator Profile
 
 ```ts
 async createCreatorProfile(  body: CreatorProfile,
-requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfilesResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileResponse>>
 ```
 
 ## Parameters
@@ -85,7 +84,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfilesResponse1>>
 
 ## Response Type
 
-[`CreatorProfilesResponse1`](../../doc/models/creator-profiles-response-1.md)
+[`CreatorProfileResponse`](../../doc/models/creator-profile-response.md)
 
 ## Example Usage
 
@@ -112,9 +111,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`CreatorProfiles400Error`](../../doc/models/creator-profiles-400-error.md) |
-| 401 | Unauthorized | [`CreatorProfiles401Error`](../../doc/models/creator-profiles-401-error.md) |
-| 500 | Internal server error | [`CreatorProfiles500Error`](../../doc/models/creator-profiles-500-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Get Creator Profile
@@ -123,7 +121,7 @@ try {
 
 ```ts
 async getCreatorProfile(  creatorProfileId: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfilesResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileResponse>>
 ```
 
 ## Parameters
@@ -135,7 +133,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfilesResponse1>>
 
 ## Response Type
 
-[`CreatorProfilesResponse1`](../../doc/models/creator-profiles-response-1.md)
+[`CreatorProfileResponse`](../../doc/models/creator-profile-response.md)
 
 ## Example Usage
 
@@ -158,8 +156,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Creator profile not found | [`CreatorProfiles404Error`](../../doc/models/creator-profiles-404-error.md) |
-| 500 | Internal server error | [`CreatorProfiles500Error`](../../doc/models/creator-profiles-500-error.md) |
+| 404 | Creator profile not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update Creator Profile
@@ -167,7 +164,7 @@ try {
 ```ts
 async updateCreatorProfile(  creatorProfileId: string,
   body: CreatorProfile,
-requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfilesResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileResponse>>
 ```
 
 ## Parameters
@@ -180,7 +177,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfilesResponse1>>
 
 ## Response Type
 
-[`CreatorProfilesResponse1`](../../doc/models/creator-profiles-response-1.md)
+[`CreatorProfileResponse`](../../doc/models/creator-profile-response.md)
 
 ## Example Usage
 
@@ -212,17 +209,16 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`CreatorProfiles400Error`](../../doc/models/creator-profiles-400-error.md) |
-| 401 | Unauthorized | [`CreatorProfiles401Error`](../../doc/models/creator-profiles-401-error.md) |
-| 404 | Creator profile not found | [`CreatorProfiles404Error`](../../doc/models/creator-profiles-404-error.md) |
-| 500 | Internal server error | [`CreatorProfiles500Error`](../../doc/models/creator-profiles-500-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Creator profile not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Delete Creator Profile
 
 ```ts
 async deleteCreatorProfile(  creatorProfileId: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfilesResponse4>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -234,7 +230,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfilesResponse4>>
 
 ## Response Type
 
-[`CreatorProfilesResponse4`](../../doc/models/creator-profiles-response-4.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -257,7 +253,6 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`CreatorProfiles401Error`](../../doc/models/creator-profiles-401-error.md) |
-| 404 | Creator profile not found | [`CreatorProfiles404Error`](../../doc/models/creator-profiles-404-error.md) |
-| 500 | Internal server error | [`CreatorProfiles500Error`](../../doc/models/creator-profiles-500-error.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Creator profile not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

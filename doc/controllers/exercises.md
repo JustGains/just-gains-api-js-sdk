@@ -36,7 +36,7 @@ async getExercises(  exerciseCategoryCodes?: string[],
   localeCode?: string,
   pageIndex?: number,
   pageSize?: number,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseListResponse>>
 ```
 
 ## Parameters
@@ -56,7 +56,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesResponse>>
 
 ## Response Type
 
-[`ExercisesResponse`](../../doc/models/exercises-response.md)
+[`ExerciseListResponse`](../../doc/models/exercise-list-response.md)
 
 ## Example Usage
 
@@ -93,7 +93,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`Exercises400Error`](../../doc/models/exercises-400-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Create a New Exercise
@@ -101,7 +101,7 @@ try {
 ```ts
 async createANewExercise(  body: Exercise,
   localeCode?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseResponse>>
 ```
 
 ## Parameters
@@ -114,7 +114,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesResponse1>>
 
 ## Response Type
 
-[`ExercisesResponse1`](../../doc/models/exercises-response-1.md)
+[`ExerciseResponse`](../../doc/models/exercise-response.md)
 
 ## Example Usage
 
@@ -163,7 +163,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise data | [`Exercises400Error`](../../doc/models/exercises-400-error.md) |
+| 400 | Invalid exercise data | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Get Exercise
@@ -173,7 +173,7 @@ try {
 ```ts
 async getExercise(  exerciseCode: string,
   localeCode?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesResponse2>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseResponse>>
 ```
 
 ## Parameters
@@ -186,7 +186,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesResponse2>>
 
 ## Response Type
 
-[`ExercisesResponse2`](../../doc/models/exercises-response-2.md)
+[`ExerciseResponse`](../../doc/models/exercise-response.md)
 
 ## Example Usage
 
@@ -214,8 +214,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`Exercises400Error`](../../doc/models/exercises-400-error.md) |
-| 404 | Exercise not found | [`Exercises404Error`](../../doc/models/exercises-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update an Exercise
@@ -223,7 +223,7 @@ try {
 ```ts
 async updateAnExercise(  exerciseCode: string,
   body: Exercise,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesResponse2>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -236,7 +236,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesResponse2>>
 
 ## Response Type
 
-[`ExercisesResponse2`](../../doc/models/exercises-response-2.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -285,15 +285,14 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise data | [`Exercises400Error`](../../doc/models/exercises-400-error.md) |
-| 500 | Internal server error | [`Exercises500Error`](../../doc/models/exercises-500-error.md) |
+| 400 | Invalid exercise data | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Delete an Exercise
 
 ```ts
 async deleteAnExercise(  exerciseCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesResponse4>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -305,7 +304,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesResponse4>>
 
 ## Response Type
 
-[`ExercisesResponse4`](../../doc/models/exercises-response-4.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -328,10 +327,9 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`Exercises400Error`](../../doc/models/exercises-400-error.md) |
-| 401 | Unauthorized | [`Exercises401Error`](../../doc/models/exercises-401-error.md) |
-| 404 | Exercise not found | [`Exercises404Error`](../../doc/models/exercises-404-error.md) |
-| 500 | Internal server error | [`Exercises500Error`](../../doc/models/exercises-500-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Get Exercise Translations
@@ -340,7 +338,7 @@ try {
 
 ```ts
 async getExerciseTranslations(  exerciseCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesTranslationsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseTranslationListResponse>>
 ```
 
 ## Parameters
@@ -352,7 +350,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesTranslationsRespo
 
 ## Response Type
 
-[`ExercisesTranslationsResponse`](../../doc/models/exercises-translations-response.md)
+[`ExerciseTranslationListResponse`](../../doc/models/exercise-translation-list-response.md)
 
 ## Example Usage
 
@@ -375,8 +373,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExercisesTranslations400Error`](../../doc/models/exercises-translations-400-error.md) |
-| 404 | Exercise translations not found | [`ExercisesTranslations404Error`](../../doc/models/exercises-translations-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise translations not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update Exercise Translations
@@ -386,7 +384,7 @@ try {
 ```ts
 async updateExerciseTranslations(  exerciseCode: string,
   body: ExerciseTranslation[],
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesTranslationsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -399,7 +397,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesTranslationsRespo
 
 ## Response Type
 
-[`ExercisesTranslationsResponse1`](../../doc/models/exercises-translations-response-1.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -431,9 +429,9 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExercisesTranslations400Error`](../../doc/models/exercises-translations-400-error.md) |
-| 404 | Exercise not found | [`ExercisesTranslations404Error`](../../doc/models/exercises-translations-404-error.md) |
-| 422 | Validation error | [`ExercisesTranslations422Error`](../../doc/models/exercises-translations-422-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 422 | Validation error | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Get Exercise Muscle Group
@@ -443,7 +441,7 @@ try {
 ```ts
 async getExerciseMuscleGroup(  exerciseCode: string,
   localeCode?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesMuscleGroupsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupDtoResponse>>
 ```
 
 ## Parameters
@@ -456,7 +454,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesMuscleGroupsRespo
 
 ## Response Type
 
-[`ExercisesMuscleGroupsResponse`](../../doc/models/exercises-muscle-groups-response.md)
+[`MuscleGroupDtoResponse`](../../doc/models/muscle-group-dto-response.md)
 
 ## Example Usage
 
@@ -484,6 +482,6 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExercisesMuscleGroups400Error`](../../doc/models/exercises-muscle-groups-400-error.md) |
-| 404 | Exercise not found | [`ExercisesMuscleGroups404Error`](../../doc/models/exercises-muscle-groups-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

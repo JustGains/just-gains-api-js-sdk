@@ -23,7 +23,7 @@ const exercisesExerciseVideosController = new ExercisesExerciseVideosController(
 
 ```ts
 async getExerciseVideoOn(  exerciseCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesVideosResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseVideoListResponse>>
 ```
 
 ## Parameters
@@ -35,7 +35,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesVideosResponse>>
 
 ## Response Type
 
-[`ExercisesVideosResponse`](../../doc/models/exercises-videos-response.md)
+[`ExerciseVideoListResponse`](../../doc/models/exercise-video-list-response.md)
 
 ## Example Usage
 
@@ -58,8 +58,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise code | [`ExercisesVideos400Error`](../../doc/models/exercises-videos-400-error.md) |
-| 404 | Exercise videos not found | [`ExercisesVideos404Error`](../../doc/models/exercises-videos-404-error.md) |
+| 400 | Invalid exercise code | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise videos not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Add New Exercise Videos
@@ -67,20 +67,20 @@ try {
 ```ts
 async addNewExerciseVideos(  exerciseCode: string,
   body: ExerciseVideo,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesVideosResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseVideoResponse>>
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `exerciseCode` | `string` | Template, Required | The exercise code to add videos for |
+| `exerciseCode` | `string` | Template, Required | The exercise code to add videos to |
 | `body` | [`ExerciseVideo`](../../doc/models/exercise-video.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
 
-[`ExercisesVideosResponse1`](../../doc/models/exercises-videos-response-1.md)
+[`ExerciseVideoResponse`](../../doc/models/exercise-video-response.md)
 
 ## Example Usage
 
@@ -112,8 +112,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise video data | [`ExercisesVideos400Error`](../../doc/models/exercises-videos-400-error.md) |
-| 401 | Authentication required | [`ExercisesVideos401Error`](../../doc/models/exercises-videos-401-error.md) |
+| 400 | Invalid exercise video data | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update Exercise Videos
@@ -168,9 +168,9 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise video data | [`ExercisesVideos400Error`](../../doc/models/exercises-videos-400-error.md) |
-| 401 | Authentication required | [`ExercisesVideos401Error`](../../doc/models/exercises-videos-401-error.md) |
-| 404 | Exercise videos not found | [`ExercisesVideos404Error`](../../doc/models/exercises-videos-404-error.md) |
+| 400 | Invalid exercise video data | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise videos not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Get Exercise Video by User Id
@@ -221,8 +221,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise code | [`ExercisesVideos400Error`](../../doc/models/exercises-videos-400-error.md) |
-| 404 | Exercise videos not found | [`ExercisesVideos404Error`](../../doc/models/exercises-videos-404-error.md) |
+| 400 | Invalid exercise code | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise videos not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Delete an Exercise Video
@@ -231,7 +231,7 @@ try {
 async deleteAnExerciseVideo(  exerciseCode: string,
   userId: string,
   exerciseVideoId: number,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesVideosExerciseVideoIdResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
 ## Parameters
@@ -245,7 +245,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesVideosExerciseVid
 
 ## Response Type
 
-[`ExercisesVideosExerciseVideoIdResponse`](../../doc/models/exercises-videos-exercise-video-id-response.md)
+[`JustGainsResponse`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -276,6 +276,6 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Authentication required | [`ExercisesVideosExerciseVideoId401Error`](../../doc/models/exercises-videos-exercise-video-id-401-error.md) |
-| 404 | Exercise video not found | [`ExercisesVideosExerciseVideoId404Error`](../../doc/models/exercises-videos-exercise-video-id-404-error.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise video not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

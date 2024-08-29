@@ -9,30 +9,16 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `status` | `string` | Required | - |
-| `message` | `string` | Required | - |
-| `data` | [`JustGainsResponse[] \| undefined`](../../doc/models/just-gains-response.md) | Optional | - |
+| `message` | `unknown \| undefined` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "status": "OK",
-  "message": "Muscle translations updated successfully",
-  "data": [
-    {
-      "status": "status2",
-      "message": "message0"
-    },
-    {
-      "status": "status2",
-      "message": "message0"
-    },
-    {
-      "status": "status2",
-      "message": "message0"
-    }
-  ]
+  "message": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

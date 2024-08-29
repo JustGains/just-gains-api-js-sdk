@@ -12,7 +12,7 @@
 | `exerciseCode` | `string` | Required | The exerciseCode of the exercise to add instructions to. |
 | `userId` | `string \| undefined` | Optional | The userId of the creator related to this instruction |
 | `localeCode` | `string` | Required | Language code for the instructions |
-| `instructionJSON` | [`InstructionJSON1`](../../doc/models/instruction-json1.md) | Required | JSON object containing the exercise instructions in EditorJS format |
+| `instructionJSON` | [`InstructionJSON`](../../doc/models/instruction-json.md) | Required | - |
 
 ## Example (as JSON)
 

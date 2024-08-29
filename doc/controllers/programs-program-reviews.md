@@ -20,7 +20,7 @@ const programsProgramReviewsController = new ProgramsProgramReviewsController(cl
 
 ```ts
 async getReviewsProgram(  programId: number,
-requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsReviewsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ProgramReviewResponse>>
 ```
 
 ## Parameters
@@ -32,7 +32,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsReviewsResponse>>
 
 ## Response Type
 
-[`ProgramsReviewsResponse`](../../doc/models/programs-reviews-response.md)
+[`ProgramReviewResponse`](../../doc/models/program-review-response.md)
 
 ## Example Usage
 
@@ -55,7 +55,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Program not found | [`ProgramsReviews404Error`](../../doc/models/programs-reviews-404-error.md) |
+| 404 | Program not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Add Review Program
@@ -63,7 +63,7 @@ try {
 ```ts
 async addReviewProgram(  programId: number,
   body: ProgramReview,
-requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsReviewsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ProgramReviewResponse>>
 ```
 
 ## Parameters
@@ -76,7 +76,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsReviewsResponse1>>
 
 ## Response Type
 
-[`ProgramsReviewsResponse1`](../../doc/models/programs-reviews-response-1.md)
+[`ProgramReviewResponse`](../../doc/models/program-review-response.md)
 
 ## Example Usage
 
@@ -111,6 +111,6 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ProgramsReviews400Error`](../../doc/models/programs-reviews-400-error.md) |
-| 404 | Program not found | [`ProgramsReviews404Error`](../../doc/models/programs-reviews-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Program not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

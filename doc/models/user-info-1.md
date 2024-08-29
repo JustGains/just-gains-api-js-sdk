@@ -1,7 +1,7 @@
 
 # User Info 1
 
-User information
+The data returned by the operation.
 
 ## Structure
 
@@ -19,7 +19,6 @@ User information
 | `emailConfirmed` | `boolean \| undefined` | Optional | Indicates if the user's email has been confirmed |
 | `roles` | `string[] \| undefined` | Optional | List of roles assigned to the user |
 | `lastLoginAt` | `string \| undefined` | Optional | Timestamp of the user's last login |
-| `message` | `string \| undefined` | Optional | Message to be displayed to the user |
 
 ## Example (as JSON)
 
@@ -35,8 +34,7 @@ User information
     "user",
     "admin"
   ],
-  "lastLoginAt": "06/14/2023 09:30:00",
-  "message": "Welcome back, John!"
+  "lastLoginAt": "06/14/2023 09:30:00"
 }
 ```
 

@@ -12,7 +12,6 @@ const equipmentEquipmentGroupsController = new EquipmentEquipmentGroupsControlle
 
 * [Get Equipment Groups](../../doc/controllers/equipment-equipment-groups.md#get-equipment-groups)
 * [Add Equipment Group](../../doc/controllers/equipment-equipment-groups.md#add-equipment-group)
-* [Get Equipment Group](../../doc/controllers/equipment-equipment-groups.md#get-equipment-group)
 * [Update an Existing Equipment Group](../../doc/controllers/equipment-equipment-groups.md#update-an-existing-equipment-group)
 * [Delete an Equipment Group](../../doc/controllers/equipment-equipment-groups.md#delete-an-equipment-group)
 * [Get Equipment Group Translations](../../doc/controllers/equipment-equipment-groups.md#get-equipment-group-translations)
@@ -25,7 +24,7 @@ const equipmentEquipmentGroupsController = new EquipmentEquipmentGroupsControlle
 
 ```ts
 async getEquipmentGroups(  localeCode?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentGroupsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentGroupListResponse>>
 ```
 
 ## Parameters
@@ -37,7 +36,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentGroupsResponse>>
 
 ## Response Type
 
-[`EquipmentGroupsResponse`](../../doc/models/equipment-groups-response.md)
+[`EquipmentGroupListResponse`](../../doc/models/equipment-group-list-response.md)
 
 ## Example Usage
 
@@ -60,14 +59,14 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`EquipmentGroups400Error`](../../doc/models/equipment-groups-400-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Add Equipment Group
 
 ```ts
 async addEquipmentGroup(  body: EquipmentGroup,
-requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentGroupsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -79,7 +78,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentGroupsResponse1>>
 
 ## Response Type
 
-[`EquipmentGroupsResponse1`](../../doc/models/equipment-groups-response-1.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -107,58 +106,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`EquipmentGroups400Error`](../../doc/models/equipment-groups-400-error.md) |
-
-
-# Get Equipment Group
-
-:information_source: **Note** This endpoint does not require authentication.
-
-```ts
-async getEquipmentGroup(  equipmentGroupCode: string,
-  localeCode?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentGroupsResponse1>>
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `equipmentGroupCode` | `string` | Template, Required | The equipment group code to retrieve. |
-| `localeCode` | `string \| undefined` | Query, Optional | The locale to use for the localized equipment group names. |
-| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
-
-## Response Type
-
-[`EquipmentGroupsResponse1`](../../doc/models/equipment-groups-response-1.md)
-
-## Example Usage
-
-```ts
-const equipmentGroupCode = 'equipmentGroupCode8';
-
-const localeCode = 'en-US';
-
-try {
-  const { result, ...httpResponse } = await equipmentEquipmentGroupsController.getEquipmentGroup(
-  equipmentGroupCode,
-  localeCode
-);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
-} catch (error) {
-  if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
-  }
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 404 | Equipment group not found | [`EquipmentGroups404Error`](../../doc/models/equipment-groups-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update an Existing Equipment Group
@@ -166,7 +114,7 @@ try {
 ```ts
 async updateAnExistingEquipmentGroup(  equipmentGroupCode: string,
   body: EquipmentGroup,
-requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentGroupsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -179,7 +127,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentGroupsResponse1>>
 
 ## Response Type
 
-[`EquipmentGroupsResponse1`](../../doc/models/equipment-groups-response-1.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -212,14 +160,14 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`EquipmentGroups400Error`](../../doc/models/equipment-groups-400-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Delete an Equipment Group
 
 ```ts
 async deleteAnEquipmentGroup(  equipmentGroupCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentGroupsResponse4>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
 ## Parameters
@@ -231,7 +179,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentGroupsResponse4>>
 
 ## Response Type
 
-[`EquipmentGroupsResponse4`](../../doc/models/equipment-groups-response-4.md)
+[`JustGainsResponse`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -257,7 +205,7 @@ try {
 
 ```ts
 async getEquipmentGroupTranslations(  equipmentGroupCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentGroupsTranslationsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentGroupTranslationListResponse>>
 ```
 
 ## Parameters
@@ -269,7 +217,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentGroupsTranslation
 
 ## Response Type
 
-[`EquipmentGroupsTranslationsResponse`](../../doc/models/equipment-groups-translations-response.md)
+[`EquipmentGroupTranslationListResponse`](../../doc/models/equipment-group-translation-list-response.md)
 
 ## Example Usage
 
@@ -292,8 +240,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`EquipmentGroupsTranslations400Error`](../../doc/models/equipment-groups-translations-400-error.md) |
-| 404 | Equipment group not found | [`EquipmentGroupsTranslations404Error`](../../doc/models/equipment-groups-translations-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Equipment group not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update Equipment Group Translations
@@ -305,7 +253,7 @@ Updates the translations for a specific equipment group identified by its code.
 ```ts
 async updateEquipmentGroupTranslations(  equipmentGroupCode: string,
   body: EquipmentGroupTranslation[],
-requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentGroupsTranslationsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
 ## Parameters
@@ -318,7 +266,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentGroupsTranslation
 
 ## Response Type
 
-[`EquipmentGroupsTranslationsResponse1`](../../doc/models/equipment-groups-translations-response-1.md)
+[`JustGainsResponse`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -352,7 +300,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`EquipmentGroupsTranslations400Error`](../../doc/models/equipment-groups-translations-400-error.md) |
-| 404 | Equipment group not found | [`EquipmentGroupsTranslations404Error`](../../doc/models/equipment-groups-translations-404-error.md) |
-| 422 | Validation error | [`EquipmentGroupsTranslations422Error`](../../doc/models/equipment-groups-translations-422-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Equipment group not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 422 | Validation error | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

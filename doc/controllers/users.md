@@ -21,7 +21,7 @@ const usersController = new UsersController(client);
 # Get a List of All Users
 
 ```ts
-async getAListOfAllUsers(requestOptions?: RequestOptions): Promise<ApiResponse<UsersResponse[]>>
+async getAListOfAllUsers(requestOptions?: RequestOptions): Promise<ApiResponse<UserInfoListResponse>>
 ```
 
 ## Parameters
@@ -32,7 +32,7 @@ async getAListOfAllUsers(requestOptions?: RequestOptions): Promise<ApiResponse<U
 
 ## Response Type
 
-[`UsersResponse[]`](../../doc/models/users-response.md)
+[`UserInfoListResponse`](../../doc/models/user-info-list-response.md)
 
 ## Example Usage
 
@@ -53,15 +53,15 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Authentication required | [`Users401Error`](../../doc/models/users-401-error.md) |
-| 403 | Access denied | [`Users403Error`](../../doc/models/users-403-error.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 403 | Access denied | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Get a User by ID
 
 ```ts
 async getAUserByID(  userId: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<UsersResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<UserResponse>>
 ```
 
 ## Parameters
@@ -73,7 +73,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UsersResponse1>>
 
 ## Response Type
 
-[`UsersResponse1`](../../doc/models/users-response-1.md)
+[`UserResponse`](../../doc/models/user-response.md)
 
 ## Example Usage
 
@@ -96,10 +96,10 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid user ID format | [`Users400Error`](../../doc/models/users-400-error.md) |
-| 401 | Authentication required | [`Users401Error`](../../doc/models/users-401-error.md) |
-| 403 | Access denied | [`Users403Error`](../../doc/models/users-403-error.md) |
-| 404 | User not found | [`Users404Error`](../../doc/models/users-404-error.md) |
+| 400 | Invalid user ID format | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 403 | Access denied | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | User not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update a User
@@ -107,7 +107,7 @@ try {
 ```ts
 async updateAUser(  userId: string,
   body: UserWithoutCreatorProfile,
-requestOptions?: RequestOptions): Promise<ApiResponse<UsersResponse2>>
+requestOptions?: RequestOptions): Promise<ApiResponse<UserWithoutCreatorProfileResponse>>
 ```
 
 ## Parameters
@@ -120,7 +120,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UsersResponse2>>
 
 ## Response Type
 
-[`UsersResponse2`](../../doc/models/users-response-2.md)
+[`UserWithoutCreatorProfileResponse`](../../doc/models/user-without-creator-profile-response.md)
 
 ## Example Usage
 
@@ -158,15 +158,15 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid user data | [`Users400Error`](../../doc/models/users-400-error.md) |
-| 404 | User not found | [`Users404Error`](../../doc/models/users-404-error.md) |
+| 400 | Invalid user data | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | User not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Delete a User
 
 ```ts
 async deleteAUser(  userId: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<UsersResponse3>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -178,7 +178,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UsersResponse3>>
 
 ## Response Type
 
-[`UsersResponse3`](../../doc/models/users-response-3.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -201,5 +201,5 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | User not found | [`Users404Error`](../../doc/models/users-404-error.md) |
+| 404 | User not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

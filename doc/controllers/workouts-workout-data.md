@@ -23,7 +23,7 @@ const workoutsWorkoutDataController = new WorkoutsWorkoutDataController(client);
 
 ```ts
 async getWorkoutDataById(  workoutId: number,
-requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsDataResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutDataListResponse>>
 ```
 
 ## Parameters
@@ -35,7 +35,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsDataResponse>>
 
 ## Response Type
 
-[`WorkoutsDataResponse`](../../doc/models/workouts-data-response.md)
+[`WorkoutDataListResponse`](../../doc/models/workout-data-list-response.md)
 
 ## Example Usage
 
@@ -58,7 +58,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Workout not found | [`WorkoutsData404Error`](../../doc/models/workouts-data-404-error.md) |
+| 404 | Workout not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Get Workout Detail by Id
@@ -68,7 +68,7 @@ try {
 ```ts
 async getWorkoutDetailById(  workoutId: number,
   exerciseCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsDataResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutDataResponse>>
 ```
 
 ## Parameters
@@ -81,7 +81,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsDataResponse1>>
 
 ## Response Type
 
-[`WorkoutsDataResponse1`](../../doc/models/workouts-data-response-1.md)
+[`WorkoutDataResponse`](../../doc/models/workout-data-response.md)
 
 ## Example Usage
 
@@ -109,7 +109,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Workout or exercise not found | [`WorkoutsData404Error`](../../doc/models/workouts-data-404-error.md) |
+| 404 | Workout or exercise not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Add New Exercise to the Workout
@@ -118,7 +118,7 @@ try {
 async addNewExerciseToTheWorkout(  workoutId: number,
   exerciseCode: string,
   body: WorkoutData,
-requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsDataResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutDataResponse>>
 ```
 
 ## Parameters
@@ -132,7 +132,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsDataResponse1>>
 
 ## Response Type
 
-[`WorkoutsDataResponse1`](../../doc/models/workouts-data-response-1.md)
+[`WorkoutDataResponse`](../../doc/models/workout-data-response.md)
 
 ## Example Usage
 
@@ -179,8 +179,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise data | [`WorkoutsData400Error`](../../doc/models/workouts-data-400-error.md) |
-| 404 | Workout not found | [`WorkoutsData404Error`](../../doc/models/workouts-data-404-error.md) |
+| 400 | Invalid exercise data | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Workout not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update Exercise in the Workout
@@ -189,7 +189,7 @@ try {
 async updateExerciseInTheWorkout(  workoutId: number,
   exerciseCode: string,
   body: WorkoutData,
-requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsDataResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutDataResponse>>
 ```
 
 ## Parameters
@@ -203,7 +203,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsDataResponse1>>
 
 ## Response Type
 
-[`WorkoutsDataResponse1`](../../doc/models/workouts-data-response-1.md)
+[`WorkoutDataResponse`](../../doc/models/workout-data-response.md)
 
 ## Example Usage
 
@@ -250,8 +250,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid exercise data | [`WorkoutsData400Error`](../../doc/models/workouts-data-400-error.md) |
-| 404 | Workout or exercise not found | [`WorkoutsData404Error`](../../doc/models/workouts-data-404-error.md) |
+| 400 | Invalid exercise data | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Workout or exercise not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Deletes an Exercise From the Workout
@@ -259,7 +259,7 @@ try {
 ```ts
 async deletesAnExerciseFromTheWorkout(  workoutId: number,
   exerciseCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsDataResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -272,7 +272,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsDataResponse1>>
 
 ## Response Type
 
-[`WorkoutsDataResponse1`](../../doc/models/workouts-data-response-1.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -300,5 +300,5 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Workout or exercise not found | [`WorkoutsData404Error`](../../doc/models/workouts-data-404-error.md) |
+| 404 | Workout or exercise not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

@@ -15,7 +15,7 @@ const programsProgramAnalyticsController = new ProgramsProgramAnalyticsControlle
 
 ```ts
 async getAnlyticsProgram(  programId: number,
-requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsAnalyticsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ProgramAnalyticsResponse>>
 ```
 
 ## Parameters
@@ -27,7 +27,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsAnalyticsResponse>
 
 ## Response Type
 
-[`ProgramsAnalyticsResponse`](../../doc/models/programs-analytics-response.md)
+[`ProgramAnalyticsResponse`](../../doc/models/program-analytics-response.md)
 
 ## Example Usage
 
@@ -50,5 +50,5 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Program not found | [`ProgramsAnalytics404Error`](../../doc/models/programs-analytics-404-error.md) |
+| 404 | Program not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

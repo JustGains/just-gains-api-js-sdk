@@ -15,7 +15,7 @@ Represents a week within a training program.
 | `userId` | `string` | Required | Identifier of the user who created or owns this week. |
 | `weekTitle` | `string` | Required | Title or name of the week. |
 | `weekContent` | `string` | Required | JSON string containing the structured content of the week, including workout plans and notes. |
-| `weekThumbnail` | [`WeekThumbnail \| undefined`](../../doc/models/week-thumbnail.md) | Optional | Thumbnail image representing the week. |
+| `weekThumbnail` | [`MediaAsset \| undefined`](../../doc/models/media-asset.md) | Optional | - |
 | `createdAt` | `string` | Required | Timestamp of when the week was created. |
 | `updatedAt` | `string` | Required | Timestamp of when the week was last updated. |
 | `deletedAt` | `string \| undefined` | Optional | Timestamp of when the week was soft deleted, if applicable. |

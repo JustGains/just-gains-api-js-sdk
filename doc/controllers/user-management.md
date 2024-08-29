@@ -19,7 +19,7 @@ const userManagementController = new UserManagementController(client);
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async getCurrentUserInformation(requestOptions?: RequestOptions): Promise<ApiResponse<AuthUserResponse>>
+async getCurrentUserInformation(requestOptions?: RequestOptions): Promise<ApiResponse<UserResponse>>
 ```
 
 ## Parameters
@@ -30,7 +30,7 @@ async getCurrentUserInformation(requestOptions?: RequestOptions): Promise<ApiRes
 
 ## Response Type
 
-[`AuthUserResponse`](../../doc/models/auth-user-response.md)
+[`UserResponse`](../../doc/models/user-response.md)
 
 ## Example Usage
 
@@ -51,7 +51,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to retrieve user information | [`AuthUser400Error`](../../doc/models/auth-user-400-error.md) |
+| 400 | Failed to retrieve user information | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update User Information
@@ -60,7 +60,7 @@ try {
 
 ```ts
 async updateUserInformation(  body: UpdateUserRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<AuthUserResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
 ## Parameters
@@ -72,7 +72,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<AuthUserResponse1>>
 
 ## Response Type
 
-[`AuthUserResponse1`](../../doc/models/auth-user-response-1.md)
+[`JustGainsResponse`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -107,5 +107,5 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to update user information | [`AuthUser400Error`](../../doc/models/auth-user-400-error.md) |
+| 400 | Failed to update user information | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

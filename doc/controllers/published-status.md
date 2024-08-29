@@ -12,7 +12,6 @@ const publishedStatusController = new PublishedStatusController(client);
 
 * [Get All Published Status](../../doc/controllers/published-status.md#get-all-published-status)
 * [Create a New Published Status](../../doc/controllers/published-status.md#create-a-new-published-status)
-* [Get Published Status](../../doc/controllers/published-status.md#get-published-status)
 * [Update a Published Status](../../doc/controllers/published-status.md#update-a-published-status)
 * [Delete a Published Status](../../doc/controllers/published-status.md#delete-a-published-status)
 * [Get All Published Status Translations](../../doc/controllers/published-status.md#get-all-published-status-translations)
@@ -25,7 +24,7 @@ const publishedStatusController = new PublishedStatusController(client);
 
 ```ts
 async getAllPublishedStatus(  localeCode?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<PublishedStatusResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<PublishedStatusListResponse>>
 ```
 
 ## Parameters
@@ -37,7 +36,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<PublishedStatusResponse>>
 
 ## Response Type
 
-[`PublishedStatusResponse`](../../doc/models/published-status-response.md)
+[`PublishedStatusListResponse`](../../doc/models/published-status-list-response.md)
 
 ## Example Usage
 
@@ -58,14 +57,14 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`PublishedStatus400Error`](../../doc/models/published-status-400-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Create a New Published Status
 
 ```ts
 async createANewPublishedStatus(  body: PublishedStatus,
-requestOptions?: RequestOptions): Promise<ApiResponse<PublishedStatusResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
 ## Parameters
@@ -77,7 +76,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<PublishedStatusResponse1>>
 
 ## Response Type
 
-[`PublishedStatusResponse1`](../../doc/models/published-status-response-1.md)
+[`JustGainsResponse`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -104,53 +103,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`PublishedStatus400Error`](../../doc/models/published-status-400-error.md) |
-
-
-# Get Published Status
-
-:information_source: **Note** This endpoint does not require authentication.
-
-```ts
-async getPublishedStatus(  publishedStatusCode: string,
-  localeCode?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<PublishedStatusResponse1>>
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `publishedStatusCode` | `string` | Template, Required | - |
-| `localeCode` | `string \| undefined` | Query, Optional | Locale code for translations (e.g., en-US) |
-| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
-
-## Response Type
-
-[`PublishedStatusResponse1`](../../doc/models/published-status-response-1.md)
-
-## Example Usage
-
-```ts
-const publishedStatusCode = 'publishedStatusCode2';
-
-try {
-  const { result, ...httpResponse } = await publishedStatusController.getPublishedStatus(publishedStatusCode);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
-} catch (error) {
-  if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
-  }
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 404 | Published status not found | [`PublishedStatus404Error`](../../doc/models/published-status-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update a Published Status
@@ -158,7 +111,7 @@ try {
 ```ts
 async updateAPublishedStatus(  publishedStatusCode: string,
   body: PublishedStatus,
-requestOptions?: RequestOptions): Promise<ApiResponse<PublishedStatusResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -171,7 +124,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<PublishedStatusResponse1>>
 
 ## Response Type
 
-[`PublishedStatusResponse1`](../../doc/models/published-status-response-1.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -203,15 +156,15 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`PublishedStatus400Error`](../../doc/models/published-status-400-error.md) |
-| 404 | Published status not found | [`PublishedStatus404Error`](../../doc/models/published-status-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Published status not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Delete a Published Status
 
 ```ts
 async deleteAPublishedStatus(  publishedStatusCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<PublishedStatusResponse4>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
 ## Parameters
@@ -223,7 +176,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<PublishedStatusResponse4>>
 
 ## Response Type
 
-[`PublishedStatusResponse4`](../../doc/models/published-status-response-4.md)
+[`JustGainsResponse`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -246,7 +199,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Published status not found | [`PublishedStatus404Error`](../../doc/models/published-status-404-error.md) |
+| 404 | Published status not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Get All Published Status Translations
@@ -255,7 +208,7 @@ try {
 
 ```ts
 async getAllPublishedStatusTranslations(  publishedStatusCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<PublishedStatusTranslationsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<PublishedStatusTranslationListResponse>>
 ```
 
 ## Parameters
@@ -267,7 +220,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<PublishedStatusTranslation
 
 ## Response Type
 
-[`PublishedStatusTranslationsResponse`](../../doc/models/published-status-translations-response.md)
+[`PublishedStatusTranslationListResponse`](../../doc/models/published-status-translation-list-response.md)
 
 ## Example Usage
 
@@ -290,8 +243,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`PublishedStatusTranslations400Error`](../../doc/models/published-status-translations-400-error.md) |
-| 404 | Published status not found | [`PublishedStatusTranslations404Error`](../../doc/models/published-status-translations-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Published status not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update Published Status Translations
@@ -299,7 +252,7 @@ try {
 ```ts
 async updatePublishedStatusTranslations(  publishedStatusCode: string,
   body: PublishedStatusTranslation[],
-requestOptions?: RequestOptions): Promise<ApiResponse<PublishedStatusTranslationsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -312,7 +265,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<PublishedStatusTranslation
 
 ## Response Type
 
-[`PublishedStatusTranslationsResponse1`](../../doc/models/published-status-translations-response-1.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -345,8 +298,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`PublishedStatusTranslations400Error`](../../doc/models/published-status-translations-400-error.md) |
-| 401 | Unauthorized | [`PublishedStatusTranslations401Error`](../../doc/models/published-status-translations-401-error.md) |
-| 404 | Published status not found | [`PublishedStatusTranslations404Error`](../../doc/models/published-status-translations-404-error.md) |
-| 422 | Unprocessable Entity | [`PublishedStatusTranslations422Error`](../../doc/models/published-status-translations-422-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Published status not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 422 | Unprocessable Entity | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

@@ -55,7 +55,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Program not found | [`ProgramsWeeks404Error`](../../doc/models/programs-weeks-404-error.md) |
+| 404 | Program not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Add Week to Program
@@ -63,7 +63,7 @@ try {
 ```ts
 async addWeekToProgram(  programId: number,
   body: Week,
-requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsWeeksResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<WeekResponse>>
 ```
 
 ## Parameters
@@ -76,7 +76,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsWeeksResponse1>>
 
 ## Response Type
 
-[`ProgramsWeeksResponse1`](../../doc/models/programs-weeks-response-1.md)
+[`WeekResponse`](../../doc/models/week-response.md)
 
 ## Example Usage
 
@@ -113,6 +113,6 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ProgramsWeeks400Error`](../../doc/models/programs-weeks-400-error.md) |
-| 404 | Program not found | [`ProgramsWeeks404Error`](../../doc/models/programs-weeks-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Program not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

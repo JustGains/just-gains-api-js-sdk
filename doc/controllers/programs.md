@@ -30,7 +30,7 @@ async getPrograms(  page?: number,
   sortOrder?: SortOrderEnum,
   publishStatusCode?: string,
   userId?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ProgramListResponse>>
 ```
 
 ## Parameters
@@ -47,7 +47,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsResponse>>
 
 ## Response Type
 
-[`ProgramsResponse`](../../doc/models/programs-response.md)
+[`ProgramListResponse`](../../doc/models/program-list-response.md)
 
 ## Example Usage
 
@@ -88,7 +88,7 @@ try {
 
 ```ts
 async createProgram(  body: Program,
-requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ProgramResponse>>
 ```
 
 ## Parameters
@@ -100,7 +100,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsResponse1>>
 
 ## Response Type
 
-[`ProgramsResponse1`](../../doc/models/programs-response-1.md)
+[`ProgramResponse`](../../doc/models/program-response.md)
 
 ## Example Usage
 
@@ -133,7 +133,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`Programs400Error`](../../doc/models/programs-400-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Get Program
@@ -142,7 +142,7 @@ try {
 
 ```ts
 async getProgram(  programId: number,
-requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ProgramResponse>>
 ```
 
 ## Parameters
@@ -154,7 +154,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsResponse1>>
 
 ## Response Type
 
-[`ProgramsResponse1`](../../doc/models/programs-response-1.md)
+[`ProgramResponse`](../../doc/models/program-response.md)
 
 ## Example Usage
 
@@ -177,7 +177,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Program not found | [`Programs404Error`](../../doc/models/programs-404-error.md) |
+| 404 | Program not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update Program
@@ -185,7 +185,7 @@ try {
 ```ts
 async updateProgram(  programId: number,
   body: Program,
-requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
 ## Parameters
@@ -198,7 +198,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsResponse1>>
 
 ## Response Type
 
-[`ProgramsResponse1`](../../doc/models/programs-response-1.md)
+[`JustGainsResponse`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
@@ -236,15 +236,15 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`Programs400Error`](../../doc/models/programs-400-error.md) |
-| 404 | Program not found | [`Programs404Error`](../../doc/models/programs-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Program not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Delete Program
 
 ```ts
 async deleteProgram(  programId: number,
-requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsResponse4>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -256,7 +256,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsResponse4>>
 
 ## Response Type
 
-[`ProgramsResponse4`](../../doc/models/programs-response-4.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -279,5 +279,5 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Program not found | [`Programs404Error`](../../doc/models/programs-404-error.md) |
+| 404 | Program not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

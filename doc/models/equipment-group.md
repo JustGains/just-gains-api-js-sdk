@@ -13,7 +13,7 @@
 | `equipmentGroupName` | `string \| undefined` | Optional | Name of the equipment group, localized. |
 | `equipmentGroupParent` | `string \| null \| undefined` | Optional | parent group CODE for hierarchical structuring. |
 | `equipmentGroupEquipment` | `string[] \| undefined` | Optional | - |
-| `equipmentThumbnail` | [`EquipmentThumbnail1 \| undefined`](../../doc/models/equipment-thumbnail-1.md) | Optional | Link to the thumbnail image for the equipment group. |
+| `equipmentThumbnail` | [`MediaAsset \| undefined`](../../doc/models/media-asset.md) | Optional | - |
 | `sortOrder` | `number \| undefined` | Optional | Used to sort the equipment groups<br>**Default**: `0` |
 
 ## Example (as JSON)

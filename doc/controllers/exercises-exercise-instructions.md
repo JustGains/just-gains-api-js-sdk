@@ -24,7 +24,7 @@ const exercisesExerciseInstructionsController = new ExercisesExerciseInstruction
 ```ts
 async getExerciseInstructions(  exerciseCode: string,
   localeCodes?: string[],
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesInstructionsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionListResponse>>
 ```
 
 ## Parameters
@@ -37,7 +37,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesInstructionsRespo
 
 ## Response Type
 
-[`ExercisesInstructionsResponse`](../../doc/models/exercises-instructions-response.md)
+[`ExerciseInstructionListResponse`](../../doc/models/exercise-instruction-list-response.md)
 
 ## Example Usage
 
@@ -60,8 +60,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExercisesInstructions400Error`](../../doc/models/exercises-instructions-400-error.md) |
-| 404 | Exercise instructions not found | [`ExercisesInstructions404Error`](../../doc/models/exercises-instructions-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise instructions not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Create New Exercise Instructions
@@ -69,7 +69,7 @@ try {
 ```ts
 async createNewExerciseInstructions(  exerciseCode: string,
   body: ExerciseInstruction,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesInstructionsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionResponse>>
 ```
 
 ## Parameters
@@ -82,7 +82,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesInstructionsRespo
 
 ## Response Type
 
-[`ExercisesInstructionsResponse1`](../../doc/models/exercises-instructions-response-1.md)
+[`ExerciseInstructionResponse`](../../doc/models/exercise-instruction-response.md)
 
 ## Example Usage
 
@@ -118,8 +118,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExercisesInstructions400Error`](../../doc/models/exercises-instructions-400-error.md) |
-| 401 | Unauthorized | [`ExercisesInstructions401Error`](../../doc/models/exercises-instructions-401-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Get Exercise Instruction
@@ -130,7 +130,7 @@ try {
 async getExerciseInstruction(  exerciseCode: string,
   localeCode: string,
   userId: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesInstructionsUserIdResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionResponse>>
 ```
 
 ## Parameters
@@ -144,7 +144,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesInstructionsUserI
 
 ## Response Type
 
-[`ExercisesInstructionsUserIdResponse`](../../doc/models/exercises-instructions-user-id-response.md)
+[`ExerciseInstructionResponse`](../../doc/models/exercise-instruction-response.md)
 
 ## Example Usage
 
@@ -175,8 +175,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExercisesInstructionsUserId400Error`](../../doc/models/exercises-instructions-user-id-400-error.md) |
-| 404 | Exercise instructions not found | [`ExercisesInstructionsUserId404Error`](../../doc/models/exercises-instructions-user-id-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise instructions not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update Exercise Instructions
@@ -186,7 +186,7 @@ async updateExerciseInstructions(  exerciseCode: string,
   localeCode: string,
   userId: string,
   body: ExerciseInstruction,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesInstructionsUserIdResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionResponse>>
 ```
 
 ## Parameters
@@ -201,7 +201,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesInstructionsUserI
 
 ## Response Type
 
-[`ExercisesInstructionsUserIdResponse`](../../doc/models/exercises-instructions-user-id-response.md)
+[`ExerciseInstructionResponse`](../../doc/models/exercise-instruction-response.md)
 
 ## Example Usage
 
@@ -243,9 +243,9 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ExercisesInstructionsUserId400Error`](../../doc/models/exercises-instructions-user-id-400-error.md) |
-| 401 | Unauthorized | [`ExercisesInstructionsUserId401Error`](../../doc/models/exercises-instructions-user-id-401-error.md) |
-| 404 | Exercise instructions not found | [`ExercisesInstructionsUserId404Error`](../../doc/models/exercises-instructions-user-id-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise instructions not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Delete Exercise Instructions
@@ -254,7 +254,7 @@ try {
 async deleteExerciseInstructions(  exerciseCode: string,
   localeCode: string,
   userId: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesInstructionsUserIdResponse2>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -268,7 +268,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesInstructionsUserI
 
 ## Response Type
 
-[`ExercisesInstructionsUserIdResponse2`](../../doc/models/exercises-instructions-user-id-response-2.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -299,6 +299,6 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Unauthorized | [`ExercisesInstructionsUserId401Error`](../../doc/models/exercises-instructions-user-id-401-error.md) |
-| 404 | Exercise instructions not found | [`ExercisesInstructionsUserId404Error`](../../doc/models/exercises-instructions-user-id-404-error.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise instructions not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

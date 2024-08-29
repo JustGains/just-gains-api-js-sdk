@@ -13,7 +13,6 @@ const musclesController = new MusclesController(client);
 ## Methods
 
 * [Get Muscles](../../doc/controllers/muscles.md#get-muscles)
-* [Get Muscle](../../doc/controllers/muscles.md#get-muscle)
 * [Get Muscle Translations](../../doc/controllers/muscles.md#get-muscle-translations)
 * [Update Muscle Translations](../../doc/controllers/muscles.md#update-muscle-translations)
 
@@ -24,7 +23,7 @@ const musclesController = new MusclesController(client);
 
 ```ts
 async getMuscles(  localeCode?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<MusclesResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<MuscleListResponse>>
 ```
 
 ## Parameters
@@ -36,7 +35,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MusclesResponse>>
 
 ## Response Type
 
-[`MusclesResponse`](../../doc/models/muscles-response.md)
+[`MuscleListResponse`](../../doc/models/muscle-list-response.md)
 
 ## Example Usage
 
@@ -62,65 +61,13 @@ try {
 | 400 | Failed to retrieve muscles | [`Muscles400Error`](../../doc/models/muscles-400-error.md) |
 
 
-# Get Muscle
-
-:information_source: **Note** This endpoint does not require authentication.
-
-```ts
-async getMuscle(  muscleCode: string,
-  localeCode?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<MusclesResponse1>>
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `muscleCode` | `string` | Template, Required | The muscle code to retrieve. |
-| `localeCode` | `string \| undefined` | Query, Optional | - |
-| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
-
-## Response Type
-
-[`MusclesResponse1`](../../doc/models/muscles-response-1.md)
-
-## Example Usage
-
-```ts
-const muscleCode = 'muscleCode0';
-
-const localeCode = 'en-US';
-
-try {
-  const { result, ...httpResponse } = await musclesController.getMuscle(
-  muscleCode,
-  localeCode
-);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
-} catch (error) {
-  if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
-  }
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Failed to retrieve muscle | [`Muscles400Error`](../../doc/models/muscles-400-error.md) |
-| 404 | Muscle not found | [`Muscles404Error`](../../doc/models/muscles-404-error.md) |
-
-
 # Get Muscle Translations
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
 async getMuscleTranslations(  muscleCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<MusclesTranslationsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<MuscleTranslationListResponse>>
 ```
 
 ## Parameters
@@ -132,7 +79,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MusclesTranslationsRespons
 
 ## Response Type
 
-[`MusclesTranslationsResponse`](../../doc/models/muscles-translations-response.md)
+[`MuscleTranslationListResponse`](../../doc/models/muscle-translation-list-response.md)
 
 ## Example Usage
 
@@ -155,8 +102,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to retrieve muscle translations | [`MusclesTranslations400Error`](../../doc/models/muscles-translations-400-error.md) |
-| 404 | Muscle not found | [`MusclesTranslations404Error`](../../doc/models/muscles-translations-404-error.md) |
+| 400 | Failed to retrieve muscle translations | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Muscle not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update Muscle Translations
@@ -211,7 +158,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to update muscle translations | [`MusclesTranslations400Error`](../../doc/models/muscles-translations-400-error.md) |
-| 401 | Unauthorized | [`MusclesTranslations401Error`](../../doc/models/muscles-translations-401-error.md) |
-| 404 | Muscle not found | [`MusclesTranslations404Error`](../../doc/models/muscles-translations-404-error.md) |
+| 400 | Failed to update muscle translations | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 401 | Unauthorized | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Muscle not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

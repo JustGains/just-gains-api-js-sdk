@@ -25,7 +25,7 @@ const mediaAssetsController = new MediaAssetsController(client);
 ```ts
 async getMediaAssets(  page?: number,
   pageSize?: number,
-requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetListResponse>>
 ```
 
 ## Parameters
@@ -38,7 +38,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetsResponse>>
 
 ## Response Type
 
-[`MediaAssetsResponse`](../../doc/models/media-assets-response.md)
+[`MediaAssetListResponse`](../../doc/models/media-asset-list-response.md)
 
 ## Example Usage
 
@@ -70,7 +70,7 @@ async uploadANewMediaAsset(  file?: FileWrapper,
   mediaType?: string,
   description?: string,
   uploadDirectory?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetResponse>>
 ```
 
 ## Parameters
@@ -85,7 +85,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetsResponse1>>
 
 ## Response Type
 
-[`MediaAssetsResponse1`](../../doc/models/media-assets-response-1.md)
+[`MediaAssetResponse`](../../doc/models/media-asset-response.md)
 
 ## Example Usage
 
@@ -114,7 +114,7 @@ try {
 
 ```ts
 async getMediaAsset(  mediaAssetId: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetResponse>>
 ```
 
 ## Parameters
@@ -126,7 +126,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetsResponse1>>
 
 ## Response Type
 
-[`MediaAssetsResponse1`](../../doc/models/media-assets-response-1.md)
+[`MediaAssetResponse`](../../doc/models/media-asset-response.md)
 
 ## Example Usage
 
@@ -149,7 +149,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Media asset not found | [`MediaAssets404Error`](../../doc/models/media-assets-404-error.md) |
+| 404 | Media asset not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update a Media Asset
@@ -157,7 +157,7 @@ try {
 ```ts
 async updateAMediaAsset(  mediaAssetId: string,
   body: MediaAsset,
-requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetResponse>>
 ```
 
 ## Parameters
@@ -170,7 +170,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetsResponse1>>
 
 ## Response Type
 
-[`MediaAssetsResponse1`](../../doc/models/media-assets-response-1.md)
+[`MediaAssetResponse`](../../doc/models/media-asset-response.md)
 
 ## Example Usage
 
@@ -206,14 +206,14 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Media asset not found | [`MediaAssets404Error`](../../doc/models/media-assets-404-error.md) |
+| 404 | Media asset not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Delete a Media Asset
 
 ```ts
 async deleteAMediaAsset(  mediaAssetId: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetsResponse4>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -225,7 +225,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetsResponse4>>
 
 ## Response Type
 
-[`MediaAssetsResponse4`](../../doc/models/media-assets-response-4.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -248,7 +248,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Media asset not found | [`MediaAssets404Error`](../../doc/models/media-assets-404-error.md) |
+| 404 | Media asset not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Get Media Asset Detail
@@ -299,5 +299,5 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Media asset not found | [`MediaAssets404Error`](../../doc/models/media-assets-404-error.md) |
+| 404 | Media asset not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

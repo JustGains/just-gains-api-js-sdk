@@ -44,7 +44,7 @@ const client = new Client({
 });
 ```
 
-## Workout Creator API Client
+## JustGains-API Client
 
 The gateway for the SDK. This class acts as a factory for the Controllers and also holds the configuration of the SDK.
 
@@ -52,7 +52,6 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 
 | Name | Description |
 |  --- | --- |
-| authenticationNew | Gets AuthenticationNewController |
 | users | Gets UsersController |
 | usersCreatorProfiles | Gets UsersCreatorProfilesController |
 | exercises | Gets ExercisesController |
@@ -70,6 +69,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | programsProgramWeeks | Gets ProgramsProgramWeeksController |
 | programsProgramAnalytics | Gets ProgramsProgramAnalyticsController |
 | status | Gets StatusController |
+| authenticationNew | Gets AuthenticationNewController |
 | userManagement | Gets UserManagementController |
 | mediaAssets | Gets MediaAssetsController |
 | locales | Gets LocalesController |

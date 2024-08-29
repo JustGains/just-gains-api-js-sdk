@@ -14,7 +14,7 @@ const programsProgramViewsController = new ProgramsProgramViewsController(client
 ```ts
 async addViewProgram(  programId: number,
   body: ProgramView,
-requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsViewsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -27,7 +27,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ProgramsViewsResponse>>
 
 ## Response Type
 
-[`ProgramsViewsResponse`](../../doc/models/programs-views-response.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -65,6 +65,6 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ProgramsViews400Error`](../../doc/models/programs-views-400-error.md) |
-| 404 | Program not found | [`ProgramsViews404Error`](../../doc/models/programs-views-404-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Program not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

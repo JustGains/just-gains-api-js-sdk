@@ -25,7 +25,7 @@ async getAPaginatedListOfWorkouts(  page?: number,
   pageSize?: number,
   sortBy?: SortBy1Enum,
   sortOrder?: SortOrderEnum,
-requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutTableListResponse>>
 ```
 
 ## Parameters
@@ -40,7 +40,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsResponse>>
 
 ## Response Type
 
-[`WorkoutsResponse`](../../doc/models/workouts-response.md)
+[`WorkoutTableListResponse`](../../doc/models/workout-table-list-response.md)
 
 ## Example Usage
 
@@ -74,14 +74,14 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid pagination parameters | [`Workouts400Error`](../../doc/models/workouts-400-error.md) |
+| 400 | Invalid pagination parameters | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Create a New Workout
 
 ```ts
 async createANewWorkout(  body: Workout,
-requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ```
 
 ## Parameters
@@ -93,7 +93,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsResponse1>>
 
 ## Response Type
 
-[`WorkoutsResponse1`](../../doc/models/workouts-response-1.md)
+[`WorkoutResponse`](../../doc/models/workout-response.md)
 
 ## Example Usage
 
@@ -123,14 +123,14 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid workout data | [`Workouts400Error`](../../doc/models/workouts-400-error.md) |
+| 400 | Invalid workout data | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Get a Workout by ID
 
 ```ts
 async getAWorkoutByID(  workoutId: number,
-requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ```
 
 ## Parameters
@@ -142,7 +142,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsResponse1>>
 
 ## Response Type
 
-[`WorkoutsResponse1`](../../doc/models/workouts-response-1.md)
+[`WorkoutResponse`](../../doc/models/workout-response.md)
 
 ## Example Usage
 
@@ -165,7 +165,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Workout not found | [`Workouts404Error`](../../doc/models/workouts-404-error.md) |
+| 404 | Workout not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Duplicate a Workout
@@ -175,7 +175,7 @@ Creates a copy of an existing workout, preserving creator credits and adding the
 ```ts
 async duplicateAWorkout(  workoutId: number,
   body: WorkoutsDuplicateRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsDuplicateResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ```
 
 ## Parameters
@@ -188,7 +188,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutsDuplicateResponse>
 
 ## Response Type
 
-[`WorkoutsDuplicateResponse`](../../doc/models/workouts-duplicate-response.md)
+[`WorkoutResponse`](../../doc/models/workout-response.md)
 
 ## Example Usage
 
@@ -218,7 +218,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid request data | [`WorkoutsDuplicate400Error`](../../doc/models/workouts-duplicate-400-error.md) |
-| 403 | Permission denied | [`WorkoutsDuplicate403Error`](../../doc/models/workouts-duplicate-403-error.md) |
-| 404 | Workout not found | [`WorkoutsDuplicate404Error`](../../doc/models/workouts-duplicate-404-error.md) |
+| 400 | Invalid request data | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 403 | Permission denied | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Workout not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

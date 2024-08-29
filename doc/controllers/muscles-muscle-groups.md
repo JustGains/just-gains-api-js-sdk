@@ -12,7 +12,6 @@ const musclesMuscleGroupsController = new MusclesMuscleGroupsController(client);
 
 * [Get Muscle Groups](../../doc/controllers/muscles-muscle-groups.md#get-muscle-groups)
 * [Create a New Muscle Group](../../doc/controllers/muscles-muscle-groups.md#create-a-new-muscle-group)
-* [Get Muscle Group](../../doc/controllers/muscles-muscle-groups.md#get-muscle-group)
 * [Update a Muscle Group](../../doc/controllers/muscles-muscle-groups.md#update-a-muscle-group)
 * [Delete a Muscle Group](../../doc/controllers/muscles-muscle-groups.md#delete-a-muscle-group)
 * [Get Muscle Group Translations](../../doc/controllers/muscles-muscle-groups.md#get-muscle-group-translations)
@@ -25,7 +24,7 @@ const musclesMuscleGroupsController = new MusclesMuscleGroupsController(client);
 
 ```ts
 async getMuscleGroups(  localeCode?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupListResponse>>
 ```
 
 ## Parameters
@@ -37,7 +36,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupsResponse>>
 
 ## Response Type
 
-[`MuscleGroupsResponse`](../../doc/models/muscle-groups-response.md)
+[`MuscleGroupListResponse`](../../doc/models/muscle-group-list-response.md)
 
 ## Example Usage
 
@@ -61,7 +60,7 @@ try {
 
 ```ts
 async createANewMuscleGroup(  body: MuscleGroup,
-requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -73,7 +72,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupsResponse1>>
 
 ## Response Type
 
-[`MuscleGroupsResponse1`](../../doc/models/muscle-groups-response-1.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -93,7 +92,7 @@ const body: MuscleGroup = {
     'HAMSTRINGS',
     'GASTROCNEMIUS'
   ],
-  muscleGroupType: MuscleGroupType5Enum.MainGroup,
+  muscleGroupType: MuscleGroupTypeEnum.MainGroup,
 };
 
 try {
@@ -112,53 +111,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid muscle group data | [`MuscleGroups400Error`](../../doc/models/muscle-groups-400-error.md) |
-| 401 | Authentication required | [`MuscleGroups401Error`](../../doc/models/muscle-groups-401-error.md) |
-
-
-# Get Muscle Group
-
-:information_source: **Note** This endpoint does not require authentication.
-
-```ts
-async getMuscleGroup(  muscleGroupCode: string,
-  localeCode?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupsResponse1>>
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `muscleGroupCode` | `string` | Template, Required | The muscle group code to retrieve. |
-| `localeCode` | `string \| undefined` | Query, Optional | The locale to use for the localized muscle group names. |
-| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
-
-## Response Type
-
-[`MuscleGroupsResponse1`](../../doc/models/muscle-groups-response-1.md)
-
-## Example Usage
-
-```ts
-const muscleGroupCode = 'muscleGroupCode2';
-
-const localeCode = 'en-US';
-
-try {
-  const { result, ...httpResponse } = await musclesMuscleGroupsController.getMuscleGroup(
-  muscleGroupCode,
-  localeCode
-);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
-} catch (error) {
-  if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
-  }
-}
-```
+| 400 | Invalid muscle group data | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update a Muscle Group
@@ -166,7 +120,7 @@ try {
 ```ts
 async updateAMuscleGroup(  muscleGroupCode: string,
   body: MuscleGroup,
-requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -179,7 +133,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupsResponse1>>
 
 ## Response Type
 
-[`MuscleGroupsResponse1`](../../doc/models/muscle-groups-response-1.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -201,7 +155,7 @@ const body: MuscleGroup = {
     'HAMSTRINGS',
     'GASTROCNEMIUS'
   ],
-  muscleGroupType: MuscleGroupType5Enum.MainGroup,
+  muscleGroupType: MuscleGroupTypeEnum.MainGroup,
 };
 
 try {
@@ -223,16 +177,16 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid muscle group data | [`MuscleGroups400Error`](../../doc/models/muscle-groups-400-error.md) |
-| 401 | Authentication required | [`MuscleGroups401Error`](../../doc/models/muscle-groups-401-error.md) |
-| 404 | Muscle group not found | [`MuscleGroups404Error`](../../doc/models/muscle-groups-404-error.md) |
+| 400 | Invalid muscle group data | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Muscle group not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Delete a Muscle Group
 
 ```ts
 async deleteAMuscleGroup(  muscleGroupCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupsResponse4>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -244,7 +198,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupsResponse4>>
 
 ## Response Type
 
-[`MuscleGroupsResponse4`](../../doc/models/muscle-groups-response-4.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -267,8 +221,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 401 | Authentication required | [`MuscleGroups401Error`](../../doc/models/muscle-groups-401-error.md) |
-| 404 | Muscle group not found | [`MuscleGroups404Error`](../../doc/models/muscle-groups-404-error.md) |
+| 401 | Authentication required | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Muscle group not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Get Muscle Group Translations
@@ -277,7 +231,7 @@ try {
 
 ```ts
 async getMuscleGroupTranslations(  muscleGroupCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupsTranslationsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupTranslationListResponse>>
 ```
 
 ## Parameters
@@ -289,7 +243,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupsTranslationsRe
 
 ## Response Type
 
-[`MuscleGroupsTranslationsResponse`](../../doc/models/muscle-groups-translations-response.md)
+[`MuscleGroupTranslationListResponse`](../../doc/models/muscle-group-translation-list-response.md)
 
 ## Example Usage
 
@@ -312,8 +266,8 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to retrieve muscle group translations | [`MuscleGroupsTranslations400Error`](../../doc/models/muscle-groups-translations-400-error.md) |
-| 404 | Muscle group not found | [`MuscleGroupsTranslations404Error`](../../doc/models/muscle-groups-translations-404-error.md) |
+| 400 | Failed to retrieve muscle group translations | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Muscle group not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Update Muscle Group Translations
@@ -323,7 +277,7 @@ try {
 ```ts
 async updateMuscleGroupTranslations(  muscleGroupCode: string,
   body: MuscleGroupTranslation[],
-requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupsTranslationsResponse1>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -336,7 +290,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupsTranslationsRe
 
 ## Response Type
 
-[`MuscleGroupsTranslationsResponse1`](../../doc/models/muscle-groups-translations-response-1.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -370,7 +324,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Failed to update muscle group translations | [`MuscleGroupsTranslations400Error`](../../doc/models/muscle-groups-translations-400-error.md) |
-| 404 | Muscle group not found | [`MuscleGroupsTranslations404Error`](../../doc/models/muscle-groups-translations-404-error.md) |
-| 422 | Validation error | [`MuscleGroupsTranslations422Error`](../../doc/models/muscle-groups-translations-422-error.md) |
+| 400 | Failed to update muscle group translations | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Muscle group not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 422 | Validation error | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

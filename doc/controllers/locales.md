@@ -23,7 +23,7 @@ const localesController = new LocalesController(client);
 
 ```ts
 async getLocales(  showAll: boolean,
-requestOptions?: RequestOptions): Promise<ApiResponse<LocalesResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<LocaleListResponse>>
 ```
 
 ## Parameters
@@ -35,7 +35,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<LocalesResponse>>
 
 ## Response Type
 
-[`LocalesResponse`](../../doc/models/locales-response.md)
+[`LocaleListResponse`](../../doc/models/locale-list-response.md)
 
 ## Example Usage
 
@@ -59,7 +59,7 @@ try {
 
 ```ts
 async createANewLocale(  body: Locale,
-requestOptions?: RequestOptions): Promise<ApiResponse<LocalesResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -71,7 +71,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<LocalesResponse>>
 
 ## Response Type
 
-[`LocalesResponse`](../../doc/models/locales-response.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -101,7 +101,7 @@ try {
 
 ```ts
 async getLocale(  localeCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<LocalesResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<LocaleResponse>>
 ```
 
 ## Parameters
@@ -113,7 +113,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<LocalesResponse>>
 
 ## Response Type
 
-[`LocalesResponse`](../../doc/models/locales-response.md)
+[`LocaleResponse`](../../doc/models/locale-response.md)
 
 ## Example Usage
 
@@ -138,7 +138,7 @@ try {
 ```ts
 async updateALocale(  localeCode: string,
   body: Locale,
-requestOptions?: RequestOptions): Promise<ApiResponse<LocalesResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -151,7 +151,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<LocalesResponse>>
 
 ## Response Type
 
-[`LocalesResponse`](../../doc/models/locales-response.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 
@@ -184,7 +184,7 @@ try {
 
 ```ts
 async deleteALocale(  localeCode: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<LocalesResponse4>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -196,7 +196,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<LocalesResponse4>>
 
 ## Response Type
 
-[`LocalesResponse4`](../../doc/models/locales-response-4.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 

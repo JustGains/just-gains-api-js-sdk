@@ -15,7 +15,7 @@ Represents a training program consisting of multiple weeks and workouts.
 | `userId` | `string` | Required | Identifier of the user who created the program. |
 | `programName` | `string` | Required | Name of the training program. |
 | `programDescription` | `string` | Required | Detailed description of the program, its goals, and target audience. |
-| `programThumbnail` | [`ProgramThumbnail \| undefined`](../../doc/models/program-thumbnail.md) | Optional | Thumbnail image representing the program. |
+| `programThumbnail` | [`MediaAsset \| undefined`](../../doc/models/media-asset.md) | Optional | - |
 | `publishStatusCode` | `string` | Required | Code indicating the publish status of the program (e.g., draft, published, archived). |
 | `createdAt` | `string` | Required | Timestamp of when the program was created. |
 | `updatedAt` | `string` | Required | Timestamp of when the program was last updated. |
