@@ -5,19 +5,18 @@
  */
 
 import { lazy, object, Schema, string } from '../schema';
-import { Locale1, locale1Schema } from './locale1';
+import { Locale, localeSchema } from './locale';
 
 export interface LocaleResponse {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** The data returned by the operation. */
-  data: Locale1;
+  data: Locale;
 }
 
 export const localeResponseSchema: Schema<LocaleResponse> = object({
   status: ['status', string()],
   message: ['message', string()],
-  data: ['data', lazy(() => locale1Schema)],
+  data: ['data', lazy(() => localeSchema)],
 });

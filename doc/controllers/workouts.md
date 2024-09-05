@@ -23,7 +23,7 @@ const workoutsController = new WorkoutsController(client);
 ```ts
 async getAPaginatedListOfWorkouts(  page?: number,
   pageSize?: number,
-  sortBy?: SortBy1Enum,
+  sortBy?: string,
   sortOrder?: SortOrderEnum,
 requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutTableListResponse>>
 ```
@@ -34,7 +34,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutTableListResponse>>
 |  --- | --- | --- | --- |
 | `page` | `number \| undefined` | Query, Optional | The page number to retrieve |
 | `pageSize` | `number \| undefined` | Query, Optional | The number of items to retrieve per page |
-| `sortBy` | [`SortBy1Enum \| undefined`](../../doc/models/sort-by-1-enum.md) | Query, Optional | The field to sort the results by |
+| `sortBy` | `string \| undefined` | Query, Optional | - |
 | `sortOrder` | [`SortOrderEnum \| undefined`](../../doc/models/sort-order-enum.md) | Query, Optional | The order to sort the results in |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
@@ -49,15 +49,13 @@ const page = 1;
 
 const pageSize = 20;
 
-const sortBy = SortBy1Enum.CreatedAt;
-
 const sortOrder = SortOrderEnum.Desc;
 
 try {
   const { result, ...httpResponse } = await workoutsController.getAPaginatedListOfWorkouts(
   page,
   pageSize,
-  sortBy,
+  undefined,
   sortOrder
 );
   // Get more response info...

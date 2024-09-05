@@ -5,19 +5,18 @@
  */
 
 import { lazy, object, Schema, string } from '../schema';
-import { MediaAsset1, mediaAsset1Schema } from './mediaAsset1';
+import { MediaAsset, mediaAssetSchema } from './mediaAsset';
 
 export interface MediaAssetResponse {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** The data returned by the operation. */
-  data: MediaAsset1;
+  data: MediaAsset;
 }
 
 export const mediaAssetResponseSchema: Schema<MediaAssetResponse> = object({
   status: ['status', string()],
   message: ['message', string()],
-  data: ['data', lazy(() => mediaAsset1Schema)],
+  data: ['data', lazy(() => mediaAssetSchema)],
 });

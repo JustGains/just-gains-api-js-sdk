@@ -5,21 +5,20 @@
  */
 
 import { lazy, object, Schema, string } from '../schema';
-import { ExerciseVideo1, exerciseVideo1Schema } from './exerciseVideo1';
+import { ExerciseVideo, exerciseVideoSchema } from './exerciseVideo';
 
 export interface ExerciseVideoResponse {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** The data returned by the operation. */
-  data: ExerciseVideo1;
+  data: ExerciseVideo;
 }
 
 export const exerciseVideoResponseSchema: Schema<ExerciseVideoResponse> = object(
   {
     status: ['status', string()],
     message: ['message', string()],
-    data: ['data', lazy(() => exerciseVideo1Schema)],
+    data: ['data', lazy(() => exerciseVideoSchema)],
   }
 );

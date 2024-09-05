@@ -22,18 +22,16 @@ import {
   ProgramResponse,
   programResponseSchema,
 } from '../models/programResponse';
-import { SortByEnum, sortByEnumSchema } from '../models/sortByEnum';
 import { SortOrderEnum, sortOrderEnumSchema } from '../models/sortOrderEnum';
 import { number, optional, string } from '../schema';
 import { BaseController } from './baseController';
 import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseError';
-import { Programs400Error } from '../errors/programs400Error';
 
 export class ProgramsController extends BaseController {
   /**
    * @param page              Example: 1
    * @param pageSize          Example: 20
-   * @param sortBy            Example: createdAt
+   * @param sortBy
    * @param sortOrder         Example: desc
    * @param publishStatusCode
    * @param userId
@@ -42,7 +40,7 @@ export class ProgramsController extends BaseController {
   async getPrograms(
     page?: number,
     pageSize?: number,
-    sortBy?: SortByEnum,
+    sortBy?: string,
     sortOrder?: SortOrderEnum,
     publishStatusCode?: string,
     userId?: string,
@@ -52,7 +50,7 @@ export class ProgramsController extends BaseController {
     const mapped = req.prepareArgs({
       page: [page, optional(number())],
       pageSize: [pageSize, optional(number())],
-      sortBy: [sortBy, optional(sortByEnumSchema)],
+      sortBy: [sortBy, optional(string())],
       sortOrder: [sortOrder, optional(sortOrderEnumSchema)],
       publishStatusCode: [publishStatusCode, optional(string())],
       userId: [userId, optional(string())],
@@ -63,7 +61,7 @@ export class ProgramsController extends BaseController {
     req.query('sortOrder', mapped.sortOrder);
     req.query('publishStatusCode', mapped.publishStatusCode);
     req.query('userId', mapped.userId);
-    req.throwOn(400, Programs400Error, 'Bad request');
+    req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
     req.authenticate(false);
     return req.callAsJson(programListResponseSchema, requestOptions);
   }

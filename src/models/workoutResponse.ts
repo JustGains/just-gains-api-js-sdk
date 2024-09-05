@@ -5,19 +5,19 @@
  */
 
 import { lazy, object, Schema, string } from '../schema';
-import { Workout1, workout1Schema } from './workout1';
+import { Workout, workoutSchema } from './workout';
 
 export interface WorkoutResponse {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** The data returned by the operation. */
-  data: Workout1;
+  /** Represents a workout in the system. */
+  data: Workout;
 }
 
 export const workoutResponseSchema: Schema<WorkoutResponse> = object({
   status: ['status', string()],
   message: ['message', string()],
-  data: ['data', lazy(() => workout1Schema)],
+  data: ['data', lazy(() => workoutSchema)],
 });

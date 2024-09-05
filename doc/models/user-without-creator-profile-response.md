@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `data` | [`UserWithoutCreatorProfile1`](../../doc/models/user-without-creator-profile-1.md) | Required | The data returned by the operation. |
+| `data` | [`UserWithoutCreatorProfile`](../../doc/models/user-without-creator-profile.md) | Required | Represents a user in the system without creator profile. |
 
 ## Example (as JSON)
 

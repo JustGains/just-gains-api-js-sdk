@@ -7,7 +7,6 @@
 import { array, lazy, object, optional, Schema, string } from '../schema';
 import { CreatorProfile, creatorProfileSchema } from './creatorProfile';
 
-/** The data returned by the operation. */
 export interface Data {
   /** Unique identifier for the user. */
   userId?: string;

@@ -7,7 +7,6 @@
 import { lazy, object, optional, Schema, string } from '../schema';
 import { UserInfo, userInfoSchema } from './userInfo';
 
-/** The data returned by the operation. */
 export interface Data1 {
   /** JWT access token for authenticated requests */
   accessToken?: string;

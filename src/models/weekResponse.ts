@@ -5,19 +5,19 @@
  */
 
 import { lazy, object, Schema, string } from '../schema';
-import { Week1, week1Schema } from './week1';
+import { Week, weekSchema } from './week';
 
 export interface WeekResponse {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** The data returned by the operation. */
-  data: Week1;
+  /** Represents a week within a training program. */
+  data: Week;
 }
 
 export const weekResponseSchema: Schema<WeekResponse> = object({
   status: ['status', string()],
   message: ['message', string()],
-  data: ['data', lazy(() => week1Schema)],
+  data: ['data', lazy(() => weekSchema)],
 });

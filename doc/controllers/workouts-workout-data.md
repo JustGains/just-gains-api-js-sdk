@@ -145,8 +145,14 @@ const body: WorkoutData = {
   exerciseCode: 'BARBELL_SQUAT',
   exerciseNotes: 'Keep your core tight throughout the movement',
   exerciseMetrics: [
-    {},
-    {}
+    {
+      metricCode: 'WEIGHT',
+      metricUnit: 'KG',
+    },
+    {
+      metricCode: 'REPS',
+      metricUnit: 'COUNT',
+    }
   ],
   exerciseData: [
     110010,
@@ -216,8 +222,14 @@ const body: WorkoutData = {
   exerciseCode: 'BARBELL_SQUAT',
   exerciseNotes: 'Keep your core tight throughout the movement',
   exerciseMetrics: [
-    {},
-    {}
+    {
+      metricCode: 'WEIGHT',
+      metricUnit: 'KG',
+    },
+    {
+      metricCode: 'REPS',
+      metricUnit: 'COUNT',
+    }
   ],
   exerciseData: [
     110010,

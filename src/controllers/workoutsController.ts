@@ -5,7 +5,6 @@
  */
 
 import { ApiResponse, RequestOptions } from '../core';
-import { SortBy1Enum, sortBy1EnumSchema } from '../models/sortBy1Enum';
 import { SortOrderEnum, sortOrderEnumSchema } from '../models/sortOrderEnum';
 import { Workout, workoutSchema } from '../models/workout';
 import {
@@ -20,7 +19,7 @@ import {
   WorkoutTableListResponse,
   workoutTableListResponseSchema,
 } from '../models/workoutTableListResponse';
-import { number, optional } from '../schema';
+import { number, optional, string } from '../schema';
 import { BaseController } from './baseController';
 import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseError';
 
@@ -28,14 +27,14 @@ export class WorkoutsController extends BaseController {
   /**
    * @param page      The page number to retrieve
    * @param pageSize  The number of items to retrieve per page
-   * @param sortBy    The field to sort the results by
+   * @param sortBy
    * @param sortOrder The order to sort the results in
    * @return Response from the API call
    */
   async getAPaginatedListOfWorkouts(
     page?: number,
     pageSize?: number,
-    sortBy?: SortBy1Enum,
+    sortBy?: string,
     sortOrder?: SortOrderEnum,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<WorkoutTableListResponse>> {
@@ -43,7 +42,7 @@ export class WorkoutsController extends BaseController {
     const mapped = req.prepareArgs({
       page: [page, optional(number())],
       pageSize: [pageSize, optional(number())],
-      sortBy: [sortBy, optional(sortBy1EnumSchema)],
+      sortBy: [sortBy, optional(string())],
       sortOrder: [sortOrder, optional(sortOrderEnumSchema)],
     });
     req.query('page', mapped.page);

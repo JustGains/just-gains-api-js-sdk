@@ -18,7 +18,6 @@ import {
   DEFAULT_RETRY_CONFIG,
 } from './defaultConfiguration';
 import { ApiError } from './core';
-import { JustGainsErrorResponseError } from './errors/justGainsErrorResponseError';
 import {
   AbortError,
   AuthenticatorInterface,
@@ -137,7 +136,7 @@ function tap(
 }
 
 function withErrorHandlers(rb: SdkRequestBuilder) {
-  rb.defaultToError(JustGainsErrorResponseError, 'An Error Occurred');
+  rb.defaultToError(ApiError);
 }
 
 function withUserAgent(rb: SdkRequestBuilder) {

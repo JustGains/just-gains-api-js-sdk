@@ -26,7 +26,7 @@ const programsController = new ProgramsController(client);
 ```ts
 async getPrograms(  page?: number,
   pageSize?: number,
-  sortBy?: SortByEnum,
+  sortBy?: string,
   sortOrder?: SortOrderEnum,
   publishStatusCode?: string,
   userId?: string,
@@ -39,7 +39,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ProgramListResponse>>
 |  --- | --- | --- | --- |
 | `page` | `number \| undefined` | Query, Optional | - |
 | `pageSize` | `number \| undefined` | Query, Optional | - |
-| `sortBy` | [`SortByEnum \| undefined`](../../doc/models/sort-by-enum.md) | Query, Optional | - |
+| `sortBy` | `string \| undefined` | Query, Optional | - |
 | `sortOrder` | [`SortOrderEnum \| undefined`](../../doc/models/sort-order-enum.md) | Query, Optional | - |
 | `publishStatusCode` | `string \| undefined` | Query, Optional | - |
 | `userId` | `string \| undefined` | Query, Optional | - |
@@ -56,15 +56,13 @@ const page = 1;
 
 const pageSize = 20;
 
-const sortBy = SortByEnum.CreatedAt;
-
 const sortOrder = SortOrderEnum.Desc;
 
 try {
   const { result, ...httpResponse } = await programsController.getPrograms(
   page,
   pageSize,
-  sortBy,
+  undefined,
   sortOrder
 );
   // Get more response info...
@@ -81,7 +79,7 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`Programs400Error`](../../doc/models/programs-400-error.md) |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Create Program

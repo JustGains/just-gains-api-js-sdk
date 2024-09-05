@@ -13,7 +13,6 @@ export interface MediaAssetListResponse {
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** The data returned by the operation. */
   data: MediaAsset[];
   pagination?: Pagination;
 }

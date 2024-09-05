@@ -1,8 +1,6 @@
 
 # Data 2
 
-The data returned by the operation.
-
 ## Structure
 
 `Data2`
@@ -13,7 +11,7 @@ The data returned by the operation.
 |  --- | --- | --- | --- |
 | `status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `data` | [`Data1`](../../doc/models/data-1.md) | Required | The data returned by the operation. |
+| `data` | [`Data1`](../../doc/models/data-1.md) | Required | - |
 
 ## Example (as JSON)
 

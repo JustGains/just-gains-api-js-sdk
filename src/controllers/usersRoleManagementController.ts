@@ -70,20 +70,20 @@ export class UsersRoleManagementController extends BaseController {
 
   /**
    * @param userId
-   * @param roleId
+   * @param roleName
    * @return Response from the API call
    */
   async removeARoleFromAUser(
     userId: string,
-    roleId: string,
+    roleName: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsResponse>> {
     const req = this.createRequest('DELETE');
     const mapped = req.prepareArgs({
       userId: [userId, string()],
-      roleId: [roleId, string()],
+      roleName: [roleName, string()],
     });
-    req.appendTemplatePath`/users/${mapped.userId}/roles/${mapped.roleId}`;
+    req.appendTemplatePath`/users/${mapped.userId}/roles/${mapped.roleName}`;
     req.authenticate([]);
     return req.callAsJson(justGainsResponseSchema, requestOptions);
   }

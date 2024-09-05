@@ -110,7 +110,7 @@ try {
 
 ```ts
 async removeARoleFromAUser(  userId: string,
-  roleId: string,
+  roleName: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
@@ -119,7 +119,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `userId` | `string` | Template, Required | - |
-| `roleId` | `string` | Template, Required | - |
+| `roleName` | `string` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -131,12 +131,12 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```ts
 const userId = '000013ec-0000-0000-0000-000000000000';
 
-const roleId = 'roleId6';
+const roleName = 'roleName6';
 
 try {
   const { result, ...httpResponse } = await usersRoleManagementController.removeARoleFromAUser(
   userId,
-  roleId
+  roleName
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

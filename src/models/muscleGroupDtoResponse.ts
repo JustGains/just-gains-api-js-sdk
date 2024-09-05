@@ -5,21 +5,20 @@
  */
 
 import { lazy, object, Schema, string } from '../schema';
-import { MuscleGroupDto1, muscleGroupDto1Schema } from './muscleGroupDto1';
+import { MuscleGroupDto, muscleGroupDtoSchema } from './muscleGroupDto';
 
 export interface MuscleGroupDtoResponse {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** The data returned by the operation. */
-  data: MuscleGroupDto1;
+  data: MuscleGroupDto;
 }
 
 export const muscleGroupDtoResponseSchema: Schema<MuscleGroupDtoResponse> = object(
   {
     status: ['status', string()],
     message: ['message', string()],
-    data: ['data', lazy(() => muscleGroupDto1Schema)],
+    data: ['data', lazy(() => muscleGroupDtoSchema)],
   }
 );

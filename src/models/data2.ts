@@ -7,13 +7,11 @@
 import { lazy, object, Schema, string } from '../schema';
 import { Data1, data1Schema } from './data1';
 
-/** The data returned by the operation. */
 export interface Data2 {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** The data returned by the operation. */
   data: Data1;
 }
 

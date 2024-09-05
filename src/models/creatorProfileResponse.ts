@@ -5,21 +5,21 @@
  */
 
 import { lazy, object, Schema, string } from '../schema';
-import { CreatorProfile1, creatorProfile1Schema } from './creatorProfile1';
+import { CreatorProfile, creatorProfileSchema } from './creatorProfile';
 
 export interface CreatorProfileResponse {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** The data returned by the operation. */
-  data: CreatorProfile1;
+  /** Represents a creator's profile information. */
+  data: CreatorProfile;
 }
 
 export const creatorProfileResponseSchema: Schema<CreatorProfileResponse> = object(
   {
     status: ['status', string()],
     message: ['message', string()],
-    data: ['data', lazy(() => creatorProfile1Schema)],
+    data: ['data', lazy(() => creatorProfileSchema)],
   }
 );

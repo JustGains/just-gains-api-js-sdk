@@ -5,24 +5,21 @@
  */
 
 import { lazy, object, Schema, string } from '../schema';
-import {
-  ProgramAnalytics1,
-  programAnalytics1Schema,
-} from './programAnalytics1';
+import { ProgramAnalytics, programAnalyticsSchema } from './programAnalytics';
 
 export interface ProgramAnalyticsResponse {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** The data returned by the operation. */
-  data: ProgramAnalytics1;
+  /** Contains analytics data for a specific program. */
+  data: ProgramAnalytics;
 }
 
 export const programAnalyticsResponseSchema: Schema<ProgramAnalyticsResponse> = object(
   {
     status: ['status', string()],
     message: ['message', string()],
-    data: ['data', lazy(() => programAnalytics1Schema)],
+    data: ['data', lazy(() => programAnalyticsSchema)],
   }
 );

@@ -6,23 +6,22 @@
 
 import { lazy, object, Schema, string } from '../schema';
 import {
-  EquipmentGroupTranslation1,
-  equipmentGroupTranslation1Schema,
-} from './equipmentGroupTranslation1';
+  EquipmentGroupTranslation,
+  equipmentGroupTranslationSchema,
+} from './equipmentGroupTranslation';
 
 export interface EquipmentGroupTranslationListResponse {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** The data returned by the operation. */
-  data: EquipmentGroupTranslation1;
+  data: EquipmentGroupTranslation;
 }
 
 export const equipmentGroupTranslationListResponseSchema: Schema<EquipmentGroupTranslationListResponse> = object(
   {
     status: ['status', string()],
     message: ['message', string()],
-    data: ['data', lazy(() => equipmentGroupTranslation1Schema)],
+    data: ['data', lazy(() => equipmentGroupTranslationSchema)],
   }
 );

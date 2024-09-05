@@ -6,23 +6,23 @@
 
 import { lazy, object, Schema, string } from '../schema';
 import {
-  UserWithoutCreatorProfile1,
-  userWithoutCreatorProfile1Schema,
-} from './userWithoutCreatorProfile1';
+  UserWithoutCreatorProfile,
+  userWithoutCreatorProfileSchema,
+} from './userWithoutCreatorProfile';
 
 export interface UserWithoutCreatorProfileResponse {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** The data returned by the operation. */
-  data: UserWithoutCreatorProfile1;
+  /** Represents a user in the system without creator profile. */
+  data: UserWithoutCreatorProfile;
 }
 
 export const userWithoutCreatorProfileResponseSchema: Schema<UserWithoutCreatorProfileResponse> = object(
   {
     status: ['status', string()],
     message: ['message', string()],
-    data: ['data', lazy(() => userWithoutCreatorProfile1Schema)],
+    data: ['data', lazy(() => userWithoutCreatorProfileSchema)],
   }
 );

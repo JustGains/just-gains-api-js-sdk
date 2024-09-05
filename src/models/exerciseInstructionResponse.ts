@@ -6,23 +6,22 @@
 
 import { lazy, object, Schema, string } from '../schema';
 import {
-  ExerciseInstruction1,
-  exerciseInstruction1Schema,
-} from './exerciseInstruction1';
+  ExerciseInstruction,
+  exerciseInstructionSchema,
+} from './exerciseInstruction';
 
 export interface ExerciseInstructionResponse {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** The data returned by the operation. */
-  data: ExerciseInstruction1;
+  data: ExerciseInstruction;
 }
 
 export const exerciseInstructionResponseSchema: Schema<ExerciseInstructionResponse> = object(
   {
     status: ['status', string()],
     message: ['message', string()],
-    data: ['data', lazy(() => exerciseInstruction1Schema)],
+    data: ['data', lazy(() => exerciseInstructionSchema)],
   }
 );

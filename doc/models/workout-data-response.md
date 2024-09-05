@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `data` | [`WorkoutData1`](../../doc/models/workout-data-1.md) | Required | The data returned by the operation. |
+| `data` | [`WorkoutData`](../../doc/models/workout-data.md) | Required | Represents a single exercise within a workout, including its data, order, and grouping information. |
 
 ## Example (as JSON)
 
@@ -24,16 +24,12 @@
     "exerciseNotes": "Keep your core tight throughout the movement",
     "exerciseMetrics": [
       {
-        "code": "WEIGHT",
-        "unit": "KG",
-        "metricCode": "metricCode6",
-        "metricUnit": "metricUnit0"
+        "metricCode": "WEIGHT",
+        "metricUnit": "KG"
       },
       {
-        "code": "REPS",
-        "unit": "COUNT",
-        "metricCode": "metricCode6",
-        "metricUnit": "metricUnit0"
+        "metricCode": "REPS",
+        "metricUnit": "COUNT"
       }
     ],
     "exerciseData": [

@@ -5,21 +5,21 @@
  */
 
 import { lazy, object, Schema, string } from '../schema';
-import { ProgramReview1, programReview1Schema } from './programReview1';
+import { ProgramReview, programReviewSchema } from './programReview';
 
 export interface ProgramReviewResponse {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** The data returned by the operation. */
-  data: ProgramReview1;
+  /** Represents a user's review of a program. */
+  data: ProgramReview;
 }
 
 export const programReviewResponseSchema: Schema<ProgramReviewResponse> = object(
   {
     status: ['status', string()],
     message: ['message', string()],
-    data: ['data', lazy(() => programReview1Schema)],
+    data: ['data', lazy(() => programReviewSchema)],
   }
 );

@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `data` | [`WorkoutTableItem[]`](../../doc/models/workout-table-item.md) | Required | The data returned by the operation. |
+| `data` | [`WorkoutTableItem[]`](../../doc/models/workout-table-item.md) | Required | - |
 | `pagination` | [`Pagination \| undefined`](../../doc/models/pagination.md) | Optional | - |
 
 ## Example (as JSON)

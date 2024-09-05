@@ -5,19 +5,18 @@
  */
 
 import { lazy, object, Schema, string } from '../schema';
-import { Role1, role1Schema } from './role1';
+import { Role, roleSchema } from './role';
 
 export interface RolesResponse1 {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** The data returned by the operation. */
-  data: Role1;
+  data: Role;
 }
 
 export const rolesResponse1Schema: Schema<RolesResponse1> = object({
   status: ['status', string()],
   message: ['message', string()],
-  data: ['data', lazy(() => role1Schema)],
+  data: ['data', lazy(() => roleSchema)],
 });
