@@ -13,7 +13,7 @@ export interface ExerciseVideo1 {
   exerciseCode?: string;
   /** The user ID of the user who created the exercise. */
   userId?: string;
-  mediaElement?: MediaAsset;
+  mediaAsset?: MediaAsset;
   /** The order in which the video should be displayed. */
   sortOrder?: number;
 }
@@ -21,6 +21,6 @@ export interface ExerciseVideo1 {
 export const exerciseVideo1Schema: Schema<ExerciseVideo1> = object({
   exerciseCode: ['exerciseCode', optional(string())],
   userId: ['userId', optional(string())],
-  mediaElement: ['mediaElement', optional(lazy(() => mediaAssetSchema))],
+  mediaAsset: ['mediaAsset', optional(lazy(() => mediaAssetSchema))],
   sortOrder: ['sortOrder', optional(number())],
 });

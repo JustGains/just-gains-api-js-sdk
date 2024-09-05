@@ -70,11 +70,12 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | programsProgramWeeks | Gets ProgramsProgramWeeksController |
 | programsProgramAnalytics | Gets ProgramsProgramAnalyticsController |
 | status | Gets StatusController |
-| userManagement | Gets UserManagementController |
+| usersRoleManagement | Gets UsersRoleManagementController |
 | mediaAssets | Gets MediaAssetsController |
 | locales | Gets LocalesController |
 | publishedStatus | Gets PublishedStatusController |
 | exerciseMetrics | Gets ExerciseMetricsController |
 | programsProgramViews | Gets ProgramsProgramViewsController |
 | programsProgramReviews | Gets ProgramsProgramReviewsController |
+| exercisesExerciseThumbnails | Gets ExercisesExerciseThumbnailsController |
 

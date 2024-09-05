@@ -36,6 +36,7 @@ import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseErr
 
 export class ExercisesController extends BaseController {
   /**
+   * @param nameSearch             List of exercise names to filter by
    * @param exerciseCategoryCodes  List of exercise category codes to filter by
    * @param exerciseTypeCodes      List of exercise types to filter by
    * @param exerciseEquipmentCodes List of exercise equipment to filter by
@@ -48,6 +49,7 @@ export class ExercisesController extends BaseController {
    * @return Response from the API call
    */
   async getExercises(
+    nameSearch?: string,
     exerciseCategoryCodes?: string[],
     exerciseTypeCodes?: string[],
     exerciseEquipmentCodes?: string[],
@@ -61,6 +63,7 @@ export class ExercisesController extends BaseController {
   ): Promise<ApiResponse<ExerciseListResponse>> {
     const req = this.createRequest('GET', '/exercises');
     const mapped = req.prepareArgs({
+      nameSearch: [nameSearch, optional(string())],
       exerciseCategoryCodes: [exerciseCategoryCodes, optional(array(string()))],
       exerciseTypeCodes: [exerciseTypeCodes, optional(array(string()))],
       exerciseEquipmentCodes: [
@@ -74,6 +77,7 @@ export class ExercisesController extends BaseController {
       pageIndex: [pageIndex, optional(number())],
       pageSize: [pageSize, optional(number())],
     });
+    req.query('nameSearch', mapped.nameSearch);
     req.query('exerciseCategoryCodes', mapped.exerciseCategoryCodes);
     req.query('exerciseTypeCodes', mapped.exerciseTypeCodes);
     req.query('exerciseEquipmentCodes', mapped.exerciseEquipmentCodes);

@@ -9,10 +9,10 @@ const exerciseDraftsController = new ExerciseDraftsController(client);
 `ExerciseDraftsController`
 
 
-# Create Update an Existing Exercise With the Exercise Draft Format
+# Create Update an Exercise With Exercise Draft DTO
 
 ```ts
-async createUpdateAnExistingExerciseWithTheExerciseDraftFormat(  body: ExerciseDraftDTO,
+async createUpdateAnExerciseWithExerciseDraftDTO(  body: ExerciseDraftDTO,
 requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseResponse>>
 ```
 
@@ -33,7 +33,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseResponse>>
 const body: ExerciseDraftDTO = {};
 
 try {
-  const { result, ...httpResponse } = await exerciseDraftsController.createUpdateAnExistingExerciseWithTheExerciseDraftFormat(body);
+  const { result, ...httpResponse } = await exerciseDraftsController.createUpdateAnExerciseWithExerciseDraftDTO(body);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {

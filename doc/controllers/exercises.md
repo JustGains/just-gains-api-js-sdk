@@ -27,7 +27,8 @@ const exercisesController = new ExercisesController(client);
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async getExercises(  exerciseCategoryCodes?: string[],
+async getExercises(  nameSearch?: string,
+  exerciseCategoryCodes?: string[],
   exerciseTypeCodes?: string[],
   exerciseEquipmentCodes?: string[],
   exerciseMuscleCodes?: string[],
@@ -43,6 +44,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseListResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `nameSearch` | `string \| undefined` | Query, Optional | List of exercise names to filter by |
 | `exerciseCategoryCodes` | `string[] \| undefined` | Query, Optional | List of exercise category codes to filter by |
 | `exerciseTypeCodes` | `string[] \| undefined` | Query, Optional | List of exercise types to filter by |
 | `exerciseEquipmentCodes` | `string[] \| undefined` | Query, Optional | List of exercise equipment to filter by |
@@ -61,6 +63,13 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseListResponse>>
 ## Example Usage
 
 ```ts
+const nameSearch = 'Bench Press';
+
+const exerciseCategoryCodes: string[] = [
+  'STRENGTH',
+  'CARDIO'
+];
+
 const localeCode = 'en-US';
 
 const pageIndex = 1;
@@ -69,7 +78,8 @@ const pageSize = 100;
 
 try {
   const { result, ...httpResponse } = await exercisesController.getExercises(
-  undefined,
+  nameSearch,
+  exerciseCategoryCodes,
   undefined,
   undefined,
   undefined,

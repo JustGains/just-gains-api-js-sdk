@@ -21,7 +21,7 @@ export class ExerciseDraftsController extends BaseController {
    * @param body
    * @return Response from the API call
    */
-  async createUpdateAnExistingExerciseWithTheExerciseDraftFormat(
+  async createUpdateAnExerciseWithExerciseDraftDTO(
     body: ExerciseDraftDTO,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ExerciseResponse>> {

@@ -15,6 +15,18 @@ describe('AuthenticationController', () => {
     controller = new AuthenticationController(testClient);
   });
 
+  it('should Test Get current user information', async () => {
+    const response = await makeApiCall(
+      () => controller.getCurrentUserInformation()
+    );
+
+    expect(response.statusCode).toBe(200);
+
+    const expectedHeaders = { 'Content-Type': ['application/json', true] };
+
+    expectHeadersToMatch(response.headers, expectedHeaders);
+  });
+
   it('should Test Refresh authentication token', async () => {
     const response = await makeApiCall(
       () => controller.refreshAuthenticationToken()

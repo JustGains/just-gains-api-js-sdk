@@ -16,6 +16,13 @@ describe('ExercisesController', () => {
   });
 
   it('should Test getExercises', async () => {
+    const nameSearch = 'Bench Press';
+
+    const exerciseCategoryCodes: string[] = [
+      'STRENGTH',
+      'CARDIO'
+    ];
+
     const localeCode = 'en-US';
 
     const pageIndex = 1;
@@ -24,7 +31,8 @@ describe('ExercisesController', () => {
 
     const response = await makeApiCall(
       () => controller.getExercises(
-        undefined,
+        nameSearch,
+        exerciseCategoryCodes,
         undefined,
         undefined,
         undefined,

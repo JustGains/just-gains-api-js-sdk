@@ -18,6 +18,7 @@ import {
   DEFAULT_RETRY_CONFIG,
 } from './defaultConfiguration';
 import { ApiError } from './core';
+import { JustGainsErrorResponseError } from './errors/justGainsErrorResponseError';
 import {
   AbortError,
   AuthenticatorInterface,
@@ -88,14 +89,14 @@ function createHttpClientAdapter(client: HttpClient): HttpClientInterface {
 }
 
 function getBaseUri(server: Server = 'default', config: Configuration): string {
-  if (config.environment === Environment.Production) {
-    if (server === 'default') {
-      return 'https://api.justgains.com/api';
-    }
-  }
   if (config.environment === Environment.Testing) {
     if (server === 'default') {
       return 'https://testing.api.justgains.com/api';
+    }
+  }
+  if (config.environment === Environment.Production) {
+    if (server === 'default') {
+      return 'https://api.justgains.com/api';
     }
   }
   if (config.environment === Environment.Mock) {
@@ -136,7 +137,7 @@ function tap(
 }
 
 function withErrorHandlers(rb: SdkRequestBuilder) {
-  rb.defaultToError(ApiError);
+  rb.defaultToError(JustGainsErrorResponseError, 'An Error Occurred');
 }
 
 function withUserAgent(rb: SdkRequestBuilder) {

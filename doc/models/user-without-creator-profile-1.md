@@ -19,7 +19,7 @@ The data returned by the operation.
 | `lastName` | `string \| undefined` | Optional | The user's last name. |
 | `fullName` | `string \| undefined` | Optional | The user's full name, typically a combination of first and last name. |
 | `oAuthProvider` | `string \| undefined` | Optional | The name of the OAuth provider if the user signed up using OAuth. |
-| `role` | `string \| undefined` | Optional | The user's role in the system, determining their permissions. |
+| `roles` | `string[] \| undefined` | Optional | The user's role in the system, determining their permissions. |
 | `refreshToken` | `string \| undefined` | Optional | refreshToken value to get next accesstoken |
 
 ## Example (as JSON)
@@ -34,7 +34,9 @@ The data returned by the operation.
   "lastName": "Doe",
   "fullName": "Jane Doe",
   "oAuthProvider": "Google",
-  "role": "user"
+  "roles": [
+    "user"
+  ]
 }
 ```
 

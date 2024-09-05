@@ -6,7 +6,14 @@
 
 import { Client, Configuration, Environment } from '../src';
 
-export const testClient = new Client(createConfigurationFromEnvironment());
+const defaultTestConfiguration: Partial<Configuration> = {
+  environment: Environment.Testing,
+};
+
+export const testClient = new Client({
+  ...createConfigurationFromEnvironment(),
+  ...defaultTestConfiguration,
+});
 
 function createConfigurationFromEnvironment(): Partial<Configuration> {
   const config: Partial<Configuration> = {};

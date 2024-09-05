@@ -27,6 +27,10 @@ import {
   resetPasswordRequestSchema,
 } from '../models/resetPasswordRequest';
 import {
+  UpdateUserRequest,
+  updateUserRequestSchema,
+} from '../models/updateUserRequest';
+import {
   UserInfoResponse,
   userInfoResponseSchema,
 } from '../models/userInfoResponse';
@@ -42,6 +46,43 @@ import { BaseController } from './baseController';
 import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseError';
 
 export class AuthenticationController extends BaseController {
+  /**
+   * @return Response from the API call
+   */
+  async getCurrentUserInformation(
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<UserInfoResponse>> {
+    const req = this.createRequest('GET', '/auth/user');
+    req.throwOn(
+      401,
+      JustGainsErrorResponseError,
+      'Failed to retrieve user information'
+    );
+    req.authenticate([]);
+    return req.callAsJson(userInfoResponseSchema, requestOptions);
+  }
+
+  /**
+   * @param body
+   * @return Response from the API call
+   */
+  async updateUserInformation(
+    body: UpdateUserRequest,
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<JustGainsResponse>> {
+    const req = this.createRequest('PUT', '/auth/user');
+    const mapped = req.prepareArgs({ body: [body, updateUserRequestSchema] });
+    req.header('Content-Type', 'application/json');
+    req.json(mapped.body);
+    req.throwOn(
+      400,
+      JustGainsErrorResponseError,
+      'Failed to update user information'
+    );
+    req.authenticate([]);
+    return req.callAsJson(justGainsResponseSchema, requestOptions);
+  }
+
   /**
    * @param body
    * @return Response from the API call

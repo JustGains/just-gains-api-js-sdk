@@ -12,6 +12,8 @@ const authenticationController = new AuthenticationController(client);
 
 ## Methods
 
+* [Get Current User Information](../../doc/controllers/authentication.md#get-current-user-information)
+* [Update User Information](../../doc/controllers/authentication.md#update-user-information)
 * [Register a New User](../../doc/controllers/authentication.md#register-a-new-user)
 * [Sign in a User](../../doc/controllers/authentication.md#sign-in-a-user)
 * [Resend Confirmation Email](../../doc/controllers/authentication.md#resend-confirmation-email)
@@ -19,6 +21,104 @@ const authenticationController = new AuthenticationController(client);
 * [Reset User Password](../../doc/controllers/authentication.md#reset-user-password)
 * [Refresh Authentication Token](../../doc/controllers/authentication.md#refresh-authentication-token)
 * [Sign Out the Current User](../../doc/controllers/authentication.md#sign-out-the-current-user)
+
+
+# Get Current User Information
+
+:information_source: **Note** This endpoint does not require authentication.
+
+```ts
+async getCurrentUserInformation(requestOptions?: RequestOptions): Promise<ApiResponse<UserInfoResponse>>
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Response Type
+
+[`UserInfoResponse`](../../doc/models/user-info-response.md)
+
+## Example Usage
+
+```ts
+try {
+  const { result, ...httpResponse } = await authenticationController.getCurrentUserInformation();
+  // Get more response info...
+  // const { statusCode, headers } = httpResponse;
+} catch (error) {
+  if (error instanceof ApiError) {
+    const errors = error.result;
+    // const { statusCode, headers } = error;
+  }
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 401 | Failed to retrieve user information | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+
+
+# Update User Information
+
+:information_source: **Note** This endpoint does not require authentication.
+
+```ts
+async updateUserInformation(  body: UpdateUserRequest,
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `body` | [`UpdateUserRequest`](../../doc/models/update-user-request.md) | Body, Required | - |
+| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Response Type
+
+[`JustGainsResponse`](../../doc/models/just-gains-response.md)
+
+## Example Usage
+
+```ts
+const body: UpdateUserRequest = {
+  user: {
+    userId: '123e4567-e89b-12d3-a456-426614174000',
+    userName: 'fitness_enthusiast_42',
+    email: 'jane.doe@example.com',
+    password: '$2a$10$Ks6Qr5Yl.Y5iY5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5',
+    firstName: 'Jane',
+    lastName: 'Doe',
+    fullName: 'Jane Doe',
+    oAuthProvider: 'Google',
+    roles: [
+      'user'
+    ],
+  },
+};
+
+try {
+  const { result, ...httpResponse } = await authenticationController.updateUserInformation(body);
+  // Get more response info...
+  // const { statusCode, headers } = httpResponse;
+} catch (error) {
+  if (error instanceof ApiError) {
+    const errors = error.result;
+    // const { statusCode, headers } = error;
+  }
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Failed to update user information | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
 # Register a New User
