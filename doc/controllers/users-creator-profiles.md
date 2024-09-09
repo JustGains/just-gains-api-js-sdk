@@ -22,8 +22,8 @@ const usersCreatorProfilesController = new UsersCreatorProfilesController(client
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async getCreatorProfiles(  page?: number,
-  limit?: number,
+async getCreatorProfiles(  limit?: number,
+  page?: number,
 requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileListResponse>>
 ```
 
@@ -31,8 +31,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileListResponse
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `page` | `number \| undefined` | Query, Optional | Page number for pagination |
-| `limit` | `number \| undefined` | Query, Optional | Number of items per page |
+| `limit` | `number \| undefined` | Query, Optional | Number of items per page<br>**Default**: `20`<br>**Constraints**: `>= 1`, `<= 100` |
+| `page` | `number \| undefined` | Query, Optional | Page number for pagination<br>**Default**: `1`<br>**Constraints**: `>= 1` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -42,14 +42,14 @@ requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileListResponse
 ## Example Usage
 
 ```ts
-const page = 1;
-
 const limit = 20;
+
+const page = 1;
 
 try {
   const { result, ...httpResponse } = await usersCreatorProfilesController.getCreatorProfiles(
-  page,
-  limit
+  limit,
+  page
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -162,8 +162,8 @@ try {
 # Update Creator Profile
 
 ```ts
-async updateCreatorProfile(  creatorProfileId: string,
-  body: CreatorProfile,
+async updateCreatorProfile(  body: CreatorProfile,
+  creatorProfileId: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileResponse>>
 ```
 
@@ -171,8 +171,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `creatorProfileId` | `string` | Template, Required | - |
 | `body` | [`CreatorProfile`](../../doc/models/creator-profile.md) | Body, Required | - |
+| `creatorProfileId` | `string` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -182,18 +182,18 @@ requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileResponse>>
 ## Example Usage
 
 ```ts
-const creatorProfileId = '000008d2-0000-0000-0000-000000000000';
-
 const body: CreatorProfile = {
   creatorProfileId: '123e4567-e89b-12d3-a456-426614174000',
   userId: '123e4567-e89b-12d3-a456-426614174000',
   creatorEmail: 'dwayne@therockjohnson.com',
 };
 
+const creatorProfileId = '000008d2-0000-0000-0000-000000000000';
+
 try {
   const { result, ...httpResponse } = await usersCreatorProfilesController.updateCreatorProfile(
-  creatorProfileId,
-  body
+  body,
+  creatorProfileId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

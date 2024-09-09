@@ -34,7 +34,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentListResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string \| undefined` | Query, Optional | The locale to use for the localized equipment names. |
+| `localeCode` | `string \| undefined` | Query, Optional | The locale to use for the localized equipment names.<br>**Default**: `'en-US'`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -123,7 +123,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<EquipmentResponse>>
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `equipmentCode` | `string` | Template, Required | The unique code identifying the equipment. |
-| `localeCode` | `string \| undefined` | Query, Optional | The locale to use for the localized equipment names. |
+| `localeCode` | `string \| undefined` | Query, Optional | The locale to use for the localized equipment names.<br>**Default**: `'en-US'`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -162,8 +162,8 @@ try {
 # Update Equipment
 
 ```ts
-async updateEquipment(  equipmentCode: string,
-  body: Equipment,
+async updateEquipment(  body: Equipment,
+  equipmentCode: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -171,8 +171,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `equipmentCode` | `string` | Template, Required | The unique code identifying the equipment to update. |
 | `body` | [`Equipment`](../../doc/models/equipment.md) | Body, Required | - |
+| `equipmentCode` | `string` | Template, Required | The unique code identifying the equipment to update. |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -182,8 +182,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
-const equipmentCode = 'equipmentCode6';
-
 const body: Equipment = {
   equipmentCode: 'BARBELL',
   equipmentName: 'Barbell',
@@ -193,10 +191,12 @@ const body: Equipment = {
   ],
 };
 
+const equipmentCode = 'equipmentCode6';
+
 try {
   const { result, ...httpResponse } = await equipmentController.updateEquipment(
-  equipmentCode,
-  body
+  body,
+  equipmentCode
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -309,8 +309,8 @@ try {
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async updateEquipmentTranslations(  equipmentCode: string,
-  body: EquipmentTranslation,
+async updateEquipmentTranslations(  body: EquipmentTranslation,
+  equipmentCode: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -318,8 +318,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `equipmentCode` | `string` | Template, Required | The unique code of the equipment |
 | `body` | [`EquipmentTranslation`](../../doc/models/equipment-translation.md) | Body, Required | - |
+| `equipmentCode` | `string` | Template, Required | The unique code of the equipment |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -329,17 +329,17 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
-const equipmentCode = 'equipmentCode6';
-
 const body: EquipmentTranslation = {
   equipmentName: 'Barbell',
   localeCode: 'en-US',
 };
 
+const equipmentCode = 'equipmentCode6';
+
 try {
   const { result, ...httpResponse } = await equipmentController.updateEquipmentTranslations(
-  equipmentCode,
-  body
+  body,
+  equipmentCode
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

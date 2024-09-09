@@ -29,7 +29,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseMetricListResponse
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string \| undefined` | Query, Optional | The locale for the metric names and measurement data |
+| `localeCode` | `string \| undefined` | Query, Optional | The locale for the metric names and measurement data<br>**Default**: `'en-US'`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -107,8 +107,8 @@ try {
 # Update an Exercise Metric
 
 ```ts
-async updateAnExerciseMetric(  metricCode: string,
-  body: ExerciseMetric,
+async updateAnExerciseMetric(  body: ExerciseMetric,
+  metricCode: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
@@ -116,8 +116,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `metricCode` | `string` | Template, Required | - |
 | `body` | [`ExerciseMetric`](../../doc/models/exercise-metric.md) | Body, Required | - |
+| `metricCode` | `string` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -127,16 +127,16 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ## Example Usage
 
 ```ts
-const metricCode = 'metricCode4';
-
 const body: ExerciseMetric = {
   exerciseMetricCode: 'WEIGHT',
 };
 
+const metricCode = 'metricCode4';
+
 try {
   const { result, ...httpResponse } = await exerciseMetricsController.updateAnExerciseMetric(
-  metricCode,
-  body
+  body,
+  metricCode
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

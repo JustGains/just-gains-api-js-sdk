@@ -32,19 +32,19 @@ import { BaseController } from './baseController';
 
 export class UsersRoleManagementController extends BaseController {
   /**
-   * @param userId
    * @param body
+   * @param userId
    * @return Response from the API call
    */
   async assignARoleToAUser(
-    userId: string,
     body: RoleAssignmentRequest,
+    userId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<UsersRolesResponse>> {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({
-      userId: [userId, string()],
       body: [body, roleAssignmentRequestSchema],
+      userId: [userId, string()],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -69,19 +69,19 @@ export class UsersRoleManagementController extends BaseController {
   }
 
   /**
-   * @param userId
    * @param roleName
+   * @param userId
    * @return Response from the API call
    */
   async removeARoleFromAUser(
-    userId: string,
     roleName: string,
+    userId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsResponse>> {
     const req = this.createRequest('DELETE');
     const mapped = req.prepareArgs({
-      userId: [userId, string()],
       roleName: [roleName, string()],
+      userId: [userId, string()],
     });
     req.appendTemplatePath`/users/${mapped.userId}/roles/${mapped.roleName}`;
     req.authenticate([]);
@@ -116,19 +116,19 @@ export class UsersRoleManagementController extends BaseController {
   }
 
   /**
-   * @param roleName
    * @param body
+   * @param roleName
    * @return Response from the API call
    */
   async updateARole(
-    roleName: string,
     body: RoleUpdateRequest,
+    roleName: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<RolesResponse1>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      roleName: [roleName, string()],
       body: [body, roleUpdateRequestSchema],
+      roleName: [roleName, string()],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

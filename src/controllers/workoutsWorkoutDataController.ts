@@ -40,19 +40,19 @@ export class WorkoutsWorkoutDataController extends BaseController {
   }
 
   /**
-   * @param workoutId
    * @param exerciseCode
+   * @param workoutId
    * @return Response from the API call
    */
   async getWorkoutDetailById(
-    workoutId: number,
     exerciseCode: string,
+    workoutId: number,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<WorkoutDataResponse>> {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({
-      workoutId: [workoutId, number()],
       exerciseCode: [exerciseCode, string()],
+      workoutId: [workoutId, number()],
     });
     req.appendTemplatePath`/workouts/${mapped.workoutId}/data/${mapped.exerciseCode}`;
     req.throwOn(
@@ -65,22 +65,22 @@ export class WorkoutsWorkoutDataController extends BaseController {
   }
 
   /**
-   * @param workoutId
-   * @param exerciseCode
    * @param body
+   * @param exerciseCode
+   * @param workoutId
    * @return Response from the API call
    */
   async addNewExerciseToTheWorkout(
-    workoutId: number,
-    exerciseCode: string,
     body: WorkoutData,
+    exerciseCode: string,
+    workoutId: number,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<WorkoutDataResponse>> {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({
-      workoutId: [workoutId, number()],
-      exerciseCode: [exerciseCode, string()],
       body: [body, workoutDataSchema],
+      exerciseCode: [exerciseCode, string()],
+      workoutId: [workoutId, number()],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -92,22 +92,22 @@ export class WorkoutsWorkoutDataController extends BaseController {
   }
 
   /**
-   * @param workoutId
-   * @param exerciseCode
    * @param body
+   * @param exerciseCode
+   * @param workoutId
    * @return Response from the API call
    */
   async updateExerciseInTheWorkout(
-    workoutId: number,
-    exerciseCode: string,
     body: WorkoutData,
+    exerciseCode: string,
+    workoutId: number,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<WorkoutDataResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      workoutId: [workoutId, number()],
-      exerciseCode: [exerciseCode, string()],
       body: [body, workoutDataSchema],
+      exerciseCode: [exerciseCode, string()],
+      workoutId: [workoutId, number()],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -123,19 +123,19 @@ export class WorkoutsWorkoutDataController extends BaseController {
   }
 
   /**
-   * @param workoutId
    * @param exerciseCode
+   * @param workoutId
    * @return Response from the API call
    */
   async deletesAnExerciseFromTheWorkout(
-    workoutId: number,
     exerciseCode: string,
+    workoutId: number,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('DELETE');
     const mapped = req.prepareArgs({
-      workoutId: [workoutId, number()],
       exerciseCode: [exerciseCode, string()],
+      workoutId: [workoutId, number()],
     });
     req.appendTemplatePath`/workouts/${mapped.workoutId}/data/${mapped.exerciseCode}`;
     req.throwOn(

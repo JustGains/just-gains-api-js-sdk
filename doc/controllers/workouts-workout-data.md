@@ -66,8 +66,8 @@ try {
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async getWorkoutDetailById(  workoutId: number,
-  exerciseCode: string,
+async getWorkoutDetailById(  exerciseCode: string,
+  workoutId: number,
 requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutDataResponse>>
 ```
 
@@ -75,8 +75,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutDataResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `exerciseCode` | `string` | Template, Required | **Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `workoutId` | `number` | Template, Required | - |
-| `exerciseCode` | `string` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -86,14 +86,14 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutDataResponse>>
 ## Example Usage
 
 ```ts
-const workoutId = 250;
-
 const exerciseCode = 'exerciseCode8';
+
+const workoutId = 250;
 
 try {
   const { result, ...httpResponse } = await workoutsWorkoutDataController.getWorkoutDetailById(
-  workoutId,
-  exerciseCode
+  exerciseCode,
+  workoutId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -115,9 +115,9 @@ try {
 # Add New Exercise to the Workout
 
 ```ts
-async addNewExerciseToTheWorkout(  workoutId: number,
+async addNewExerciseToTheWorkout(  body: WorkoutData,
   exerciseCode: string,
-  body: WorkoutData,
+  workoutId: number,
 requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutDataResponse>>
 ```
 
@@ -125,9 +125,9 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutDataResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `workoutId` | `number` | Template, Required | - |
-| `exerciseCode` | `string` | Template, Required | - |
 | `body` | [`WorkoutData`](../../doc/models/workout-data.md) | Body, Required | - |
+| `exerciseCode` | `string` | Template, Required | **Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `workoutId` | `number` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -137,10 +137,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutDataResponse>>
 ## Example Usage
 
 ```ts
-const workoutId = 250;
-
-const exerciseCode = 'exerciseCode8';
-
 const body: WorkoutData = {
   exerciseCode: 'BARBELL_SQUAT',
   exerciseNotes: 'Keep your core tight throughout the movement',
@@ -165,11 +161,15 @@ const body: WorkoutData = {
   exerciseGroupType: ExerciseGroupTypeEnum.SUPERSET,
 };
 
+const exerciseCode = 'exerciseCode8';
+
+const workoutId = 250;
+
 try {
   const { result, ...httpResponse } = await workoutsWorkoutDataController.addNewExerciseToTheWorkout(
-  workoutId,
+  body,
   exerciseCode,
-  body
+  workoutId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -192,9 +192,9 @@ try {
 # Update Exercise in the Workout
 
 ```ts
-async updateExerciseInTheWorkout(  workoutId: number,
+async updateExerciseInTheWorkout(  body: WorkoutData,
   exerciseCode: string,
-  body: WorkoutData,
+  workoutId: number,
 requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutDataResponse>>
 ```
 
@@ -202,9 +202,9 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutDataResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `workoutId` | `number` | Template, Required | - |
-| `exerciseCode` | `string` | Template, Required | - |
 | `body` | [`WorkoutData`](../../doc/models/workout-data.md) | Body, Required | - |
+| `exerciseCode` | `string` | Template, Required | **Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `workoutId` | `number` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -214,10 +214,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutDataResponse>>
 ## Example Usage
 
 ```ts
-const workoutId = 250;
-
-const exerciseCode = 'exerciseCode8';
-
 const body: WorkoutData = {
   exerciseCode: 'BARBELL_SQUAT',
   exerciseNotes: 'Keep your core tight throughout the movement',
@@ -242,11 +238,15 @@ const body: WorkoutData = {
   exerciseGroupType: ExerciseGroupTypeEnum.SUPERSET,
 };
 
+const exerciseCode = 'exerciseCode8';
+
+const workoutId = 250;
+
 try {
   const { result, ...httpResponse } = await workoutsWorkoutDataController.updateExerciseInTheWorkout(
-  workoutId,
+  body,
   exerciseCode,
-  body
+  workoutId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -269,8 +269,8 @@ try {
 # Deletes an Exercise From the Workout
 
 ```ts
-async deletesAnExerciseFromTheWorkout(  workoutId: number,
-  exerciseCode: string,
+async deletesAnExerciseFromTheWorkout(  exerciseCode: string,
+  workoutId: number,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -278,8 +278,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `exerciseCode` | `string` | Template, Required | **Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `workoutId` | `number` | Template, Required | - |
-| `exerciseCode` | `string` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -289,14 +289,14 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
-const workoutId = 250;
-
 const exerciseCode = 'exerciseCode8';
+
+const workoutId = 250;
 
 try {
   const { result, ...httpResponse } = await workoutsWorkoutDataController.deletesAnExerciseFromTheWorkout(
-  workoutId,
-  exerciseCode
+  exerciseCode,
+  workoutId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

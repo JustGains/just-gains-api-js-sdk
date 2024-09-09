@@ -78,22 +78,22 @@ export class ExercisesExerciseThumbnailsController extends BaseController {
   }
 
   /**
+   * @param body
    * @param exerciseCode The exercise code to add or update thumbnail for
    * @param userId       The userId of the thumbnail creator
-   * @param body
    * @return Response from the API call
    */
   async addOrUpdateExerciseThumbnail(
+    body: ExerciseThumbnail,
     exerciseCode: string,
     userId: string,
-    body: ExerciseThumbnail,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ExerciseThumbnailResponse>> {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({
+      body: [body, exerciseThumbnailSchema],
       exerciseCode: [exerciseCode, string()],
       userId: [userId, string()],
-      body: [body, exerciseThumbnailSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

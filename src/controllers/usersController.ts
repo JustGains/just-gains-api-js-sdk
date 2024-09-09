@@ -60,19 +60,19 @@ export class UsersController extends BaseController {
   }
 
   /**
-   * @param userId
    * @param body
+   * @param userId
    * @return Response from the API call
    */
   async updateAUser(
-    userId: string,
     body: UserWithoutCreatorProfile,
+    userId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<UserWithoutCreatorProfileResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      userId: [userId, string()],
       body: [body, userWithoutCreatorProfileSchema],
+      userId: [userId, string()],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

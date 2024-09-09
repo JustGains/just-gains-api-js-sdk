@@ -32,8 +32,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetListResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `page` | `number \| undefined` | Query, Optional | - |
-| `pageSize` | `number \| undefined` | Query, Optional | - |
+| `page` | `number \| undefined` | Query, Optional | **Default**: `1` |
+| `pageSize` | `number \| undefined` | Query, Optional | **Default**: `20` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -66,9 +66,9 @@ try {
 # Upload a New Media Asset
 
 ```ts
-async uploadANewMediaAsset(  file?: FileWrapper,
+async uploadANewMediaAsset(  description?: string,
+  file?: FileWrapper,
   mediaType?: string,
-  description?: string,
   uploadDirectory?: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetResponse>>
 ```
@@ -77,9 +77,9 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `file` | `FileWrapper \| undefined` | Form, Optional | - |
-| `mediaType` | `string \| undefined` | Form, Optional | - |
 | `description` | `string \| undefined` | Form, Optional | - |
+| `file` | `FileWrapper \| undefined` | Form, Optional | - |
+| `mediaType` | `string \| undefined` | Form, Optional | **Constraints**: *Pattern*: `^[a-z]+/[a-z]+$` |
 | `uploadDirectory` | `string \| undefined` | Form, Optional | Optional. Specify a custom upload directory. |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
@@ -94,6 +94,7 @@ const mediaType = 'image/jpeg';
 
 try {
   const { result, ...httpResponse } = await mediaAssetsController.uploadANewMediaAsset(
+  undefined,
   undefined,
   mediaType
 );
@@ -155,8 +156,8 @@ try {
 # Update a Media Asset
 
 ```ts
-async updateAMediaAsset(  mediaAssetId: string,
-  body: MediaAsset,
+async updateAMediaAsset(  body: MediaAsset,
+  mediaAssetId: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetResponse>>
 ```
 
@@ -164,8 +165,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `mediaAssetId` | `string` | Template, Required | - |
 | `body` | [`MediaAsset`](../../doc/models/media-asset.md) | Body, Required | - |
+| `mediaAssetId` | `string` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -175,8 +176,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MediaAssetResponse>>
 ## Example Usage
 
 ```ts
-const mediaAssetId = '9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1';
-
 const body: MediaAsset = {
   mediaId: '7b8e9f2a-c1d3-45e6-a7b8-9c0d1e2f3a4b',
   fileName: 'workout_routine.mp4',
@@ -187,10 +186,12 @@ const body: MediaAsset = {
   description: 'High-intensity interval training (HIIT) workout routine for beginners',
 };
 
+const mediaAssetId = '9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1';
+
 try {
   const { result, ...httpResponse } = await mediaAssetsController.updateAMediaAsset(
-  mediaAssetId,
-  body
+  body,
+  mediaAssetId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -256,8 +257,8 @@ try {
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async getMediaAssetDetail(  mediaAssetId: string,
-  fileName: string,
+async getMediaAssetDetail(  fileName: string,
+  mediaAssetId: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<NodeJS.ReadableStream | Blob>>
 ```
 
@@ -265,8 +266,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<NodeJS.ReadableStream | Bl
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `mediaAssetId` | `string` | Template, Required | - |
 | `fileName` | `string` | Template, Required | - |
+| `mediaAssetId` | `string` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -276,14 +277,14 @@ requestOptions?: RequestOptions): Promise<ApiResponse<NodeJS.ReadableStream | Bl
 ## Example Usage
 
 ```ts
-const mediaAssetId = '9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1';
-
 const fileName = 'fileName4';
+
+const mediaAssetId = '9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1';
 
 try {
   const { result, ...httpResponse } = await mediaAssetsController.getMediaAssetDetail(
-  mediaAssetId,
-  fileName
+  fileName,
+  mediaAssetId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

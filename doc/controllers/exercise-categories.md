@@ -31,7 +31,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseCategoryListRespon
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string \| undefined` | Query, Optional | The locale for returned category names |
+| `localeCode` | `string \| undefined` | Query, Optional | The locale for returned category names<br>**Default**: `'en-US'`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -104,8 +104,8 @@ try {
 # Update an Exercise Category
 
 ```ts
-async updateAnExerciseCategory(  exerciseCategoryCode: string,
-  body: ExerciseCategory,
+async updateAnExerciseCategory(  body: ExerciseCategory,
+  exerciseCategoryCode: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -113,8 +113,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `exerciseCategoryCode` | `string` | Template, Required | - |
 | `body` | [`ExerciseCategory`](../../doc/models/exercise-category.md) | Body, Required | - |
+| `exerciseCategoryCode` | `string` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -124,17 +124,17 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
-const exerciseCategoryCode = 'exerciseCategoryCode8';
-
 const body: ExerciseCategory = {
   exerciseCategoryCode: 'STRENGTH_TRAINING',
   exerciseCategoryName: 'Strength Training',
 };
 
+const exerciseCategoryCode = 'exerciseCategoryCode8';
+
 try {
   const { result, ...httpResponse } = await exerciseCategoriesController.updateAnExerciseCategory(
-  exerciseCategoryCode,
-  body
+  body,
+  exerciseCategoryCode
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -246,8 +246,8 @@ try {
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async updateExerciseCategoryTranslations(  exerciseCategoryCode: string,
-  body: ExerciseCategoryTranslation[],
+async updateExerciseCategoryTranslations(  body: ExerciseCategoryTranslation[],
+  exerciseCategoryCode: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -255,8 +255,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `exerciseCategoryCode` | `string` | Template, Required | The unique code of the exercise category |
 | `body` | [`ExerciseCategoryTranslation[]`](../../doc/models/exercise-category-translation.md) | Body, Required | - |
+| `exerciseCategoryCode` | `string` | Template, Required | The unique code of the exercise category |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -266,8 +266,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
-const exerciseCategoryCode = 'exerciseCategoryCode8';
-
 const body: ExerciseCategoryTranslation[] = [
   {
     localeCode: 'en-US',
@@ -275,10 +273,12 @@ const body: ExerciseCategoryTranslation[] = [
   }
 ];
 
+const exerciseCategoryCode = 'exerciseCategoryCode8';
+
 try {
   const { result, ...httpResponse } = await exerciseCategoriesController.updateExerciseCategoryTranslations(
-  exerciseCategoryCode,
-  body
+  body,
+  exerciseCategoryCode
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

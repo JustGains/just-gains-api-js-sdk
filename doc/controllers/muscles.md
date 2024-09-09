@@ -30,7 +30,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MuscleListResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string \| undefined` | Query, Optional | Locale code to filter muscles by language |
+| `localeCode` | `string \| undefined` | Query, Optional | Locale code to filter muscles by language<br>**Default**: `'en-US'`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -109,8 +109,8 @@ try {
 # Update Muscle Translations
 
 ```ts
-async updateMuscleTranslations(  muscleCode: string,
-  body: MuscleTranslation[],
+async updateMuscleTranslations(  body: MuscleTranslation[],
+  muscleCode: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<MusclesTranslationsResponse1>>
 ```
 
@@ -118,8 +118,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MusclesTranslationsRespons
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `muscleCode` | `string` | Template, Required | The unique identifier code of the muscle to update translations for |
 | `body` | [`MuscleTranslation[]`](../../doc/models/muscle-translation.md) | Body, Required | - |
+| `muscleCode` | `string` | Template, Required | The unique identifier code of the muscle to update translations for |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -129,8 +129,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MusclesTranslationsRespons
 ## Example Usage
 
 ```ts
-const muscleCode = 'muscleCode0';
-
 const body: MuscleTranslation[] = [
   {
     muscleCode: 'QUAD',
@@ -139,10 +137,12 @@ const body: MuscleTranslation[] = [
   }
 ];
 
+const muscleCode = 'muscleCode0';
+
 try {
   const { result, ...httpResponse } = await musclesController.updateMuscleTranslations(
-  muscleCode,
-  body
+  body,
+  muscleCode
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

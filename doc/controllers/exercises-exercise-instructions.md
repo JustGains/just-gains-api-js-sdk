@@ -32,7 +32,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionListRes
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code to retrieve instruction models for |
-| `localeCodes` | `string[] \| undefined` | Query, Optional | The array of locales for the instructions (e.g., 'en-US', 'es-ES') |
+| `localeCodes` | `string[] \| undefined` | Query, Optional | The array of locales for the instructions (e.g., 'en-US', 'es-ES')<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -67,8 +67,8 @@ try {
 # Create New Exercise Instructions
 
 ```ts
-async createNewExerciseInstructions(  exerciseCode: string,
-  body: ExerciseInstruction,
+async createNewExerciseInstructions(  body: ExerciseInstruction,
+  exerciseCode: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionResponse>>
 ```
 
@@ -76,8 +76,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionRespons
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `exerciseCode` | `string` | Template, Required | The exercise code to create instructions for |
 | `body` | [`ExerciseInstruction`](../../doc/models/exercise-instruction.md) | Body, Required | - |
+| `exerciseCode` | `string` | Template, Required | The exercise code to create instructions for |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -87,8 +87,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionRespons
 ## Example Usage
 
 ```ts
-const exerciseCode = 'exerciseCode8';
-
 const body: ExerciseInstruction = {
   exerciseCode: 'BARBELL-BENCH-PRESS',
   localeCode: 'en-US',
@@ -99,10 +97,12 @@ const body: ExerciseInstruction = {
   userId: '9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1',
 };
 
+const exerciseCode = 'exerciseCode8';
+
 try {
   const { result, ...httpResponse } = await exercisesExerciseInstructionsController.createNewExerciseInstructions(
-  exerciseCode,
-  body
+  body,
+  exerciseCode
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -138,7 +138,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionRespons
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code to retrieve instructions for |
-| `localeCode` | `string` | Template, Required | The locale for the instructions (e.g., 'en-US', 'es-ES') |
+| `localeCode` | `string` | Template, Required | The locale for the instructions (e.g., 'en-US', 'es-ES')<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `userId` | `string` | Template, Required | The UserID that belongs to the instructions being requested |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
@@ -182,10 +182,10 @@ try {
 # Update Exercise Instructions
 
 ```ts
-async updateExerciseInstructions(  exerciseCode: string,
+async updateExerciseInstructions(  body: ExerciseInstruction,
+  exerciseCode: string,
   localeCode: string,
   userId: string,
-  body: ExerciseInstruction,
 requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionResponse>>
 ```
 
@@ -193,10 +193,10 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionRespons
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `exerciseCode` | `string` | Template, Required | The exercise code of the instructions to update |
-| `localeCode` | `string` | Template, Required | The locale code for the instructions to update |
-| `userId` | `string` | Template, Required | The userId of the creator for the instructions to update |
 | `body` | [`ExerciseInstruction`](../../doc/models/exercise-instruction.md) | Body, Required | - |
+| `exerciseCode` | `string` | Template, Required | The exercise code of the instructions to update |
+| `localeCode` | `string` | Template, Required | The locale code for the instructions to update<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
+| `userId` | `string` | Template, Required | The userId of the creator for the instructions to update |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -206,12 +206,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionRespons
 ## Example Usage
 
 ```ts
-const exerciseCode = 'exerciseCode8';
-
-const localeCode = 'localeCode2';
-
-const userId = 'userId0';
-
 const body: ExerciseInstruction = {
   exerciseCode: 'BARBELL-BENCH-PRESS',
   localeCode: 'en-US',
@@ -222,12 +216,18 @@ const body: ExerciseInstruction = {
   userId: '9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1',
 };
 
+const exerciseCode = 'exerciseCode8';
+
+const localeCode = 'localeCode2';
+
+const userId = 'userId0';
+
 try {
   const { result, ...httpResponse } = await exercisesExerciseInstructionsController.updateExerciseInstructions(
+  body,
   exerciseCode,
   localeCode,
-  userId,
-  body
+  userId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -262,7 +262,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code of the instructions to delete |
-| `localeCode` | `string` | Template, Required | The locale code for the instructions to delete |
+| `localeCode` | `string` | Template, Required | The locale code for the instructions to delete<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `userId` | `string` | Template, Required | The user ID of the instructions to delete |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 

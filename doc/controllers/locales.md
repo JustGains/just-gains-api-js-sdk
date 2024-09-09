@@ -108,7 +108,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<LocaleResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string` | Template, Required | The locale code to retrieve. |
+| `localeCode` | `string` | Template, Required | The locale code to retrieve.<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -136,8 +136,8 @@ try {
 # Update a Locale
 
 ```ts
-async updateALocale(  localeCode: string,
-  body: Locale,
+async updateALocale(  body: Locale,
+  localeCode: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -145,8 +145,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string` | Template, Required | The locale code to update. |
 | `body` | [`Locale`](../../doc/models/locale.md) | Body, Required | - |
+| `localeCode` | `string` | Template, Required | The locale code to update.<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -156,18 +156,18 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
-const localeCode = 'localeCode2';
-
 const body: Locale = {
   localeCode: 'en-US',
   localeName: 'English (United States)',
   published: true,
 };
 
+const localeCode = 'localeCode2';
+
 try {
   const { result, ...httpResponse } = await localesController.updateALocale(
-  localeCode,
-  body
+  body,
+  localeCode
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -191,7 +191,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string` | Template, Required | The locale code to delete. |
+| `localeCode` | `string` | Template, Required | The locale code to delete.<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type

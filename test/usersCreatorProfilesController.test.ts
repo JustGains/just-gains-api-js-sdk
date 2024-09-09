@@ -16,12 +16,12 @@ describe('UsersCreatorProfilesController', () => {
   });
 
   it('should Test getCreatorProfiles', async () => {
-    const page = 1;
-
     const limit = 20;
 
+    const page = 1;
+
     const response = await makeApiCall(
-      () => controller.getCreatorProfiles(page, limit)
+      () => controller.getCreatorProfiles(limit, page)
     );
 
     expect(response.statusCode).toBe(200);

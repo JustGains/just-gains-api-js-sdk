@@ -59,19 +59,19 @@ export class ExerciseMetricsController extends BaseController {
   }
 
   /**
-   * @param metricCode
    * @param body
+   * @param metricCode
    * @return Response from the API call
    */
   async updateAnExerciseMetric(
-    metricCode: string,
     body: ExerciseMetric,
+    metricCode: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      metricCode: [metricCode, string()],
       body: [body, exerciseMetricSchema],
+      metricCode: [metricCode, string()],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

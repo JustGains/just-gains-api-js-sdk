@@ -67,19 +67,19 @@ export class EquipmentEquipmentGroupsController extends BaseController {
   }
 
   /**
-   * @param equipmentGroupCode The equipment group code to update.
    * @param body
+   * @param equipmentGroupCode The equipment group code to update.
    * @return Response from the API call
    */
   async updateAnExistingEquipmentGroup(
-    equipmentGroupCode: string,
     body: EquipmentGroup,
+    equipmentGroupCode: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      equipmentGroupCode: [equipmentGroupCode, string()],
       body: [body, equipmentGroupSchema],
+      equipmentGroupCode: [equipmentGroupCode, string()],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -131,19 +131,19 @@ export class EquipmentEquipmentGroupsController extends BaseController {
   /**
    * Updates the translations for a specific equipment group identified by its code.
    *
-   * @param equipmentGroupCode The unique code of the equipment group
    * @param body
+   * @param equipmentGroupCode The unique code of the equipment group
    * @return Response from the API call
    */
   async updateEquipmentGroupTranslations(
-    equipmentGroupCode: string,
     body: EquipmentGroupTranslation[],
+    equipmentGroupCode: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      equipmentGroupCode: [equipmentGroupCode, string()],
       body: [body, array(equipmentGroupTranslationSchema)],
+      equipmentGroupCode: [equipmentGroupCode, string()],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

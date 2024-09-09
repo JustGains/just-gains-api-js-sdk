@@ -32,10 +32,10 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutTableListResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `page` | `number \| undefined` | Query, Optional | The page number to retrieve |
-| `pageSize` | `number \| undefined` | Query, Optional | The number of items to retrieve per page |
+| `page` | `number \| undefined` | Query, Optional | The page number to retrieve<br>**Default**: `1`<br>**Constraints**: `>= 1` |
+| `pageSize` | `number \| undefined` | Query, Optional | The number of items to retrieve per page<br>**Default**: `20`<br>**Constraints**: `>= 1`, `<= 100` |
 | `sortBy` | `string \| undefined` | Query, Optional | - |
-| `sortOrder` | [`SortOrderEnum \| undefined`](../../doc/models/sort-order-enum.md) | Query, Optional | The order to sort the results in |
+| `sortOrder` | [`SortOrderEnum \| undefined`](../../doc/models/sort-order-enum.md) | Query, Optional | The order to sort the results in<br>**Default**: `SortOrderEnum.Desc` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -171,8 +171,8 @@ try {
 Creates a copy of an existing workout, preserving creator credits and adding the current user as a new contributor.
 
 ```ts
-async duplicateAWorkout(  workoutId: number,
-  body: WorkoutsDuplicateRequest,
+async duplicateAWorkout(  body: WorkoutsDuplicateRequest,
+  workoutId: number,
 requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ```
 
@@ -180,8 +180,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `workoutId` | `number` | Template, Required | The ID of the workout to duplicate |
 | `body` | [`WorkoutsDuplicateRequest`](../../doc/models/workouts-duplicate-request.md) | Body, Required | - |
+| `workoutId` | `number` | Template, Required | The ID of the workout to duplicate |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -191,16 +191,16 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ## Example Usage
 
 ```ts
-const workoutId = 250;
-
 const body: WorkoutsDuplicateRequest = {
   newWorkoutTitle: 'My Modified Full Body Workout',
 };
 
+const workoutId = 250;
+
 try {
   const { result, ...httpResponse } = await workoutsController.duplicateAWorkout(
-  workoutId,
-  body
+  body,
+  workoutId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

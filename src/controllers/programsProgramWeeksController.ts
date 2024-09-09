@@ -33,19 +33,19 @@ export class ProgramsProgramWeeksController extends BaseController {
   }
 
   /**
-   * @param programId
    * @param body
+   * @param programId
    * @return Response from the API call
    */
   async addWeekToProgram(
-    programId: number,
     body: Week,
+    programId: number,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<WeekResponse>> {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({
-      programId: [programId, number()],
       body: [body, weekSchema],
+      programId: [programId, number()],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

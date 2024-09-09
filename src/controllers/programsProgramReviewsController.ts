@@ -32,19 +32,19 @@ export class ProgramsProgramReviewsController extends BaseController {
   }
 
   /**
-   * @param programId
    * @param body
+   * @param programId
    * @return Response from the API call
    */
   async addReviewProgram(
-    programId: number,
     body: ProgramReview,
+    programId: number,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ProgramReviewResponse>> {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({
-      programId: [programId, number()],
       body: [body, programReviewSchema],
+      programId: [programId, number()],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

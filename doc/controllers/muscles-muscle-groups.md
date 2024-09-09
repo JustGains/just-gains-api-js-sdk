@@ -31,7 +31,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupListResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string \| undefined` | Query, Optional | The locale to use for the localized muscle group names. |
+| `localeCode` | `string \| undefined` | Query, Optional | The locale to use for the localized muscle group names.<br>**Default**: `'en-US'`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -118,8 +118,8 @@ try {
 # Update a Muscle Group
 
 ```ts
-async updateAMuscleGroup(  muscleGroupCode: string,
-  body: MuscleGroup,
+async updateAMuscleGroup(  body: MuscleGroup,
+  muscleGroupCode: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -127,8 +127,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `muscleGroupCode` | `string` | Template, Required | The muscle group code to update. |
 | `body` | [`MuscleGroup`](../../doc/models/muscle-group.md) | Body, Required | - |
+| `muscleGroupCode` | `string` | Template, Required | The muscle group code to update.<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -138,8 +138,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
-const muscleGroupCode = 'muscleGroupCode2';
-
 const body: MuscleGroup = {
   muscleGroupCode: 'CHEST',
   muscleGroupName: 'Chest',
@@ -158,10 +156,12 @@ const body: MuscleGroup = {
   muscleGroupType: MuscleGroupTypeEnum.MainGroup,
 };
 
+const muscleGroupCode = 'muscleGroupCode2';
+
 try {
   const { result, ...httpResponse } = await musclesMuscleGroupsController.updateAMuscleGroup(
-  muscleGroupCode,
-  body
+  body,
+  muscleGroupCode
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -193,7 +193,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `muscleGroupCode` | `string` | Template, Required | The muscle group code to delete. |
+| `muscleGroupCode` | `string` | Template, Required | The muscle group code to delete.<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -238,7 +238,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<MuscleGroupTranslationList
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `muscleGroupCode` | `string` | Template, Required | The unique code of the muscle group |
+| `muscleGroupCode` | `string` | Template, Required | The unique code of the muscle group<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -275,8 +275,8 @@ try {
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async updateMuscleGroupTranslations(  muscleGroupCode: string,
-  body: MuscleGroupTranslation[],
+async updateMuscleGroupTranslations(  body: MuscleGroupTranslation[],
+  muscleGroupCode: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -284,8 +284,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `muscleGroupCode` | `string` | Template, Required | The unique code of the muscle group |
 | `body` | [`MuscleGroupTranslation[]`](../../doc/models/muscle-group-translation.md) | Body, Required | - |
+| `muscleGroupCode` | `string` | Template, Required | The unique code of the muscle group<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -295,8 +295,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
-const muscleGroupCode = 'muscleGroupCode2';
-
 const body: MuscleGroupTranslation[] = [
   {
     localeCode: 'en-US',
@@ -305,10 +303,12 @@ const body: MuscleGroupTranslation[] = [
   }
 ];
 
+const muscleGroupCode = 'muscleGroupCode2';
+
 try {
   const { result, ...httpResponse } = await musclesMuscleGroupsController.updateMuscleGroupTranslations(
-  muscleGroupCode,
-  body
+  body,
+  muscleGroupCode
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

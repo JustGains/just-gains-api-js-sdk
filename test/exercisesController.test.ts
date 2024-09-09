@@ -16,8 +16,6 @@ describe('ExercisesController', () => {
   });
 
   it('should Test getExercises', async () => {
-    const nameSearch = 'Bench Press';
-
     const exerciseCategoryCodes: string[] = [
       'STRENGTH',
       'CARDIO'
@@ -25,22 +23,24 @@ describe('ExercisesController', () => {
 
     const localeCode = 'en-US';
 
+    const nameSearch = 'Bench Press';
+
     const pageIndex = 1;
 
     const pageSize = 100;
 
     const response = await makeApiCall(
       () => controller.getExercises(
-        nameSearch,
         exerciseCategoryCodes,
         undefined,
         undefined,
         undefined,
         undefined,
-        undefined,
         localeCode,
+        nameSearch,
         pageIndex,
-        pageSize
+        pageSize,
+        undefined
       )
     );
 

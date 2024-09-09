@@ -68,7 +68,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UserResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `userId` | `string` | Template, Required | - |
+| `userId` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -105,8 +105,8 @@ try {
 # Update a User
 
 ```ts
-async updateAUser(  userId: string,
-  body: UserWithoutCreatorProfile,
+async updateAUser(  body: UserWithoutCreatorProfile,
+  userId: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<UserWithoutCreatorProfileResponse>>
 ```
 
@@ -114,8 +114,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UserWithoutCreatorProfileR
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `userId` | `string` | Template, Required | - |
 | `body` | [`UserWithoutCreatorProfile`](../../doc/models/user-without-creator-profile.md) | Body, Required | - |
+| `userId` | `string` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -125,8 +125,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UserWithoutCreatorProfileR
 ## Example Usage
 
 ```ts
-const userId = 'userId0';
-
 const body: UserWithoutCreatorProfile = {
   userId: '123e4567-e89b-12d3-a456-426614174000',
   userName: 'fitness_enthusiast_42',
@@ -141,10 +139,12 @@ const body: UserWithoutCreatorProfile = {
   ],
 };
 
+const userId = 'userId0';
+
 try {
   const { result, ...httpResponse } = await usersController.updateAUser(
-  userId,
-  body
+  body,
+  userId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

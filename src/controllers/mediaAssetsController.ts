@@ -45,29 +45,29 @@ export class MediaAssetsController extends BaseController {
   }
 
   /**
+   * @param description
    * @param file
    * @param mediaType
-   * @param description
    * @param uploadDirectory Optional. Specify a custom upload directory.
    * @return Response from the API call
    */
   async uploadANewMediaAsset(
+    description?: string,
     file?: FileWrapper,
     mediaType?: string,
-    description?: string,
     uploadDirectory?: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<MediaAssetResponse>> {
     const req = this.createRequest('POST', '/media-assets');
     const mapped = req.prepareArgs({
-      mediaType: [mediaType, optional(string())],
       description: [description, optional(string())],
+      mediaType: [mediaType, optional(string())],
       uploadDirectory: [uploadDirectory, optional(string())],
     });
     req.formData({
+      description: mapped.description,
       file: file,
       mediaType: mapped.mediaType,
-      description: mapped.description,
       uploadDirectory: mapped.uploadDirectory,
     });
     req.authenticate([{ bearerAuth: true }]);
@@ -91,19 +91,19 @@ export class MediaAssetsController extends BaseController {
   }
 
   /**
-   * @param mediaAssetId
    * @param body
+   * @param mediaAssetId
    * @return Response from the API call
    */
   async updateAMediaAsset(
-    mediaAssetId: string,
     body: MediaAsset,
+    mediaAssetId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<MediaAssetResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      mediaAssetId: [mediaAssetId, string()],
       body: [body, mediaAssetSchema],
+      mediaAssetId: [mediaAssetId, string()],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -130,19 +130,19 @@ export class MediaAssetsController extends BaseController {
   }
 
   /**
-   * @param mediaAssetId
    * @param fileName
+   * @param mediaAssetId
    * @return Response from the API call
    */
   async getMediaAssetDetail(
-    mediaAssetId: string,
     fileName: string,
+    mediaAssetId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<NodeJS.ReadableStream | Blob>> {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({
-      mediaAssetId: [mediaAssetId, string()],
       fileName: [fileName, string()],
+      mediaAssetId: [mediaAssetId, string()],
     });
     req.appendTemplatePath`/media-assets/${mapped.mediaAssetId}/${mapped.fileName}`;
     req.throwOn(404, JustGainsErrorResponseError, 'Media asset not found');

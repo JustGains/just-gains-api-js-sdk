@@ -61,8 +61,8 @@ try {
 # Add Week to Program
 
 ```ts
-async addWeekToProgram(  programId: number,
-  body: Week,
+async addWeekToProgram(  body: Week,
+  programId: number,
 requestOptions?: RequestOptions): Promise<ApiResponse<WeekResponse>>
 ```
 
@@ -70,8 +70,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WeekResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `programId` | `number` | Template, Required | - |
 | `body` | [`Week`](../../doc/models/week.md) | Body, Required | - |
+| `programId` | `number` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -81,8 +81,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WeekResponse>>
 ## Example Usage
 
 ```ts
-const programId = 126;
-
 const body: Week = {
   weekId: 1234,
   userId: '123e4567-e89b-12d3-a456-426614174000',
@@ -94,10 +92,12 @@ const body: Week = {
   deletedBy: '987e6543-e21b-12d3-a456-426614174000',
 };
 
+const programId = 126;
+
 try {
   const { result, ...httpResponse } = await programsProgramWeeksController.addWeekToProgram(
-  programId,
-  body
+  body,
+  programId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

@@ -69,19 +69,19 @@ export class ExerciseCategoriesController extends BaseController {
   }
 
   /**
-   * @param exerciseCategoryCode
    * @param body
+   * @param exerciseCategoryCode
    * @return Response from the API call
    */
   async updateAnExerciseCategory(
-    exerciseCategoryCode: string,
     body: ExerciseCategory,
+    exerciseCategoryCode: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      exerciseCategoryCode: [exerciseCategoryCode, string()],
       body: [body, exerciseCategorySchema],
+      exerciseCategoryCode: [exerciseCategoryCode, string()],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -137,19 +137,19 @@ export class ExerciseCategoriesController extends BaseController {
   }
 
   /**
-   * @param exerciseCategoryCode The unique code of the exercise category
    * @param body
+   * @param exerciseCategoryCode The unique code of the exercise category
    * @return Response from the API call
    */
   async updateExerciseCategoryTranslations(
-    exerciseCategoryCode: string,
     body: ExerciseCategoryTranslation[],
+    exerciseCategoryCode: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      exerciseCategoryCode: [exerciseCategoryCode, string()],
       body: [body, array(exerciseCategoryTranslationSchema)],
+      exerciseCategoryCode: [exerciseCategoryCode, string()],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
