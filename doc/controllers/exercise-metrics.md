@@ -107,8 +107,8 @@ try {
 # Update an Exercise Metric
 
 ```ts
-async updateAnExerciseMetric(  body: ExerciseMetric,
-  metricCode: string,
+async updateAnExerciseMetric(  metricCode: string,
+  body: ExerciseMetric,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
@@ -116,8 +116,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`ExerciseMetric`](../../doc/models/exercise-metric.md) | Body, Required | - |
 | `metricCode` | `string` | Template, Required | - |
+| `body` | [`ExerciseMetric`](../../doc/models/exercise-metric.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -127,16 +127,16 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ## Example Usage
 
 ```ts
+const metricCode = 'metricCode4';
+
 const body: ExerciseMetric = {
   exerciseMetricCode: 'WEIGHT',
 };
 
-const metricCode = 'metricCode4';
-
 try {
   const { result, ...httpResponse } = await exerciseMetricsController.updateAnExerciseMetric(
-  body,
-  metricCode
+  metricCode,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

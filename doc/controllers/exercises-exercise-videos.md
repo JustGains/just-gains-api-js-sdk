@@ -65,8 +65,8 @@ try {
 # Add New Exercise Videos
 
 ```ts
-async addNewExerciseVideos(  body: ExerciseVideo,
-  exerciseCode: string,
+async addNewExerciseVideos(  exerciseCode: string,
+  body: ExerciseVideo,
 requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseVideoResponse>>
 ```
 
@@ -74,8 +74,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseVideoResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`ExerciseVideo`](../../doc/models/exercise-video.md) | Body, Required | - |
 | `exerciseCode` | `string` | Template, Required | The exercise code to add videos to |
+| `body` | [`ExerciseVideo`](../../doc/models/exercise-video.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -85,18 +85,18 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseVideoResponse>>
 ## Example Usage
 
 ```ts
+const exerciseCode = 'exerciseCode8';
+
 const body: ExerciseVideo = {
   exerciseCode: 'BARBELL_SQUAT',
   userId: '123e4567-e89b-12d3-a456-426614174000',
   sortOrder: 1,
 };
 
-const exerciseCode = 'exerciseCode8';
-
 try {
   const { result, ...httpResponse } = await exercisesExerciseVideosController.addNewExerciseVideos(
-  body,
-  exerciseCode
+  exerciseCode,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -119,8 +119,8 @@ try {
 # Update Exercise Videos
 
 ```ts
-async updateExerciseVideos(  body: ExerciseVideo[],
-  exerciseCode: string,
+async updateExerciseVideos(  exerciseCode: string,
+  body: ExerciseVideo[],
 requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesVideosResponse2>>
 ```
 
@@ -128,8 +128,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesVideosResponse2>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`ExerciseVideo[]`](../../doc/models/exercise-video.md) | Body, Required | - |
 | `exerciseCode` | `string` | Template, Required | The exercise code of the exercise videos to update |
+| `body` | [`ExerciseVideo[]`](../../doc/models/exercise-video.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -139,6 +139,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesVideosResponse2>>
 ## Example Usage
 
 ```ts
+const exerciseCode = 'exerciseCode8';
+
 const body: ExerciseVideo[] = [
   {
     exerciseCode: 'BARBELL_SQUAT',
@@ -147,12 +149,10 @@ const body: ExerciseVideo[] = [
   }
 ];
 
-const exerciseCode = 'exerciseCode8';
-
 try {
   const { result, ...httpResponse } = await exercisesExerciseVideosController.updateExerciseVideos(
-  body,
-  exerciseCode
+  exerciseCode,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -229,8 +229,8 @@ try {
 
 ```ts
 async deleteAnExerciseVideo(  exerciseCode: string,
-  exerciseVideoId: number,
   userId: string,
+  exerciseVideoId: number,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
@@ -239,8 +239,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code |
-| `exerciseVideoId` | `number` | Template, Required | The exercise video ID to delete |
 | `userId` | `string` | Template, Required | The userId of the video creator |
+| `exerciseVideoId` | `number` | Template, Required | The exercise video ID to delete |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -252,15 +252,15 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```ts
 const exerciseCode = 'exerciseCode8';
 
-const exerciseVideoId = 66;
-
 const userId = 'userId0';
+
+const exerciseVideoId = 66;
 
 try {
   const { result, ...httpResponse } = await exercisesExerciseVideosController.deleteAnExerciseVideo(
   exerciseCode,
-  exerciseVideoId,
-  userId
+  userId,
+  exerciseVideoId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

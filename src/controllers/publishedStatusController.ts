@@ -70,19 +70,19 @@ export class PublishedStatusController extends BaseController {
   }
 
   /**
-   * @param body
    * @param publishedStatusCode
+   * @param body
    * @return Response from the API call
    */
   async updateAPublishedStatus(
-    body: PublishedStatus,
     publishedStatusCode: string,
+    body: PublishedStatus,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      body: [body, publishedStatusSchema],
       publishedStatusCode: [publishedStatusCode, string()],
+      body: [body, publishedStatusSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -134,19 +134,19 @@ export class PublishedStatusController extends BaseController {
   }
 
   /**
-   * @param body
    * @param publishedStatusCode The unique code of the published status
+   * @param body
    * @return Response from the API call
    */
   async updatePublishedStatusTranslations(
-    body: PublishedStatusTranslation[],
     publishedStatusCode: string,
+    body: PublishedStatusTranslation[],
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      body: [body, array(publishedStatusTranslationSchema)],
       publishedStatusCode: [publishedStatusCode, string()],
+      body: [body, array(publishedStatusTranslationSchema)],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

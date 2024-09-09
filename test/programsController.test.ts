@@ -27,8 +27,8 @@ describe('ProgramsController', () => {
         page,
         pageSize,
         undefined,
-        undefined,
         sortOrder,
+        undefined,
         undefined
       )
     );

@@ -27,16 +27,16 @@ const exercisesController = new ExercisesController(client);
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async getExercises(  exerciseCategoryCodes?: string[],
-  exerciseEquipmentCodes?: string[],
-  exerciseMetricCodes?: string[],
-  exerciseMuscleCodes?: string[],
+async getExercises(  nameSearch?: string,
+  exerciseCategoryCodes?: string[],
   exerciseTypeCodes?: string[],
+  exerciseEquipmentCodes?: string[],
+  exerciseMuscleCodes?: string[],
+  exerciseMetricCodes?: string[],
+  publishedStatusCodes?: string[],
   localeCode?: string,
-  nameSearch?: string,
   pageIndex?: number,
   pageSize?: number,
-  publishedStatusCodes?: string[],
 requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseListResponse>>
 ```
 
@@ -44,16 +44,16 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseListResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `exerciseCategoryCodes` | `string[] \| undefined` | Query, Optional | List of exercise category codes to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
-| `exerciseEquipmentCodes` | `string[] \| undefined` | Query, Optional | List of exercise equipment to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
-| `exerciseMetricCodes` | `string[] \| undefined` | Query, Optional | List of exercise metrics to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
-| `exerciseMuscleCodes` | `string[] \| undefined` | Query, Optional | **Constraints**: *Pattern*: `^[A-Z_]+$` |
-| `exerciseTypeCodes` | `string[] \| undefined` | Query, Optional | List of exercise types to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
-| `localeCode` | `string \| undefined` | Query, Optional | Locale to filter by<br>**Default**: `'en-US'`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `nameSearch` | `string \| undefined` | Query, Optional | List of exercise names to filter by |
+| `exerciseCategoryCodes` | `string[] \| undefined` | Query, Optional | List of exercise category codes to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `exerciseTypeCodes` | `string[] \| undefined` | Query, Optional | List of exercise types to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `exerciseEquipmentCodes` | `string[] \| undefined` | Query, Optional | List of exercise equipment to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `exerciseMuscleCodes` | `string[] \| undefined` | Query, Optional | **Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `exerciseMetricCodes` | `string[] \| undefined` | Query, Optional | List of exercise metrics to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `publishedStatusCodes` | `string[] \| undefined` | Query, Optional | List of publish statuses to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `localeCode` | `string \| undefined` | Query, Optional | Locale to filter by<br>**Default**: `'en-US'`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `pageIndex` | `number \| undefined` | Query, Optional | Page index for pagination<br>**Default**: `1` |
 | `pageSize` | `number \| undefined` | Query, Optional | Page size for pagination<br>**Default**: `100` |
-| `publishedStatusCodes` | `string[] \| undefined` | Query, Optional | List of publish statuses to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -63,6 +63,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseListResponse>>
 ## Example Usage
 
 ```ts
+const nameSearch = 'Bench Press';
+
 const exerciseCategoryCodes: string[] = [
   'STRENGTH',
   'CARDIO'
@@ -70,21 +72,20 @@ const exerciseCategoryCodes: string[] = [
 
 const localeCode = 'en-US';
 
-const nameSearch = 'Bench Press';
-
 const pageIndex = 1;
 
 const pageSize = 100;
 
 try {
   const { result, ...httpResponse } = await exercisesController.getExercises(
+  nameSearch,
   exerciseCategoryCodes,
   undefined,
   undefined,
   undefined,
   undefined,
+  undefined,
   localeCode,
-  nameSearch,
   pageIndex,
   pageSize
 );
@@ -230,8 +231,8 @@ try {
 # Update an Exercise
 
 ```ts
-async updateAnExercise(  body: Exercise,
-  exerciseCode: string,
+async updateAnExercise(  exerciseCode: string,
+  body: Exercise,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -239,8 +240,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`Exercise`](../../doc/models/exercise.md) | Body, Required | - |
 | `exerciseCode` | `string` | Template, Required | - |
+| `body` | [`Exercise`](../../doc/models/exercise.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -250,6 +251,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
+const exerciseCode = 'exerciseCode8';
+
 const body: Exercise = {
   exerciseCode: 'BARBELL_SQUAT',
   exerciseName: 'Barbell Squat',
@@ -273,12 +276,10 @@ const body: Exercise = {
   adminNotes: 'This exercise requires supervision.',
 };
 
-const exerciseCode = 'exerciseCode8';
-
 try {
   const { result, ...httpResponse } = await exercisesController.updateAnExercise(
-  body,
-  exerciseCode
+  exerciseCode,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -391,8 +392,8 @@ try {
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async updateExerciseTranslations(  body: ExerciseTranslation[],
-  exerciseCode: string,
+async updateExerciseTranslations(  exerciseCode: string,
+  body: ExerciseTranslation[],
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -400,8 +401,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`ExerciseTranslation[]`](../../doc/models/exercise-translation.md) | Body, Required | - |
 | `exerciseCode` | `string` | Template, Required | The unique code of the exercise |
+| `body` | [`ExerciseTranslation[]`](../../doc/models/exercise-translation.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -411,18 +412,18 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
+const exerciseCode = 'exerciseCode8';
+
 const body: ExerciseTranslation[] = [
   {
     localeCode: 'en-US',
   }
 ];
 
-const exerciseCode = 'exerciseCode8';
-
 try {
   const { result, ...httpResponse } = await exercisesController.updateExerciseTranslations(
-  body,
-  exerciseCode
+  exerciseCode,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

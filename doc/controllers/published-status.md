@@ -109,8 +109,8 @@ try {
 # Update a Published Status
 
 ```ts
-async updateAPublishedStatus(  body: PublishedStatus,
-  publishedStatusCode: string,
+async updateAPublishedStatus(  publishedStatusCode: string,
+  body: PublishedStatus,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -118,8 +118,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`PublishedStatus`](../../doc/models/published-status.md) | Body, Required | - |
 | `publishedStatusCode` | `string` | Template, Required | **Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `body` | [`PublishedStatus`](../../doc/models/published-status.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -129,18 +129,18 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
+const publishedStatusCode = 'publishedStatusCode2';
+
 const body: PublishedStatus = {
   publishedStatusCode: 'PUBLISHED',
   userRoleAccess: 'ADMIN,USER',
   publishedStatusName: 'Published',
 };
 
-const publishedStatusCode = 'publishedStatusCode2';
-
 try {
   const { result, ...httpResponse } = await publishedStatusController.updateAPublishedStatus(
-  body,
-  publishedStatusCode
+  publishedStatusCode,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -250,8 +250,8 @@ try {
 # Update Published Status Translations
 
 ```ts
-async updatePublishedStatusTranslations(  body: PublishedStatusTranslation[],
-  publishedStatusCode: string,
+async updatePublishedStatusTranslations(  publishedStatusCode: string,
+  body: PublishedStatusTranslation[],
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -259,8 +259,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`PublishedStatusTranslation[]`](../../doc/models/published-status-translation.md) | Body, Required | - |
 | `publishedStatusCode` | `string` | Template, Required | The unique code of the published status<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `body` | [`PublishedStatusTranslation[]`](../../doc/models/published-status-translation.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -270,6 +270,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
+const publishedStatusCode = 'publishedStatusCode2';
+
 const body: PublishedStatusTranslation[] = [
   {
     localeCode: 'en-US',
@@ -277,12 +279,10 @@ const body: PublishedStatusTranslation[] = [
   }
 ];
 
-const publishedStatusCode = 'publishedStatusCode2';
-
 try {
   const { result, ...httpResponse } = await publishedStatusController.updatePublishedStatusTranslations(
-  body,
-  publishedStatusCode
+  publishedStatusCode,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

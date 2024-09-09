@@ -57,19 +57,19 @@ export class ExercisesExerciseInstructionsController extends BaseController {
   }
 
   /**
-   * @param body
    * @param exerciseCode The exercise code to create instructions for
+   * @param body
    * @return Response from the API call
    */
   async createNewExerciseInstructions(
-    body: ExerciseInstruction,
     exerciseCode: string,
+    body: ExerciseInstruction,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ExerciseInstructionResponse>> {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({
-      body: [body, exerciseInstructionSchema],
       exerciseCode: [exerciseCode, string()],
+      body: [body, exerciseInstructionSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -110,25 +110,25 @@ export class ExercisesExerciseInstructionsController extends BaseController {
   }
 
   /**
-   * @param body
    * @param exerciseCode The exercise code of the instructions to update
    * @param localeCode   The locale code for the instructions to update
    * @param userId       The userId of the creator for the instructions to update
+   * @param body
    * @return Response from the API call
    */
   async updateExerciseInstructions(
-    body: ExerciseInstruction,
     exerciseCode: string,
     localeCode: string,
     userId: string,
+    body: ExerciseInstruction,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ExerciseInstructionResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      body: [body, exerciseInstructionSchema],
       exerciseCode: [exerciseCode, string()],
       localeCode: [localeCode, string()],
       userId: [userId, string()],
+      body: [body, exerciseInstructionSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

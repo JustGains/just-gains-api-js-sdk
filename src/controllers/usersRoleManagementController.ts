@@ -32,19 +32,19 @@ import { BaseController } from './baseController';
 
 export class UsersRoleManagementController extends BaseController {
   /**
-   * @param body
    * @param userId
+   * @param body
    * @return Response from the API call
    */
   async assignARoleToAUser(
-    body: RoleAssignmentRequest,
     userId: string,
+    body: RoleAssignmentRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<UsersRolesResponse>> {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({
-      body: [body, roleAssignmentRequestSchema],
       userId: [userId, string()],
+      body: [body, roleAssignmentRequestSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -69,19 +69,19 @@ export class UsersRoleManagementController extends BaseController {
   }
 
   /**
-   * @param roleName
    * @param userId
+   * @param roleName
    * @return Response from the API call
    */
   async removeARoleFromAUser(
-    roleName: string,
     userId: string,
+    roleName: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsResponse>> {
     const req = this.createRequest('DELETE');
     const mapped = req.prepareArgs({
-      roleName: [roleName, string()],
       userId: [userId, string()],
+      roleName: [roleName, string()],
     });
     req.appendTemplatePath`/users/${mapped.userId}/roles/${mapped.roleName}`;
     req.authenticate([]);
@@ -116,19 +116,19 @@ export class UsersRoleManagementController extends BaseController {
   }
 
   /**
-   * @param body
    * @param roleName
+   * @param body
    * @return Response from the API call
    */
   async updateARole(
-    body: RoleUpdateRequest,
     roleName: string,
+    body: RoleUpdateRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<RolesResponse1>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      body: [body, roleUpdateRequestSchema],
       roleName: [roleName, string()],
+      body: [body, roleUpdateRequestSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

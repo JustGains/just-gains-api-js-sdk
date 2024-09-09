@@ -24,22 +24,22 @@ import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseErr
 
 export class UsersCreatorProfilesController extends BaseController {
   /**
-   * @param limit Number of items per page
    * @param page  Page number for pagination
+   * @param limit Number of items per page
    * @return Response from the API call
    */
   async getCreatorProfiles(
-    limit?: number,
     page?: number,
+    limit?: number,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<CreatorProfileListResponse>> {
     const req = this.createRequest('GET', '/creator-profiles');
     const mapped = req.prepareArgs({
-      limit: [limit, optional(number())],
       page: [page, optional(number())],
+      limit: [limit, optional(number())],
     });
-    req.query('limit', mapped.limit);
     req.query('page', mapped.page);
+    req.query('limit', mapped.limit);
     req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
     req.authenticate(false);
     return req.callAsJson(creatorProfileListResponseSchema, requestOptions);
@@ -82,19 +82,19 @@ export class UsersCreatorProfilesController extends BaseController {
   }
 
   /**
-   * @param body
    * @param creatorProfileId
+   * @param body
    * @return Response from the API call
    */
   async updateCreatorProfile(
-    body: CreatorProfile,
     creatorProfileId: string,
+    body: CreatorProfile,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<CreatorProfileResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      body: [body, creatorProfileSchema],
       creatorProfileId: [creatorProfileId, string()],
+      body: [body, creatorProfileSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

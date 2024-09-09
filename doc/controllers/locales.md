@@ -136,8 +136,8 @@ try {
 # Update a Locale
 
 ```ts
-async updateALocale(  body: Locale,
-  localeCode: string,
+async updateALocale(  localeCode: string,
+  body: Locale,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -145,8 +145,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`Locale`](../../doc/models/locale.md) | Body, Required | - |
 | `localeCode` | `string` | Template, Required | The locale code to update.<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
+| `body` | [`Locale`](../../doc/models/locale.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -156,18 +156,18 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
+const localeCode = 'localeCode2';
+
 const body: Locale = {
   localeCode: 'en-US',
   localeName: 'English (United States)',
   published: true,
 };
 
-const localeCode = 'localeCode2';
-
 try {
   const { result, ...httpResponse } = await localesController.updateALocale(
-  body,
-  localeCode
+  localeCode,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

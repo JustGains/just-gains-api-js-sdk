@@ -105,8 +105,8 @@ try {
 # Update a User
 
 ```ts
-async updateAUser(  body: UserWithoutCreatorProfile,
-  userId: string,
+async updateAUser(  userId: string,
+  body: UserWithoutCreatorProfile,
 requestOptions?: RequestOptions): Promise<ApiResponse<UserWithoutCreatorProfileResponse>>
 ```
 
@@ -114,8 +114,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UserWithoutCreatorProfileR
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`UserWithoutCreatorProfile`](../../doc/models/user-without-creator-profile.md) | Body, Required | - |
 | `userId` | `string` | Template, Required | - |
+| `body` | [`UserWithoutCreatorProfile`](../../doc/models/user-without-creator-profile.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -125,6 +125,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UserWithoutCreatorProfileR
 ## Example Usage
 
 ```ts
+const userId = 'userId0';
+
 const body: UserWithoutCreatorProfile = {
   userId: '123e4567-e89b-12d3-a456-426614174000',
   userName: 'fitness_enthusiast_42',
@@ -139,12 +141,10 @@ const body: UserWithoutCreatorProfile = {
   ],
 };
 
-const userId = 'userId0';
-
 try {
   const { result, ...httpResponse } = await usersController.updateAUser(
-  body,
-  userId
+  userId,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

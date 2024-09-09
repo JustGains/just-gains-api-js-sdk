@@ -95,19 +95,19 @@ export class WorkoutsController extends BaseController {
    * Creates a copy of an existing workout, preserving creator credits and adding the current user as a
    * new contributor.
    *
-   * @param body
    * @param workoutId    The ID of the workout to duplicate
+   * @param body
    * @return Response from the API call
    */
   async duplicateAWorkout(
-    body: WorkoutsDuplicateRequest,
     workoutId: number,
+    body: WorkoutsDuplicateRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<WorkoutResponse>> {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({
-      body: [body, workoutsDuplicateRequestSchema],
       workoutId: [workoutId, number()],
+      body: [body, workoutsDuplicateRequestSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

@@ -112,8 +112,8 @@ try {
 # Update an Existing Equipment Group
 
 ```ts
-async updateAnExistingEquipmentGroup(  body: EquipmentGroup,
-  equipmentGroupCode: string,
+async updateAnExistingEquipmentGroup(  equipmentGroupCode: string,
+  body: EquipmentGroup,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -121,8 +121,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`EquipmentGroup`](../../doc/models/equipment-group.md) | Body, Required | - |
 | `equipmentGroupCode` | `string` | Template, Required | The equipment group code to update. |
+| `body` | [`EquipmentGroup`](../../doc/models/equipment-group.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -132,6 +132,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
+const equipmentGroupCode = 'equipmentGroupCode8';
+
 const body: EquipmentGroup = {
   equipmentGroupCode: 'DUMBBELLS',
   equipmentGroupName: 'Dumbbells',
@@ -139,12 +141,10 @@ const body: EquipmentGroup = {
   sortOrder: 0,
 };
 
-const equipmentGroupCode = 'equipmentGroupCode8';
-
 try {
   const { result, ...httpResponse } = await equipmentEquipmentGroupsController.updateAnExistingEquipmentGroup(
-  body,
-  equipmentGroupCode
+  equipmentGroupCode,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -251,8 +251,8 @@ Updates the translations for a specific equipment group identified by its code.
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async updateEquipmentGroupTranslations(  body: EquipmentGroupTranslation[],
-  equipmentGroupCode: string,
+async updateEquipmentGroupTranslations(  equipmentGroupCode: string,
+  body: EquipmentGroupTranslation[],
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
@@ -260,8 +260,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`EquipmentGroupTranslation[]`](../../doc/models/equipment-group-translation.md) | Body, Required | - |
 | `equipmentGroupCode` | `string` | Template, Required | The unique code of the equipment group |
+| `body` | [`EquipmentGroupTranslation[]`](../../doc/models/equipment-group-translation.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -271,6 +271,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ## Example Usage
 
 ```ts
+const equipmentGroupCode = 'EQP-001';
+
 const body: EquipmentGroupTranslation[] = [
   {
     localeCode: 'en-US',
@@ -279,12 +281,10 @@ const body: EquipmentGroupTranslation[] = [
   }
 ];
 
-const equipmentGroupCode = 'EQP-001';
-
 try {
   const { result, ...httpResponse } = await equipmentEquipmentGroupsController.updateEquipmentGroupTranslations(
-  body,
-  equipmentGroupCode
+  equipmentGroupCode,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

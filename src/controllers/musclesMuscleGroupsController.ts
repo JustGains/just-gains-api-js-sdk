@@ -63,19 +63,19 @@ export class MusclesMuscleGroupsController extends BaseController {
   }
 
   /**
-   * @param body
    * @param muscleGroupCode The muscle group code to update.
+   * @param body
    * @return Response from the API call
    */
   async updateAMuscleGroup(
-    body: MuscleGroup,
     muscleGroupCode: string,
+    body: MuscleGroup,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      body: [body, muscleGroupSchema],
       muscleGroupCode: [muscleGroupCode, string()],
+      body: [body, muscleGroupSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -133,19 +133,19 @@ export class MusclesMuscleGroupsController extends BaseController {
   }
 
   /**
-   * @param body
    * @param muscleGroupCode The unique code of the muscle group
+   * @param body
    * @return Response from the API call
    */
   async updateMuscleGroupTranslations(
-    body: MuscleGroupTranslation[],
     muscleGroupCode: string,
+    body: MuscleGroupTranslation[],
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      body: [body, array(muscleGroupTranslationSchema)],
       muscleGroupCode: [muscleGroupCode, string()],
+      body: [body, array(muscleGroupTranslationSchema)],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

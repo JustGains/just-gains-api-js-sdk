@@ -31,18 +31,18 @@ export class ProgramsController extends BaseController {
   /**
    * @param page              Example: 1
    * @param pageSize          Example: 20
-   * @param publishStatusCode
    * @param sortBy
    * @param sortOrder         Example: desc
+   * @param publishStatusCode
    * @param userId
    * @return Response from the API call
    */
   async getPrograms(
     page?: number,
     pageSize?: number,
-    publishStatusCode?: string,
     sortBy?: string,
     sortOrder?: SortOrderEnum,
+    publishStatusCode?: string,
     userId?: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ProgramListResponse>> {
@@ -50,16 +50,16 @@ export class ProgramsController extends BaseController {
     const mapped = req.prepareArgs({
       page: [page, optional(number())],
       pageSize: [pageSize, optional(number())],
-      publishStatusCode: [publishStatusCode, optional(string())],
       sortBy: [sortBy, optional(string())],
       sortOrder: [sortOrder, optional(sortOrderEnumSchema)],
+      publishStatusCode: [publishStatusCode, optional(string())],
       userId: [userId, optional(string())],
     });
     req.query('page', mapped.page);
     req.query('pageSize', mapped.pageSize);
-    req.query('publishStatusCode', mapped.publishStatusCode);
     req.query('sortBy', mapped.sortBy);
     req.query('sortOrder', mapped.sortOrder);
+    req.query('publishStatusCode', mapped.publishStatusCode);
     req.query('userId', mapped.userId);
     req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
     req.authenticate(false);
@@ -100,19 +100,19 @@ export class ProgramsController extends BaseController {
   }
 
   /**
-   * @param body
    * @param programId
+   * @param body
    * @return Response from the API call
    */
   async updateProgram(
-    body: Program,
     programId: number,
+    body: Program,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      body: [body, programSchema],
       programId: [programId, number()],
+      body: [body, programSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

@@ -24,8 +24,8 @@ const usersRoleManagementController = new UsersRoleManagementController(client);
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async assignARoleToAUser(  body: RoleAssignmentRequest,
-  userId: string,
+async assignARoleToAUser(  userId: string,
+  body: RoleAssignmentRequest,
 requestOptions?: RequestOptions): Promise<ApiResponse<UsersRolesResponse>>
 ```
 
@@ -33,8 +33,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UsersRolesResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`RoleAssignmentRequest`](../../doc/models/role-assignment-request.md) | Body, Required | - |
 | `userId` | `string` | Template, Required | - |
+| `body` | [`RoleAssignmentRequest`](../../doc/models/role-assignment-request.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -44,16 +44,16 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UsersRolesResponse>>
 ## Example Usage
 
 ```ts
+const userId = '000013ec-0000-0000-0000-000000000000';
+
 const body: RoleAssignmentRequest = {
   roleId: 192,
 };
 
-const userId = '000013ec-0000-0000-0000-000000000000';
-
 try {
   const { result, ...httpResponse } = await usersRoleManagementController.assignARoleToAUser(
-  body,
-  userId
+  userId,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -109,8 +109,8 @@ try {
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async removeARoleFromAUser(  roleName: string,
-  userId: string,
+async removeARoleFromAUser(  userId: string,
+  roleName: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
@@ -118,8 +118,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `roleName` | `string` | Template, Required | - |
 | `userId` | `string` | Template, Required | - |
+| `roleName` | `string` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -129,14 +129,14 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ## Example Usage
 
 ```ts
-const roleName = 'roleName6';
-
 const userId = '000013ec-0000-0000-0000-000000000000';
+
+const roleName = 'roleName6';
 
 try {
   const { result, ...httpResponse } = await usersRoleManagementController.removeARoleFromAUser(
-  roleName,
-  userId
+  userId,
+  roleName
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -228,8 +228,8 @@ try {
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async updateARole(  body: RoleUpdateRequest,
-  roleName: string,
+async updateARole(  roleName: string,
+  body: RoleUpdateRequest,
 requestOptions?: RequestOptions): Promise<ApiResponse<RolesResponse1>>
 ```
 
@@ -237,8 +237,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<RolesResponse1>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`RoleUpdateRequest`](../../doc/models/role-update-request.md) | Body, Required | - |
 | `roleName` | `string` | Template, Required | - |
+| `body` | [`RoleUpdateRequest`](../../doc/models/role-update-request.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -248,14 +248,14 @@ requestOptions?: RequestOptions): Promise<ApiResponse<RolesResponse1>>
 ## Example Usage
 
 ```ts
-const body: RoleUpdateRequest = {};
-
 const roleName = 'roleName6';
+
+const body: RoleUpdateRequest = {};
 
 try {
   const { result, ...httpResponse } = await usersRoleManagementController.updateARole(
-  body,
-  roleName
+  roleName,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

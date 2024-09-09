@@ -37,8 +37,8 @@ describe('MediaAssetsController', () => {
     const response = await makeApiCall(
       () => controller.uploadANewMediaAsset(
         undefined,
-        undefined,
         mediaType,
+        undefined,
         undefined
       )
     );

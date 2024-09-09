@@ -171,8 +171,8 @@ try {
 Creates a copy of an existing workout, preserving creator credits and adding the current user as a new contributor.
 
 ```ts
-async duplicateAWorkout(  body: WorkoutsDuplicateRequest,
-  workoutId: number,
+async duplicateAWorkout(  workoutId: number,
+  body: WorkoutsDuplicateRequest,
 requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ```
 
@@ -180,8 +180,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`WorkoutsDuplicateRequest`](../../doc/models/workouts-duplicate-request.md) | Body, Required | - |
 | `workoutId` | `number` | Template, Required | The ID of the workout to duplicate |
+| `body` | [`WorkoutsDuplicateRequest`](../../doc/models/workouts-duplicate-request.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -191,16 +191,16 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ## Example Usage
 
 ```ts
+const workoutId = 250;
+
 const body: WorkoutsDuplicateRequest = {
   newWorkoutTitle: 'My Modified Full Body Workout',
 };
 
-const workoutId = 250;
-
 try {
   const { result, ...httpResponse } = await workoutsController.duplicateAWorkout(
-  body,
-  workoutId
+  workoutId,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

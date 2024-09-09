@@ -12,8 +12,8 @@ const programsProgramViewsController = new ProgramsProgramViewsController(client
 # Add View Program
 
 ```ts
-async addViewProgram(  body: ProgramView,
-  programId: number,
+async addViewProgram(  programId: number,
+  body: ProgramView,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -21,8 +21,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`ProgramView`](../../doc/models/program-view.md) | Body, Required | - |
 | `programId` | `number` | Template, Required | - |
+| `body` | [`ProgramView`](../../doc/models/program-view.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -32,6 +32,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
+const programId = 126;
+
 const body: ProgramView = {
   programViewId: 10001,
   programId: 1001,
@@ -44,12 +46,10 @@ const body: ProgramView = {
   userId: '123e4567-e89b-12d3-a456-426614174000',
 };
 
-const programId = 126;
-
 try {
   const { result, ...httpResponse } = await programsProgramViewsController.addViewProgram(
-  body,
-  programId
+  programId,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

@@ -92,19 +92,19 @@ export class EquipmentController extends BaseController {
   }
 
   /**
-   * @param body
    * @param equipmentCode The unique code identifying the equipment to update.
+   * @param body
    * @return Response from the API call
    */
   async updateEquipment(
-    body: Equipment,
     equipmentCode: string,
+    body: Equipment,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      body: [body, equipmentSchema],
       equipmentCode: [equipmentCode, string()],
+      body: [body, equipmentSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -173,19 +173,19 @@ export class EquipmentController extends BaseController {
   }
 
   /**
-   * @param body
    * @param equipmentCode The unique code of the equipment
+   * @param body
    * @return Response from the API call
    */
   async updateEquipmentTranslations(
-    body: EquipmentTranslation,
     equipmentCode: string,
+    body: EquipmentTranslation,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      body: [body, equipmentTranslationSchema],
       equipmentCode: [equipmentCode, string()],
+      body: [body, equipmentTranslationSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

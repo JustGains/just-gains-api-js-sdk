@@ -116,9 +116,9 @@ try {
 # Add or Update Exercise Thumbnail
 
 ```ts
-async addOrUpdateExerciseThumbnail(  body: ExerciseThumbnail,
-  exerciseCode: string,
+async addOrUpdateExerciseThumbnail(  exerciseCode: string,
   userId: string,
+  body: ExerciseThumbnail,
 requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseThumbnailResponse>>
 ```
 
@@ -126,9 +126,9 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseThumbnailResponse>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`ExerciseThumbnail`](../../doc/models/exercise-thumbnail.md) | Body, Required | - |
 | `exerciseCode` | `string` | Template, Required | The exercise code to add or update thumbnail for |
 | `userId` | `string` | Template, Required | The userId of the thumbnail creator |
+| `body` | [`ExerciseThumbnail`](../../doc/models/exercise-thumbnail.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -138,6 +138,10 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseThumbnailResponse>
 ## Example Usage
 
 ```ts
+const exerciseCode = 'exerciseCode8';
+
+const userId = 'userId0';
+
 const body: ExerciseThumbnail = {
   exerciseCode: 'exerciseCode2',
   userId: '000021e4-0000-0000-0000-000000000000',
@@ -152,15 +156,11 @@ const body: ExerciseThumbnail = {
   },
 };
 
-const exerciseCode = 'exerciseCode8';
-
-const userId = 'userId0';
-
 try {
   const { result, ...httpResponse } = await exercisesExerciseThumbnailsController.addOrUpdateExerciseThumbnail(
-  body,
   exerciseCode,
-  userId
+  userId,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

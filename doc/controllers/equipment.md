@@ -162,8 +162,8 @@ try {
 # Update Equipment
 
 ```ts
-async updateEquipment(  body: Equipment,
-  equipmentCode: string,
+async updateEquipment(  equipmentCode: string,
+  body: Equipment,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -171,8 +171,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`Equipment`](../../doc/models/equipment.md) | Body, Required | - |
 | `equipmentCode` | `string` | Template, Required | The unique code identifying the equipment to update. |
+| `body` | [`Equipment`](../../doc/models/equipment.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -182,6 +182,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
+const equipmentCode = 'equipmentCode6';
+
 const body: Equipment = {
   equipmentCode: 'BARBELL',
   equipmentName: 'Barbell',
@@ -191,12 +193,10 @@ const body: Equipment = {
   ],
 };
 
-const equipmentCode = 'equipmentCode6';
-
 try {
   const { result, ...httpResponse } = await equipmentController.updateEquipment(
-  body,
-  equipmentCode
+  equipmentCode,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -309,8 +309,8 @@ try {
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async updateEquipmentTranslations(  body: EquipmentTranslation,
-  equipmentCode: string,
+async updateEquipmentTranslations(  equipmentCode: string,
+  body: EquipmentTranslation,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -318,8 +318,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`EquipmentTranslation`](../../doc/models/equipment-translation.md) | Body, Required | - |
 | `equipmentCode` | `string` | Template, Required | The unique code of the equipment |
+| `body` | [`EquipmentTranslation`](../../doc/models/equipment-translation.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -329,17 +329,17 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ## Example Usage
 
 ```ts
+const equipmentCode = 'equipmentCode6';
+
 const body: EquipmentTranslation = {
   equipmentName: 'Barbell',
   localeCode: 'en-US',
 };
 
-const equipmentCode = 'equipmentCode6';
-
 try {
   const { result, ...httpResponse } = await equipmentController.updateEquipmentTranslations(
-  body,
-  equipmentCode
+  equipmentCode,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

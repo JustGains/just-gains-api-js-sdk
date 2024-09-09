@@ -36,57 +36,57 @@ import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseErr
 
 export class ExercisesController extends BaseController {
   /**
-   * @param exerciseCategoryCodes  List of exercise category codes to filter by
-   * @param exerciseEquipmentCodes List of exercise equipment to filter by
-   * @param exerciseMetricCodes    List of exercise metrics to filter by
-   * @param exerciseMuscleCodes
-   * @param exerciseTypeCodes      List of exercise types to filter by
-   * @param localeCode             Locale to filter by
    * @param nameSearch             List of exercise names to filter by
+   * @param exerciseCategoryCodes  List of exercise category codes to filter by
+   * @param exerciseTypeCodes      List of exercise types to filter by
+   * @param exerciseEquipmentCodes List of exercise equipment to filter by
+   * @param exerciseMuscleCodes
+   * @param exerciseMetricCodes    List of exercise metrics to filter by
+   * @param publishedStatusCodes   List of publish statuses to filter by
+   * @param localeCode             Locale to filter by
    * @param pageIndex              Page index for pagination
    * @param pageSize               Page size for pagination
-   * @param publishedStatusCodes   List of publish statuses to filter by
    * @return Response from the API call
    */
   async getExercises(
-    exerciseCategoryCodes?: string[],
-    exerciseEquipmentCodes?: string[],
-    exerciseMetricCodes?: string[],
-    exerciseMuscleCodes?: string[],
-    exerciseTypeCodes?: string[],
-    localeCode?: string,
     nameSearch?: string,
+    exerciseCategoryCodes?: string[],
+    exerciseTypeCodes?: string[],
+    exerciseEquipmentCodes?: string[],
+    exerciseMuscleCodes?: string[],
+    exerciseMetricCodes?: string[],
+    publishedStatusCodes?: string[],
+    localeCode?: string,
     pageIndex?: number,
     pageSize?: number,
-    publishedStatusCodes?: string[],
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ExerciseListResponse>> {
     const req = this.createRequest('GET', '/exercises');
     const mapped = req.prepareArgs({
+      nameSearch: [nameSearch, optional(string())],
       exerciseCategoryCodes: [exerciseCategoryCodes, optional(array(string()))],
+      exerciseTypeCodes: [exerciseTypeCodes, optional(array(string()))],
       exerciseEquipmentCodes: [
         exerciseEquipmentCodes,
         optional(array(string())),
       ],
-      exerciseMetricCodes: [exerciseMetricCodes, optional(array(string()))],
       exerciseMuscleCodes: [exerciseMuscleCodes, optional(array(string()))],
-      exerciseTypeCodes: [exerciseTypeCodes, optional(array(string()))],
+      exerciseMetricCodes: [exerciseMetricCodes, optional(array(string()))],
+      publishedStatusCodes: [publishedStatusCodes, optional(array(string()))],
       localeCode: [localeCode, optional(string())],
-      nameSearch: [nameSearch, optional(string())],
       pageIndex: [pageIndex, optional(number())],
       pageSize: [pageSize, optional(number())],
-      publishedStatusCodes: [publishedStatusCodes, optional(array(string()))],
     });
-    req.query('exerciseCategoryCodes', mapped.exerciseCategoryCodes);
-    req.query('exerciseEquipmentCodes', mapped.exerciseEquipmentCodes);
-    req.query('exerciseMetricCodes', mapped.exerciseMetricCodes);
-    req.query('exerciseMuscleCodes', mapped.exerciseMuscleCodes);
-    req.query('exerciseTypeCodes', mapped.exerciseTypeCodes);
-    req.query('localeCode', mapped.localeCode);
     req.query('nameSearch', mapped.nameSearch);
+    req.query('exerciseCategoryCodes', mapped.exerciseCategoryCodes);
+    req.query('exerciseTypeCodes', mapped.exerciseTypeCodes);
+    req.query('exerciseEquipmentCodes', mapped.exerciseEquipmentCodes);
+    req.query('exerciseMuscleCodes', mapped.exerciseMuscleCodes);
+    req.query('exerciseMetricCodes', mapped.exerciseMetricCodes);
+    req.query('publishedStatusCodes', mapped.publishedStatusCodes);
+    req.query('localeCode', mapped.localeCode);
     req.query('pageIndex', mapped.pageIndex);
     req.query('pageSize', mapped.pageSize);
-    req.query('publishedStatusCodes', mapped.publishedStatusCodes);
     req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
     req.authenticate(false);
     return req.callAsJson(exerciseListResponseSchema, requestOptions);
@@ -140,19 +140,19 @@ export class ExercisesController extends BaseController {
   }
 
   /**
-   * @param body
    * @param exerciseCode
+   * @param body
    * @return Response from the API call
    */
   async updateAnExercise(
-    body: Exercise,
     exerciseCode: string,
+    body: Exercise,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      body: [body, exerciseSchema],
       exerciseCode: [exerciseCode, string()],
+      body: [body, exerciseSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -205,19 +205,19 @@ export class ExercisesController extends BaseController {
   }
 
   /**
-   * @param body
    * @param exerciseCode The unique code of the exercise
+   * @param body
    * @return Response from the API call
    */
   async updateExerciseTranslations(
-    body: ExerciseTranslation[],
     exerciseCode: string,
+    body: ExerciseTranslation[],
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      body: [body, array(exerciseTranslationSchema)],
       exerciseCode: [exerciseCode, string()],
+      body: [body, array(exerciseTranslationSchema)],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

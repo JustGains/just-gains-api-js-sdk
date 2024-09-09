@@ -45,19 +45,19 @@ export class ExercisesExerciseVideosController extends BaseController {
   }
 
   /**
-   * @param body
    * @param exerciseCode The exercise code to add videos to
+   * @param body
    * @return Response from the API call
    */
   async addNewExerciseVideos(
-    body: ExerciseVideo,
     exerciseCode: string,
+    body: ExerciseVideo,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ExerciseVideoResponse>> {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({
-      body: [body, exerciseVideoSchema],
       exerciseCode: [exerciseCode, string()],
+      body: [body, exerciseVideoSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -73,19 +73,19 @@ export class ExercisesExerciseVideosController extends BaseController {
   }
 
   /**
-   * @param body
    * @param exerciseCode The exercise code of the exercise videos to update
+   * @param body
    * @return Response from the API call
    */
   async updateExerciseVideos(
-    body: ExerciseVideo[],
     exerciseCode: string,
+    body: ExerciseVideo[],
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ExercisesVideosResponse2>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      body: [body, array(exerciseVideoSchema)],
       exerciseCode: [exerciseCode, string()],
+      body: [body, array(exerciseVideoSchema)],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -125,21 +125,21 @@ export class ExercisesExerciseVideosController extends BaseController {
 
   /**
    * @param exerciseCode    The exercise code
-   * @param exerciseVideoId The exercise video ID to delete
    * @param userId          The userId of the video creator
+   * @param exerciseVideoId The exercise video ID to delete
    * @return Response from the API call
    */
   async deleteAnExerciseVideo(
     exerciseCode: string,
-    exerciseVideoId: number,
     userId: string,
+    exerciseVideoId: number,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsResponse>> {
     const req = this.createRequest('DELETE');
     const mapped = req.prepareArgs({
       exerciseCode: [exerciseCode, string()],
-      exerciseVideoId: [exerciseVideoId, number()],
       userId: [userId, string()],
+      exerciseVideoId: [exerciseVideoId, number()],
     });
     req.appendTemplatePath`/exercises/${mapped.exerciseCode}/videos/${mapped.userId}/${mapped.exerciseVideoId}`;
     req.throwOn(401, JustGainsErrorResponseError, 'Authentication required');

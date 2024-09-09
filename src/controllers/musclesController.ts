@@ -67,19 +67,19 @@ export class MusclesController extends BaseController {
   }
 
   /**
-   * @param body
    * @param muscleCode   The unique identifier code of the muscle to update translations for
+   * @param body
    * @return Response from the API call
    */
   async updateMuscleTranslations(
-    body: MuscleTranslation[],
     muscleCode: string,
+    body: MuscleTranslation[],
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<MusclesTranslationsResponse1>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      body: [body, array(muscleTranslationSchema)],
       muscleCode: [muscleCode, string()],
+      body: [body, array(muscleTranslationSchema)],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

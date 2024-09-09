@@ -66,19 +66,19 @@ export class LocalesController extends BaseController {
   }
 
   /**
-   * @param body
    * @param localeCode   The locale code to update.
+   * @param body
    * @return Response from the API call
    */
   async updateALocale(
-    body: Locale,
     localeCode: string,
+    body: Locale,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      body: [body, localeSchema],
       localeCode: [localeCode, string()],
+      body: [body, localeSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);

@@ -61,8 +61,8 @@ try {
 # Add Review Program
 
 ```ts
-async addReviewProgram(  body: ProgramReview,
-  programId: number,
+async addReviewProgram(  programId: number,
+  body: ProgramReview,
 requestOptions?: RequestOptions): Promise<ApiResponse<ProgramReviewResponse>>
 ```
 
@@ -70,8 +70,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ProgramReviewResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`ProgramReview`](../../doc/models/program-review.md) | Body, Required | - |
 | `programId` | `number` | Template, Required | - |
+| `body` | [`ProgramReview`](../../doc/models/program-review.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -81,6 +81,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ProgramReviewResponse>>
 ## Example Usage
 
 ```ts
+const programId = 126;
+
 const body: ProgramReview = {
   reviewId: 20001,
   programId: 1001,
@@ -90,12 +92,10 @@ const body: ProgramReview = {
   reviewText: 'This program significantly improved my strength. Highly recommended for intermediate lifters!',
 };
 
-const programId = 126;
-
 try {
   const { result, ...httpResponse } = await programsProgramReviewsController.addReviewProgram(
-  body,
-  programId
+  programId,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

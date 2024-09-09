@@ -67,8 +67,8 @@ try {
 # Create New Exercise Instructions
 
 ```ts
-async createNewExerciseInstructions(  body: ExerciseInstruction,
-  exerciseCode: string,
+async createNewExerciseInstructions(  exerciseCode: string,
+  body: ExerciseInstruction,
 requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionResponse>>
 ```
 
@@ -76,8 +76,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionRespons
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`ExerciseInstruction`](../../doc/models/exercise-instruction.md) | Body, Required | - |
 | `exerciseCode` | `string` | Template, Required | The exercise code to create instructions for |
+| `body` | [`ExerciseInstruction`](../../doc/models/exercise-instruction.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -87,6 +87,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionRespons
 ## Example Usage
 
 ```ts
+const exerciseCode = 'exerciseCode8';
+
 const body: ExerciseInstruction = {
   exerciseCode: 'BARBELL-BENCH-PRESS',
   localeCode: 'en-US',
@@ -97,12 +99,10 @@ const body: ExerciseInstruction = {
   userId: '9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1',
 };
 
-const exerciseCode = 'exerciseCode8';
-
 try {
   const { result, ...httpResponse } = await exercisesExerciseInstructionsController.createNewExerciseInstructions(
-  body,
-  exerciseCode
+  exerciseCode,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -182,10 +182,10 @@ try {
 # Update Exercise Instructions
 
 ```ts
-async updateExerciseInstructions(  body: ExerciseInstruction,
-  exerciseCode: string,
+async updateExerciseInstructions(  exerciseCode: string,
   localeCode: string,
   userId: string,
+  body: ExerciseInstruction,
 requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionResponse>>
 ```
 
@@ -193,10 +193,10 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionRespons
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`ExerciseInstruction`](../../doc/models/exercise-instruction.md) | Body, Required | - |
 | `exerciseCode` | `string` | Template, Required | The exercise code of the instructions to update |
 | `localeCode` | `string` | Template, Required | The locale code for the instructions to update<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `userId` | `string` | Template, Required | The userId of the creator for the instructions to update |
+| `body` | [`ExerciseInstruction`](../../doc/models/exercise-instruction.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -206,6 +206,12 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionRespons
 ## Example Usage
 
 ```ts
+const exerciseCode = 'exerciseCode8';
+
+const localeCode = 'localeCode2';
+
+const userId = 'userId0';
+
 const body: ExerciseInstruction = {
   exerciseCode: 'BARBELL-BENCH-PRESS',
   localeCode: 'en-US',
@@ -216,18 +222,12 @@ const body: ExerciseInstruction = {
   userId: '9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1',
 };
 
-const exerciseCode = 'exerciseCode8';
-
-const localeCode = 'localeCode2';
-
-const userId = 'userId0';
-
 try {
   const { result, ...httpResponse } = await exercisesExerciseInstructionsController.updateExerciseInstructions(
-  body,
   exerciseCode,
   localeCode,
-  userId
+  userId,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

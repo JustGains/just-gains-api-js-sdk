@@ -26,9 +26,9 @@ const programsController = new ProgramsController(client);
 ```ts
 async getPrograms(  page?: number,
   pageSize?: number,
-  publishStatusCode?: string,
   sortBy?: string,
   sortOrder?: SortOrderEnum,
+  publishStatusCode?: string,
   userId?: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<ProgramListResponse>>
 ```
@@ -39,9 +39,9 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ProgramListResponse>>
 |  --- | --- | --- | --- |
 | `page` | `number \| undefined` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 | `pageSize` | `number \| undefined` | Query, Optional | **Default**: `20`<br>**Constraints**: `>= 1`, `<= 100` |
-| `publishStatusCode` | `string \| undefined` | Query, Optional | - |
 | `sortBy` | `string \| undefined` | Query, Optional | - |
 | `sortOrder` | [`SortOrderEnum \| undefined`](../../doc/models/sort-order-enum.md) | Query, Optional | **Default**: `SortOrderEnum.Desc` |
+| `publishStatusCode` | `string \| undefined` | Query, Optional | - |
 | `userId` | `string \| undefined` | Query, Optional | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
@@ -62,7 +62,6 @@ try {
   const { result, ...httpResponse } = await programsController.getPrograms(
   page,
   pageSize,
-  undefined,
   undefined,
   sortOrder
 );
@@ -182,8 +181,8 @@ try {
 # Update Program
 
 ```ts
-async updateProgram(  body: Program,
-  programId: number,
+async updateProgram(  programId: number,
+  body: Program,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
@@ -191,8 +190,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`Program`](../../doc/models/program.md) | Body, Required | - |
 | `programId` | `number` | Template, Required | - |
+| `body` | [`Program`](../../doc/models/program.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -202,6 +201,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ## Example Usage
 
 ```ts
+const programId = 126;
+
 const body: Program = {
   programId: 1001,
   userId: '123e4567-e89b-12d3-a456-426614174000',
@@ -214,12 +215,10 @@ const body: Program = {
   deletedBy: '987e6543-e21b-12d3-a456-426614174000',
 };
 
-const programId = 126;
-
 try {
   const { result, ...httpResponse } = await programsController.updateProgram(
-  body,
-  programId
+  programId,
+  body
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

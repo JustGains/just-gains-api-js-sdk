@@ -16,19 +16,19 @@ import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseErr
 
 export class ProgramsProgramViewsController extends BaseController {
   /**
-   * @param body
    * @param programId
+   * @param body
    * @return Response from the API call
    */
   async addViewProgram(
-    body: ProgramView,
     programId: number,
+    body: ProgramView,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({
-      body: [body, programViewSchema],
       programId: [programId, number()],
+      body: [body, programViewSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
