@@ -1,6 +1,6 @@
 # Authentication
 
-Updated endpoints for user authentication, including registration, login, logout, and token refresh.
+Endpoints for user authentication, including registration, login, logout, and token refresh.
 
 ```ts
 const authenticationController = new AuthenticationController(client);
@@ -12,23 +12,21 @@ const authenticationController = new AuthenticationController(client);
 
 ## Methods
 
-* [Get Current User Information](../../doc/controllers/authentication.md#get-current-user-information)
-* [Update User Information](../../doc/controllers/authentication.md#update-user-information)
-* [Register a New User](../../doc/controllers/authentication.md#register-a-new-user)
-* [Sign in a User](../../doc/controllers/authentication.md#sign-in-a-user)
+* [Get User Info](../../doc/controllers/authentication.md#get-user-info)
+* [Update User Info](../../doc/controllers/authentication.md#update-user-info)
+* [Register User](../../doc/controllers/authentication.md#register-user)
+* [Login User](../../doc/controllers/authentication.md#login-user)
 * [Resend Confirmation Email](../../doc/controllers/authentication.md#resend-confirmation-email)
-* [Initiate Forgot Password Process](../../doc/controllers/authentication.md#initiate-forgot-password-process)
-* [Reset User Password](../../doc/controllers/authentication.md#reset-user-password)
-* [Refresh Authentication Token](../../doc/controllers/authentication.md#refresh-authentication-token)
-* [Sign Out the Current User](../../doc/controllers/authentication.md#sign-out-the-current-user)
+* [Forgot Password](../../doc/controllers/authentication.md#forgot-password)
+* [Reset Password](../../doc/controllers/authentication.md#reset-password)
+* [Refresh Token](../../doc/controllers/authentication.md#refresh-token)
+* [Signout](../../doc/controllers/authentication.md#signout)
 
 
-# Get Current User Information
-
-:information_source: **Note** This endpoint does not require authentication.
+# Get User Info
 
 ```ts
-async getCurrentUserInformation(requestOptions?: RequestOptions): Promise<ApiResponse<UserInfoResponse>>
+async getUserInfo(requestOptions?: RequestOptions): Promise<ApiResponse<UserInfoResponse>>
 ```
 
 ## Parameters
@@ -45,7 +43,7 @@ async getCurrentUserInformation(requestOptions?: RequestOptions): Promise<ApiRes
 
 ```ts
 try {
-  const { result, ...httpResponse } = await authenticationController.getCurrentUserInformation();
+  const { result, ...httpResponse } = await authenticationController.getUserInfo();
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -63,12 +61,10 @@ try {
 | 401 | Failed to retrieve user information | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
-# Update User Information
-
-:information_source: **Note** This endpoint does not require authentication.
+# Update User Info
 
 ```ts
-async updateUserInformation(  body: UpdateUserRequest,
+async updateUserInfo(  body: UpdateUserRequest,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
@@ -103,7 +99,7 @@ const body: UpdateUserRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await authenticationController.updateUserInformation(body);
+  const { result, ...httpResponse } = await authenticationController.updateUserInfo(body);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -121,12 +117,12 @@ try {
 | 400 | Failed to update user information | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
-# Register a New User
+# Register User
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async registerANewUser(  body: UserRegisterRequest,
+async registerUser(  body: UserRegisterRequest,
 requestOptions?: RequestOptions): Promise<ApiResponse<UserInfoResponse>>
 ```
 
@@ -154,7 +150,7 @@ const body: UserRegisterRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await authenticationController.registerANewUser(body);
+  const { result, ...httpResponse } = await authenticationController.registerUser(body);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -172,13 +168,13 @@ try {
 | 400 | Invalid parameters | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
-# Sign in a User
+# Login User
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async signInAUser(  body: UserLoginRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<AuthResponse>>
+async loginUser(  body: UserLoginRequest,
+requestOptions?: RequestOptions): Promise<ApiResponse<AuthSigninResponse>>
 ```
 
 ## Parameters
@@ -190,7 +186,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<AuthResponse>>
 
 ## Response Type
 
-[`AuthResponse`](../../doc/models/auth-response.md)
+[`AuthSigninResponse`](../../doc/models/auth-signin-response.md)
 
 ## Example Usage
 
@@ -201,7 +197,7 @@ const body: UserLoginRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await authenticationController.signInAUser(body);
+  const { result, ...httpResponse } = await authenticationController.loginUser(body);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -265,12 +261,12 @@ try {
 | 400 | Failed to send confirmation email | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
-# Initiate Forgot Password Process
+# Forgot Password
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async initiateForgotPasswordProcess(  body: ForgotPasswordRequest,
+async forgotPassword(  body: ForgotPasswordRequest,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
@@ -293,7 +289,7 @@ const body: ForgotPasswordRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await authenticationController.initiateForgotPasswordProcess(body);
+  const { result, ...httpResponse } = await authenticationController.forgotPassword(body);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -311,12 +307,12 @@ try {
 | 404 | Failed to send password reset email | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
-# Reset User Password
+# Reset Password
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async resetUserPassword(  body: ResetPasswordRequest,
+async resetPassword(  body: ResetPasswordRequest,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -339,7 +335,7 @@ const body: ResetPasswordRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await authenticationController.resetUserPassword(body);
+  const { result, ...httpResponse } = await authenticationController.resetPassword(body);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -357,12 +353,12 @@ try {
 | 400 | Failed to reset password | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
-# Refresh Authentication Token
+# Refresh Token
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async refreshAuthenticationToken(requestOptions?: RequestOptions): Promise<ApiResponse<AuthResponse>>
+async refreshToken(requestOptions?: RequestOptions): Promise<ApiResponse<AuthRefreshTokenResponse>>
 ```
 
 ## Parameters
@@ -373,13 +369,13 @@ async refreshAuthenticationToken(requestOptions?: RequestOptions): Promise<ApiRe
 
 ## Response Type
 
-[`AuthResponse`](../../doc/models/auth-response.md)
+[`AuthRefreshTokenResponse`](../../doc/models/auth-refresh-token-response.md)
 
 ## Example Usage
 
 ```ts
 try {
-  const { result, ...httpResponse } = await authenticationController.refreshAuthenticationToken();
+  const { result, ...httpResponse } = await authenticationController.refreshToken();
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -397,12 +393,10 @@ try {
 | 400 | Failed to refresh token | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
-# Sign Out the Current User
-
-:information_source: **Note** This endpoint does not require authentication.
+# Signout
 
 ```ts
-async signOutTheCurrentUser(requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
+async signout(requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -419,7 +413,7 @@ async signOutTheCurrentUser(requestOptions?: RequestOptions): Promise<ApiRespons
 
 ```ts
 try {
-  const { result, ...httpResponse } = await authenticationController.signOutTheCurrentUser();
+  const { result, ...httpResponse } = await authenticationController.signout();
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {

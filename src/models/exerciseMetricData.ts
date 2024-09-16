@@ -10,18 +10,23 @@ import {
   exerciseMetricTranslationSchema,
 } from './exerciseMetricTranslation';
 
-/** Represents a metric associated with an exercise, including how it should be displayed. */
-export interface ExerciseMetric {
+export interface ExerciseMetricData {
   /** A unique identifier for the exercise metric. */
   exerciseMetricCode?: string;
   /** Array of translations for the metric */
   exerciseMetricTranslations?: ExerciseMetricTranslation[];
+  /** Translated name of the metric in the requested locale */
+  metricName?: string;
+  /** a custom JSON object that can be used to store any additional data related to the metric */
+  measurementData?: string;
 }
 
-export const exerciseMetricSchema: Schema<ExerciseMetric> = object({
+export const exerciseMetricDataSchema: Schema<ExerciseMetricData> = object({
   exerciseMetricCode: ['exerciseMetricCode', optional(string())],
   exerciseMetricTranslations: [
     'exerciseMetricTranslations',
     optional(array(lazy(() => exerciseMetricTranslationSchema))),
   ],
+  metricName: ['metricName', optional(string())],
+  measurementData: ['measurementData', optional(string())],
 });

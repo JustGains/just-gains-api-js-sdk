@@ -71,7 +71,7 @@ export class EquipmentEquipmentGroupsController extends BaseController {
    * @param body
    * @return Response from the API call
    */
-  async updateAnExistingEquipmentGroup(
+  async updateEquipmentGroup(
     equipmentGroupCode: string,
     body: EquipmentGroup,
     requestOptions?: RequestOptions

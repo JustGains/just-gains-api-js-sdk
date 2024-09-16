@@ -5,7 +5,14 @@
  */
 
 import { ApiResponse, RequestOptions } from '../core';
-import { AuthResponse, authResponseSchema } from '../models/authResponse';
+import {
+  AuthRefreshTokenResponse,
+  authRefreshTokenResponseSchema,
+} from '../models/authRefreshTokenResponse';
+import {
+  AuthSigninResponse,
+  authSigninResponseSchema,
+} from '../models/authSigninResponse';
 import {
   ConfirmEmailRequest,
   confirmEmailRequestSchema,
@@ -49,7 +56,7 @@ export class AuthenticationController extends BaseController {
   /**
    * @return Response from the API call
    */
-  async getCurrentUserInformation(
+  async getUserInfo(
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<UserInfoResponse>> {
     const req = this.createRequest('GET', '/auth/user');
@@ -58,7 +65,7 @@ export class AuthenticationController extends BaseController {
       JustGainsErrorResponseError,
       'Failed to retrieve user information'
     );
-    req.authenticate([]);
+    req.authenticate([{ bearerAuth: true }]);
     return req.callAsJson(userInfoResponseSchema, requestOptions);
   }
 
@@ -66,7 +73,7 @@ export class AuthenticationController extends BaseController {
    * @param body
    * @return Response from the API call
    */
-  async updateUserInformation(
+  async updateUserInfo(
     body: UpdateUserRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsResponse>> {
@@ -79,7 +86,7 @@ export class AuthenticationController extends BaseController {
       JustGainsErrorResponseError,
       'Failed to update user information'
     );
-    req.authenticate([]);
+    req.authenticate([{ bearerAuth: true }]);
     return req.callAsJson(justGainsResponseSchema, requestOptions);
   }
 
@@ -87,7 +94,7 @@ export class AuthenticationController extends BaseController {
    * @param body
    * @return Response from the API call
    */
-  async registerANewUser(
+  async registerUser(
     body: UserRegisterRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<UserInfoResponse>> {
@@ -104,17 +111,17 @@ export class AuthenticationController extends BaseController {
    * @param body
    * @return Response from the API call
    */
-  async signInAUser(
+  async loginUser(
     body: UserLoginRequest,
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<AuthResponse>> {
+  ): Promise<ApiResponse<AuthSigninResponse>> {
     const req = this.createRequest('POST', '/auth/signin');
     const mapped = req.prepareArgs({ body: [body, userLoginRequestSchema] });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.throwOn(400, JustGainsErrorResponseError, 'Invalid credentials');
     req.authenticate([]);
-    return req.callAsJson(authResponseSchema, requestOptions);
+    return req.callAsJson(authSigninResponseSchema, requestOptions);
   }
 
   /**
@@ -142,7 +149,7 @@ export class AuthenticationController extends BaseController {
    * @param body
    * @return Response from the API call
    */
-  async initiateForgotPasswordProcess(
+  async forgotPassword(
     body: ForgotPasswordRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsResponse>> {
@@ -165,7 +172,7 @@ export class AuthenticationController extends BaseController {
    * @param body
    * @return Response from the API call
    */
-  async resetUserPassword(
+  async resetPassword(
     body: ResetPasswordRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
@@ -183,24 +190,24 @@ export class AuthenticationController extends BaseController {
   /**
    * @return Response from the API call
    */
-  async refreshAuthenticationToken(
+  async refreshToken(
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<AuthResponse>> {
+  ): Promise<ApiResponse<AuthRefreshTokenResponse>> {
     const req = this.createRequest('POST', '/auth/refresh-token');
     req.throwOn(400, JustGainsErrorResponseError, 'Failed to refresh token');
     req.authenticate([]);
-    return req.callAsJson(authResponseSchema, requestOptions);
+    return req.callAsJson(authRefreshTokenResponseSchema, requestOptions);
   }
 
   /**
    * @return Response from the API call
    */
-  async signOutTheCurrentUser(
+  async signout(
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('POST', '/auth/signout');
     req.throwOn(400, JustGainsErrorResponseError, 'Failed to sign out user');
-    req.authenticate([]);
+    req.authenticate([{ bearerAuth: true }]);
     return req.callAsJson(justGainsBasicResponseSchema, requestOptions);
   }
 }

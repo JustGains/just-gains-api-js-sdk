@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `id` | `string \| undefined` | Optional | - |
 | `type` | [`TypeEnum \| undefined`](../../doc/models/type-enum.md) | Optional | - |
-| `data` | [`Data4 \| undefined`](../../doc/models/data-4.md) | Optional | - |
+| `data` | [`Data2 \| undefined`](../../doc/models/data-2.md) | Optional | - |
 
 ## Example (as JSON)
 

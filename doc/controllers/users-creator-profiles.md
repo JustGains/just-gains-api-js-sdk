@@ -23,6 +23,7 @@ const usersCreatorProfilesController = new UsersCreatorProfilesController(client
 
 ```ts
 async getCreatorProfiles(  page?: number,
+  mvpAssetsOnly?: boolean,
   limit?: number,
 requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileListResponse>>
 ```
@@ -32,6 +33,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileListResponse
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `page` | `number \| undefined` | Query, Optional | Page number for pagination<br>**Default**: `1`<br>**Constraints**: `>= 1` |
+| `mvpAssetsOnly` | `boolean \| undefined` | Query, Optional | Filter creator profiles with MVP assets only |
 | `limit` | `number \| undefined` | Query, Optional | Number of items per page<br>**Default**: `20`<br>**Constraints**: `>= 1`, `<= 100` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
@@ -49,6 +51,7 @@ const limit = 20;
 try {
   const { result, ...httpResponse } = await usersCreatorProfilesController.getCreatorProfiles(
   page,
+  undefined,
   limit
 );
   // Get more response info...
@@ -92,6 +95,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileResponse>>
 const body: CreatorProfile = {
   creatorProfileId: '123e4567-e89b-12d3-a456-426614174000',
   userId: '123e4567-e89b-12d3-a456-426614174000',
+  userName: 'TheRock',
   creatorEmail: 'dwayne@therockjohnson.com',
 };
 
@@ -187,6 +191,7 @@ const creatorProfileId = '000008d2-0000-0000-0000-000000000000';
 const body: CreatorProfile = {
   creatorProfileId: '123e4567-e89b-12d3-a456-426614174000',
   userId: '123e4567-e89b-12d3-a456-426614174000',
+  userName: 'TheRock',
   creatorEmail: 'dwayne@therockjohnson.com',
 };
 

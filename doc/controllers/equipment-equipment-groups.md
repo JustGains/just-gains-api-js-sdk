@@ -12,7 +12,7 @@ const equipmentEquipmentGroupsController = new EquipmentEquipmentGroupsControlle
 
 * [Get Equipment Groups](../../doc/controllers/equipment-equipment-groups.md#get-equipment-groups)
 * [Add Equipment Group](../../doc/controllers/equipment-equipment-groups.md#add-equipment-group)
-* [Update an Existing Equipment Group](../../doc/controllers/equipment-equipment-groups.md#update-an-existing-equipment-group)
+* [Update Equipment Group](../../doc/controllers/equipment-equipment-groups.md#update-equipment-group)
 * [Delete an Equipment Group](../../doc/controllers/equipment-equipment-groups.md#delete-an-equipment-group)
 * [Get Equipment Group Translations](../../doc/controllers/equipment-equipment-groups.md#get-equipment-group-translations)
 * [Update Equipment Group Translations](../../doc/controllers/equipment-equipment-groups.md#update-equipment-group-translations)
@@ -109,10 +109,10 @@ try {
 | 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
-# Update an Existing Equipment Group
+# Update Equipment Group
 
 ```ts
-async updateAnExistingEquipmentGroup(  equipmentGroupCode: string,
+async updateEquipmentGroup(  equipmentGroupCode: string,
   body: EquipmentGroup,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
@@ -142,7 +142,7 @@ const body: EquipmentGroup = {
 };
 
 try {
-  const { result, ...httpResponse } = await equipmentEquipmentGroupsController.updateAnExistingEquipmentGroup(
+  const { result, ...httpResponse } = await equipmentEquipmentGroupsController.updateEquipmentGroup(
   equipmentGroupCode,
   body
 );

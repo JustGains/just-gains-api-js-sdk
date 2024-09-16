@@ -67,7 +67,7 @@ export class MusclesMuscleGroupsController extends BaseController {
    * @param body
    * @return Response from the API call
    */
-  async updateAMuscleGroup(
+  async updateMuscleGroup(
     muscleGroupCode: string,
     body: MuscleGroup,
     requestOptions?: RequestOptions

@@ -1,5 +1,7 @@
 # Locales
 
+Manage language locales and translations.
+
 ```ts
 const localesController = new LocalesController(client);
 ```

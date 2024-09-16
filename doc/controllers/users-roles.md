@@ -1,22 +1,23 @@
-# Users Role Management
+# Users Roles
+
+Manage User roles.
 
 ```ts
-const usersRoleManagementController = new UsersRoleManagementController(client);
+const usersRolesController = new UsersRolesController(client);
 ```
 
 ## Class Name
 
-`UsersRoleManagementController`
+`UsersRolesController`
 
 ## Methods
 
-* [Assign a Role to a User](../../doc/controllers/users-role-management.md#assign-a-role-to-a-user)
-* [Get User Roles](../../doc/controllers/users-role-management.md#get-user-roles)
-* [Remove a Role From a User](../../doc/controllers/users-role-management.md#remove-a-role-from-a-user)
-* [Get All Roles](../../doc/controllers/users-role-management.md#get-all-roles)
-* [Create a New Role](../../doc/controllers/users-role-management.md#create-a-new-role)
-* [Update a Role](../../doc/controllers/users-role-management.md#update-a-role)
-* [Delete a Role](../../doc/controllers/users-role-management.md#delete-a-role)
+* [Assign a Role to a User](../../doc/controllers/users-roles.md#assign-a-role-to-a-user)
+* [Get User Roles](../../doc/controllers/users-roles.md#get-user-roles)
+* [Get All Roles](../../doc/controllers/users-roles.md#get-all-roles)
+* [Create a New Role](../../doc/controllers/users-roles.md#create-a-new-role)
+* [Update a Role](../../doc/controllers/users-roles.md#update-a-role)
+* [Delete a Role](../../doc/controllers/users-roles.md#delete-a-role)
 
 
 # Assign a Role to a User
@@ -25,7 +26,7 @@ const usersRoleManagementController = new UsersRoleManagementController(client);
 
 ```ts
 async assignARoleToAUser(  userId: string,
-  body: RoleAssignmentRequest,
+  body: string[],
 requestOptions?: RequestOptions): Promise<ApiResponse<UsersRolesResponse>>
 ```
 
@@ -34,7 +35,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UsersRolesResponse>>
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `userId` | `string` | Template, Required | - |
-| `body` | [`RoleAssignmentRequest`](../../doc/models/role-assignment-request.md) | Body, Required | - |
+| `body` | `string[]` | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -46,12 +47,13 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UsersRolesResponse>>
 ```ts
 const userId = '000013ec-0000-0000-0000-000000000000';
 
-const body: RoleAssignmentRequest = {
-  roleId: 192,
-};
+const body: string[] = [
+  'body4',
+  'body5'
+];
 
 try {
-  const { result, ...httpResponse } = await usersRoleManagementController.assignARoleToAUser(
+  const { result, ...httpResponse } = await usersRolesController.assignARoleToAUser(
   userId,
   body
 );
@@ -92,52 +94,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UsersRolesResponse>>
 const userId = '000013ec-0000-0000-0000-000000000000';
 
 try {
-  const { result, ...httpResponse } = await usersRoleManagementController.getUserRoles(userId);
-  // Get more response info...
-  // const { statusCode, headers } = httpResponse;
-} catch (error) {
-  if (error instanceof ApiError) {
-    const errors = error.result;
-    // const { statusCode, headers } = error;
-  }
-}
-```
-
-
-# Remove a Role From a User
-
-:information_source: **Note** This endpoint does not require authentication.
-
-```ts
-async removeARoleFromAUser(  userId: string,
-  roleName: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `userId` | `string` | Template, Required | - |
-| `roleName` | `string` | Template, Required | - |
-| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
-
-## Response Type
-
-[`JustGainsResponse`](../../doc/models/just-gains-response.md)
-
-## Example Usage
-
-```ts
-const userId = '000013ec-0000-0000-0000-000000000000';
-
-const roleName = 'roleName6';
-
-try {
-  const { result, ...httpResponse } = await usersRoleManagementController.removeARoleFromAUser(
-  userId,
-  roleName
-);
+  const { result, ...httpResponse } = await usersRolesController.getUserRoles(userId);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -171,7 +128,7 @@ async getAllRoles(requestOptions?: RequestOptions): Promise<ApiResponse<RolesRes
 
 ```ts
 try {
-  const { result, ...httpResponse } = await usersRoleManagementController.getAllRoles();
+  const { result, ...httpResponse } = await usersRolesController.getAllRoles();
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -211,7 +168,7 @@ const body: RoleCreateRequest = {
 };
 
 try {
-  const { result, ...httpResponse } = await usersRoleManagementController.createANewRole(body);
+  const { result, ...httpResponse } = await usersRolesController.createANewRole(body);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -253,7 +210,7 @@ const roleName = 'roleName6';
 const body: RoleUpdateRequest = {};
 
 try {
-  const { result, ...httpResponse } = await usersRoleManagementController.updateARole(
+  const { result, ...httpResponse } = await usersRolesController.updateARole(
   roleName,
   body
 );
@@ -294,7 +251,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 const roleName = 'roleName6';
 
 try {
-  const { result, ...httpResponse } = await usersRoleManagementController.deleteARole(roleName);
+  const { result, ...httpResponse } = await usersRolesController.deleteARole(roleName);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {

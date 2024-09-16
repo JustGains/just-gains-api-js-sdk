@@ -102,21 +102,21 @@ export class ExercisesExerciseVideosController extends BaseController {
   }
 
   /**
-   * @param exerciseCode The exercise code to retrieve videos for
-   * @param userId       The userId of the creator whose videos we're referencing
+   * @param exerciseCode     The exercise code to retrieve videos for
+   * @param creatorProfileId The creatorProfileId of the creator whose videos we're referencing
    * @return Response from the API call
    */
-  async getExerciseVideoByUserId(
+  async getExerciseVideoByCreatorProfileId(
     exerciseCode: string,
-    userId: string,
+    creatorProfileId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ExercisesVideosResponse2>> {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({
       exerciseCode: [exerciseCode, string()],
-      userId: [userId, string()],
+      creatorProfileId: [creatorProfileId, string()],
     });
-    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/videos/${mapped.userId}`;
+    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/videos/${mapped.creatorProfileId}`;
     req.throwOn(400, JustGainsErrorResponseError, 'Invalid exercise code');
     req.throwOn(404, JustGainsErrorResponseError, 'Exercise videos not found');
     req.authenticate(false);
@@ -124,24 +124,24 @@ export class ExercisesExerciseVideosController extends BaseController {
   }
 
   /**
-   * @param exerciseCode    The exercise code
-   * @param userId          The userId of the video creator
-   * @param exerciseVideoId The exercise video ID to delete
+   * @param exerciseCode     The exercise code
+   * @param creatorProfileId The creatorProfileId of the video creator
+   * @param exerciseVideoId  The exercise video ID to delete
    * @return Response from the API call
    */
   async deleteAnExerciseVideo(
     exerciseCode: string,
-    userId: string,
+    creatorProfileId: string,
     exerciseVideoId: number,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsResponse>> {
     const req = this.createRequest('DELETE');
     const mapped = req.prepareArgs({
       exerciseCode: [exerciseCode, string()],
-      userId: [userId, string()],
+      creatorProfileId: [creatorProfileId, string()],
       exerciseVideoId: [exerciseVideoId, number()],
     });
-    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/videos/${mapped.userId}/${mapped.exerciseVideoId}`;
+    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/videos/${mapped.creatorProfileId}/${mapped.exerciseVideoId}`;
     req.throwOn(401, JustGainsErrorResponseError, 'Authentication required');
     req.throwOn(404, JustGainsErrorResponseError, 'Exercise video not found');
     req.authenticate([{ bearerAuth: true }]);

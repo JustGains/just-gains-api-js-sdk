@@ -12,7 +12,7 @@ const musclesMuscleGroupsController = new MusclesMuscleGroupsController(client);
 
 * [Get Muscle Groups](../../doc/controllers/muscles-muscle-groups.md#get-muscle-groups)
 * [Create a New Muscle Group](../../doc/controllers/muscles-muscle-groups.md#create-a-new-muscle-group)
-* [Update a Muscle Group](../../doc/controllers/muscles-muscle-groups.md#update-a-muscle-group)
+* [Update Muscle Group](../../doc/controllers/muscles-muscle-groups.md#update-muscle-group)
 * [Delete a Muscle Group](../../doc/controllers/muscles-muscle-groups.md#delete-a-muscle-group)
 * [Get Muscle Group Translations](../../doc/controllers/muscles-muscle-groups.md#get-muscle-group-translations)
 * [Update Muscle Group Translations](../../doc/controllers/muscles-muscle-groups.md#update-muscle-group-translations)
@@ -115,10 +115,10 @@ try {
 | 401 | Authentication required | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
-# Update a Muscle Group
+# Update Muscle Group
 
 ```ts
-async updateAMuscleGroup(  muscleGroupCode: string,
+async updateMuscleGroup(  muscleGroupCode: string,
   body: MuscleGroup,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
@@ -159,7 +159,7 @@ const body: MuscleGroup = {
 };
 
 try {
-  const { result, ...httpResponse } = await musclesMuscleGroupsController.updateAMuscleGroup(
+  const { result, ...httpResponse } = await musclesMuscleGroupsController.updateMuscleGroup(
   muscleGroupCode,
   body
 );

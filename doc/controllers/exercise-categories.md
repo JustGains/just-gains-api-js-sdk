@@ -12,7 +12,7 @@ const exerciseCategoriesController = new ExerciseCategoriesController(client);
 
 * [Get Exercise Categories](../../doc/controllers/exercise-categories.md#get-exercise-categories)
 * [Create Exercise Category](../../doc/controllers/exercise-categories.md#create-exercise-category)
-* [Update an Exercise Category](../../doc/controllers/exercise-categories.md#update-an-exercise-category)
+* [Update Exercise Category](../../doc/controllers/exercise-categories.md#update-exercise-category)
 * [Delete an Exercise Category](../../doc/controllers/exercise-categories.md#delete-an-exercise-category)
 * [Get Exercise Category Translations](../../doc/controllers/exercise-categories.md#get-exercise-category-translations)
 * [Update Exercise Category Translations](../../doc/controllers/exercise-categories.md#update-exercise-category-translations)
@@ -101,10 +101,10 @@ try {
 | 400 | Bad Request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
-# Update an Exercise Category
+# Update Exercise Category
 
 ```ts
-async updateAnExerciseCategory(  exerciseCategoryCode: string,
+async updateExerciseCategory(  exerciseCategoryCode: string,
   body: ExerciseCategory,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
@@ -132,7 +132,7 @@ const body: ExerciseCategory = {
 };
 
 try {
-  const { result, ...httpResponse } = await exerciseCategoriesController.updateAnExerciseCategory(
+  const { result, ...httpResponse } = await exerciseCategoriesController.updateExerciseCategory(
   exerciseCategoryCode,
   body
 );

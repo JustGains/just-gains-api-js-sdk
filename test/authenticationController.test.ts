@@ -15,9 +15,9 @@ describe('AuthenticationController', () => {
     controller = new AuthenticationController(testClient);
   });
 
-  it('should Test Get current user information', async () => {
+  it('should Test getUserInfo', async () => {
     const response = await makeApiCall(
-      () => controller.getCurrentUserInformation()
+      () => controller.getUserInfo()
     );
 
     expect(response.statusCode).toBe(200);
@@ -27,9 +27,9 @@ describe('AuthenticationController', () => {
     expectHeadersToMatch(response.headers, expectedHeaders);
   });
 
-  it('should Test Refresh authentication token', async () => {
+  it('should Test refreshToken', async () => {
     const response = await makeApiCall(
-      () => controller.refreshAuthenticationToken()
+      () => controller.refreshToken()
     );
 
     expect(response.statusCode).toBe(200);
@@ -39,9 +39,9 @@ describe('AuthenticationController', () => {
     expectHeadersToMatch(response.headers, expectedHeaders);
   });
 
-  it('should Test Sign out the current user', async () => {
+  it('should Test signout', async () => {
     const response = await makeApiCall(
-      () => controller.signOutTheCurrentUser()
+      () => controller.signout()
     );
 
     expect(response.statusCode).toBe(204);

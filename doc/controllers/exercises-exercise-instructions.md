@@ -129,7 +129,7 @@ try {
 ```ts
 async getExerciseInstruction(  exerciseCode: string,
   localeCode: string,
-  userId: string,
+  creatorProfileId: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionResponse>>
 ```
 
@@ -139,7 +139,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionRespons
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code to retrieve instructions for |
 | `localeCode` | `string` | Template, Required | The locale for the instructions (e.g., 'en-US', 'es-ES')<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
-| `userId` | `string` | Template, Required | The UserID that belongs to the instructions being requested |
+| `creatorProfileId` | `string` | Template, Required | The creatorProfileId that belongs to the instructions being requested |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -153,13 +153,13 @@ const exerciseCode = 'exerciseCode8';
 
 const localeCode = 'localeCode2';
 
-const userId = 'userId0';
+const creatorProfileId = 'creatorProfileId8';
 
 try {
   const { result, ...httpResponse } = await exercisesExerciseInstructionsController.getExerciseInstruction(
   exerciseCode,
   localeCode,
-  userId
+  creatorProfileId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -184,7 +184,7 @@ try {
 ```ts
 async updateExerciseInstructions(  exerciseCode: string,
   localeCode: string,
-  userId: string,
+  creatorProfileId: string,
   body: ExerciseInstruction,
 requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionResponse>>
 ```
@@ -195,7 +195,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseInstructionRespons
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code of the instructions to update |
 | `localeCode` | `string` | Template, Required | The locale code for the instructions to update<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
-| `userId` | `string` | Template, Required | The userId of the creator for the instructions to update |
+| `creatorProfileId` | `string` | Template, Required | The creatorProfileId of the creator for the instructions to update |
 | `body` | [`ExerciseInstruction`](../../doc/models/exercise-instruction.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
@@ -210,7 +210,7 @@ const exerciseCode = 'exerciseCode8';
 
 const localeCode = 'localeCode2';
 
-const userId = 'userId0';
+const creatorProfileId = 'creatorProfileId8';
 
 const body: ExerciseInstruction = {
   exerciseCode: 'BARBELL-BENCH-PRESS',
@@ -226,7 +226,7 @@ try {
   const { result, ...httpResponse } = await exercisesExerciseInstructionsController.updateExerciseInstructions(
   exerciseCode,
   localeCode,
-  userId,
+  creatorProfileId,
   body
 );
   // Get more response info...
@@ -253,7 +253,7 @@ try {
 ```ts
 async deleteExerciseInstructions(  exerciseCode: string,
   localeCode: string,
-  userId: string,
+  creatorProfileId: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
@@ -263,7 +263,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code of the instructions to delete |
 | `localeCode` | `string` | Template, Required | The locale code for the instructions to delete<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
-| `userId` | `string` | Template, Required | The user ID of the instructions to delete |
+| `creatorProfileId` | `string` | Template, Required | The creatorProfileId of the instructions to delete |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -277,13 +277,13 @@ const exerciseCode = 'exerciseCode8';
 
 const localeCode = 'localeCode2';
 
-const userId = 'userId0';
+const creatorProfileId = 'creatorProfileId8';
 
 try {
   const { result, ...httpResponse } = await exercisesExerciseInstructionsController.deleteExerciseInstructions(
   exerciseCode,
   localeCode,
-  userId
+  creatorProfileId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

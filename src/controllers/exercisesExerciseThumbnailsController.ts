@@ -48,21 +48,21 @@ export class ExercisesExerciseThumbnailsController extends BaseController {
   }
 
   /**
-   * @param exerciseCode The exercise code to retrieve thumbnail for
-   * @param userId       The userId of the creator whose thumbnail we're referencing
+   * @param exerciseCode     The exercise code to retrieve thumbnail for
+   * @param creatorProfileId The creatorProfileId of the creator whose thumbnail we're referencing
    * @return Response from the API call
    */
-  async getExerciseThumbnailByUserId(
+  async getExerciseThumbnailByCreatorProfileId(
     exerciseCode: string,
-    userId: string,
+    creatorProfileId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ExerciseThumbnailResponse>> {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({
       exerciseCode: [exerciseCode, string()],
-      userId: [userId, string()],
+      creatorProfileId: [creatorProfileId, string()],
     });
-    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/thumbnails/${mapped.userId}`;
+    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/thumbnails/${mapped.creatorProfileId}`;
     req.throwOn(
       400,
       JustGainsErrorResponseError,
@@ -78,26 +78,26 @@ export class ExercisesExerciseThumbnailsController extends BaseController {
   }
 
   /**
-   * @param exerciseCode The exercise code to add or update thumbnail for
-   * @param userId       The userId of the thumbnail creator
+   * @param exerciseCode     The exercise code to add or update thumbnail for
+   * @param creatorProfileId The creatorProfileId of the thumbnail creator
    * @param body
    * @return Response from the API call
    */
   async addOrUpdateExerciseThumbnail(
     exerciseCode: string,
-    userId: string,
+    creatorProfileId: string,
     body: ExerciseThumbnail,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ExerciseThumbnailResponse>> {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({
       exerciseCode: [exerciseCode, string()],
-      userId: [userId, string()],
+      creatorProfileId: [creatorProfileId, string()],
       body: [body, exerciseThumbnailSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/thumbnails/${mapped.userId}`;
+    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/thumbnails/${mapped.creatorProfileId}`;
     req.throwOn(
       400,
       JustGainsErrorResponseError,
@@ -109,21 +109,21 @@ export class ExercisesExerciseThumbnailsController extends BaseController {
   }
 
   /**
-   * @param exerciseCode The exercise code
-   * @param userId       The userId of the thumbnail creator
+   * @param exerciseCode     The exercise code
+   * @param creatorProfileId The creatorProfileId of the thumbnail creator
    * @return Response from the API call
    */
   async deleteAnExerciseThumbnail(
     exerciseCode: string,
-    userId: string,
+    creatorProfileId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsResponse>> {
     const req = this.createRequest('DELETE');
     const mapped = req.prepareArgs({
       exerciseCode: [exerciseCode, string()],
-      userId: [userId, string()],
+      creatorProfileId: [creatorProfileId, string()],
     });
-    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/thumbnails/${mapped.userId}`;
+    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/thumbnails/${mapped.creatorProfileId}`;
     req.throwOn(401, JustGainsErrorResponseError, 'Authentication required');
     req.throwOn(
       404,

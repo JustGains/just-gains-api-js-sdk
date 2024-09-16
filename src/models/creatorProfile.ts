@@ -17,6 +17,8 @@ export interface CreatorProfile {
   creatorProfileId?: string;
   /** Associated user ID, if applicable. */
   userId?: string;
+  /** Creator's username. */
+  userName?: string;
   /** Creator's email address. */
   creatorEmail?: string;
   profilePhoto?: MediaAsset;
@@ -27,6 +29,7 @@ export interface CreatorProfile {
 export const creatorProfileSchema: Schema<CreatorProfile> = object({
   creatorProfileId: ['creatorProfileId', optional(string())],
   userId: ['userId', optional(string())],
+  userName: ['userName', optional(string())],
   creatorEmail: ['creatorEmail', optional(string())],
   profilePhoto: ['profilePhoto', optional(lazy(() => mediaAssetSchema))],
   socialMediaAccounts: [

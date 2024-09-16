@@ -40,7 +40,7 @@ export class ExercisesController extends BaseController {
    * @param exerciseCategoryCodes  List of exercise category codes to filter by
    * @param exerciseTypeCodes      List of exercise types to filter by
    * @param exerciseEquipmentCodes List of exercise equipment to filter by
-   * @param exerciseMuscleCodes
+   * @param exerciseMuscleCodes    List of exercise muscles to filter by (not muscle group)
    * @param exerciseMetricCodes    List of exercise metrics to filter by
    * @param publishedStatusCodes   List of publish statuses to filter by
    * @param localeCode             Locale to filter by

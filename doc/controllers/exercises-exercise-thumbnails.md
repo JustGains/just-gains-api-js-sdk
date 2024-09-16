@@ -11,7 +11,7 @@ const exercisesExerciseThumbnailsController = new ExercisesExerciseThumbnailsCon
 ## Methods
 
 * [Get Exercise Thumbnails](../../doc/controllers/exercises-exercise-thumbnails.md#get-exercise-thumbnails)
-* [Get Exercise Thumbnail by User Id](../../doc/controllers/exercises-exercise-thumbnails.md#get-exercise-thumbnail-by-user-id)
+* [Get Exercise Thumbnail by Creator Profile Id](../../doc/controllers/exercises-exercise-thumbnails.md#get-exercise-thumbnail-by-creator-profile-id)
 * [Add or Update Exercise Thumbnail](../../doc/controllers/exercises-exercise-thumbnails.md#add-or-update-exercise-thumbnail)
 * [Delete an Exercise Thumbnail](../../doc/controllers/exercises-exercise-thumbnails.md#delete-an-exercise-thumbnail)
 
@@ -61,13 +61,13 @@ try {
 | 404 | Exercise thumbnails not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
-# Get Exercise Thumbnail by User Id
+# Get Exercise Thumbnail by Creator Profile Id
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async getExerciseThumbnailByUserId(  exerciseCode: string,
-  userId: string,
+async getExerciseThumbnailByCreatorProfileId(  exerciseCode: string,
+  creatorProfileId: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseThumbnailResponse>>
 ```
 
@@ -76,7 +76,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseThumbnailResponse>
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code to retrieve thumbnail for |
-| `userId` | `string` | Template, Required | The userId of the creator whose thumbnail we're referencing |
+| `creatorProfileId` | `string` | Template, Required | The creatorProfileId of the creator whose thumbnail we're referencing |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -88,12 +88,12 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseThumbnailResponse>
 ```ts
 const exerciseCode = 'exerciseCode8';
 
-const userId = 'userId0';
+const creatorProfileId = 'creatorProfileId8';
 
 try {
-  const { result, ...httpResponse } = await exercisesExerciseThumbnailsController.getExerciseThumbnailByUserId(
+  const { result, ...httpResponse } = await exercisesExerciseThumbnailsController.getExerciseThumbnailByCreatorProfileId(
   exerciseCode,
-  userId
+  creatorProfileId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -117,7 +117,7 @@ try {
 
 ```ts
 async addOrUpdateExerciseThumbnail(  exerciseCode: string,
-  userId: string,
+  creatorProfileId: string,
   body: ExerciseThumbnail,
 requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseThumbnailResponse>>
 ```
@@ -127,7 +127,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseThumbnailResponse>
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code to add or update thumbnail for |
-| `userId` | `string` | Template, Required | The userId of the thumbnail creator |
+| `creatorProfileId` | `string` | Template, Required | The creatorProfileId of the thumbnail creator |
 | `body` | [`ExerciseThumbnail`](../../doc/models/exercise-thumbnail.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
@@ -140,11 +140,11 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseThumbnailResponse>
 ```ts
 const exerciseCode = 'exerciseCode8';
 
-const userId = 'userId0';
+const creatorProfileId = 'creatorProfileId8';
 
 const body: ExerciseThumbnail = {
-  exerciseCode: 'exerciseCode2',
-  userId: '000021e4-0000-0000-0000-000000000000',
+  exerciseCode: 'SQUAT',
+  userId: '123e4567-e89b-12d3-a456-426614174000',
   mediaAsset: {
     mediaId: '7b8e9f2a-c1d3-45e6-a7b8-9c0d1e2f3a4b',
     fileName: 'workout_routine.mp4',
@@ -154,12 +154,13 @@ const body: ExerciseThumbnail = {
     fileUrl: 'https://api.justsuperhuman.com/media/videos/routines/workout_routine.mp4',
     description: 'High-intensity interval training (HIIT) workout routine for beginners',
   },
+  userName: 'john_doe',
 };
 
 try {
   const { result, ...httpResponse } = await exercisesExerciseThumbnailsController.addOrUpdateExerciseThumbnail(
   exerciseCode,
-  userId,
+  creatorProfileId,
   body
 );
   // Get more response info...
@@ -184,7 +185,7 @@ try {
 
 ```ts
 async deleteAnExerciseThumbnail(  exerciseCode: string,
-  userId: string,
+  creatorProfileId: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
@@ -193,7 +194,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code |
-| `userId` | `string` | Template, Required | The userId of the thumbnail creator |
+| `creatorProfileId` | `string` | Template, Required | The creatorProfileId of the thumbnail creator |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -205,12 +206,12 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```ts
 const exerciseCode = 'exerciseCode8';
 
-const userId = 'userId0';
+const creatorProfileId = 'creatorProfileId8';
 
 try {
   const { result, ...httpResponse } = await exercisesExerciseThumbnailsController.deleteAnExerciseThumbnail(
   exerciseCode,
-  userId
+  creatorProfileId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;

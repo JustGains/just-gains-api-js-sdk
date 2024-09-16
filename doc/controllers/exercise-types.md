@@ -1,50 +1,44 @@
-# Exercise Metrics
+# Exercise Types
 
 ```ts
-const exerciseMetricsController = new ExerciseMetricsController(client);
+const exerciseTypesController = new ExerciseTypesController(client);
 ```
 
 ## Class Name
 
-`ExerciseMetricsController`
+`ExerciseTypesController`
 
 ## Methods
 
-* [Get Exercise Metrics](../../doc/controllers/exercise-metrics.md#get-exercise-metrics)
-* [Create a New Exercise Metric](../../doc/controllers/exercise-metrics.md#create-a-new-exercise-metric)
-* [Update an Exercise Metric](../../doc/controllers/exercise-metrics.md#update-an-exercise-metric)
-* [Delete an Exercise Metric](../../doc/controllers/exercise-metrics.md#delete-an-exercise-metric)
+* [Get Exercise Types](../../doc/controllers/exercise-types.md#get-exercise-types)
+* [Create a New Exercise Type](../../doc/controllers/exercise-types.md#create-a-new-exercise-type)
+* [Update an Exercise Type](../../doc/controllers/exercise-types.md#update-an-exercise-type)
+* [Delete an Exercise Type](../../doc/controllers/exercise-types.md#delete-an-exercise-type)
 
 
-# Get Exercise Metrics
-
-Retrieve a list of all exercise metrics - Since the exercise type is never displayed, we don't have a translation for it.
+# Get Exercise Types
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async getExerciseMetrics(  localeCode?: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseMetricListResponse>>
+async getExerciseTypes(requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseTypeListResponse>>
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `localeCode` | `string \| undefined` | Query, Optional | The locale for the metric names and measurement data<br>**Default**: `'en-US'`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
 
-[`ExerciseMetricListResponse`](../../doc/models/exercise-metric-list-response.md)
+[`ExerciseTypeListResponse`](../../doc/models/exercise-type-list-response.md)
 
 ## Example Usage
 
 ```ts
-const localeCode = 'en-US';
-
 try {
-  const { result, ...httpResponse } = await exerciseMetricsController.getExerciseMetrics(localeCode);
+  const { result, ...httpResponse } = await exerciseTypesController.getExerciseTypes();
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -62,10 +56,10 @@ try {
 | 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
-# Create a New Exercise Metric
+# Create a New Exercise Type
 
 ```ts
-async createANewExerciseMetric(  body: ExerciseMetric,
+async createANewExerciseType(  body: ExerciseType,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
@@ -73,7 +67,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`ExerciseMetric`](../../doc/models/exercise-metric.md) | Body, Required | - |
+| `body` | [`ExerciseType`](../../doc/models/exercise-type.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -83,12 +77,17 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ## Example Usage
 
 ```ts
-const body: ExerciseMetric = {
-  exerciseMetricCode: 'WEIGHT',
+const body: ExerciseType = {
+  exerciseTypeCode: 'WEIGHT_REPS',
+  exerciseTypeName: 'Weight and Repetitions',
+  exerciseTypeExerciseMetrics: [
+    'WEIGHT',
+    'REPS'
+  ],
 };
 
 try {
-  const { result, ...httpResponse } = await exerciseMetricsController.createANewExerciseMetric(body);
+  const { result, ...httpResponse } = await exerciseTypesController.createANewExerciseType(body);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -106,11 +105,11 @@ try {
 | 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
-# Update an Exercise Metric
+# Update an Exercise Type
 
 ```ts
-async updateAnExerciseMetric(  metricCode: string,
-  body: ExerciseMetric,
+async updateAnExerciseType(  exerciseTypeCode: string,
+  body: ExerciseType,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
@@ -118,8 +117,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `metricCode` | `string` | Template, Required | - |
-| `body` | [`ExerciseMetric`](../../doc/models/exercise-metric.md) | Body, Required | - |
+| `exerciseTypeCode` | `string` | Template, Required | - |
+| `body` | [`ExerciseType`](../../doc/models/exercise-type.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -129,15 +128,20 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ## Example Usage
 
 ```ts
-const metricCode = 'metricCode4';
+const exerciseTypeCode = 'exerciseTypeCode8';
 
-const body: ExerciseMetric = {
-  exerciseMetricCode: 'WEIGHT',
+const body: ExerciseType = {
+  exerciseTypeCode: 'WEIGHT_REPS',
+  exerciseTypeName: 'Weight and Repetitions',
+  exerciseTypeExerciseMetrics: [
+    'WEIGHT',
+    'REPS'
+  ],
 };
 
 try {
-  const { result, ...httpResponse } = await exerciseMetricsController.updateAnExerciseMetric(
-  metricCode,
+  const { result, ...httpResponse } = await exerciseTypesController.updateAnExerciseType(
+  exerciseTypeCode,
   body
 );
   // Get more response info...
@@ -155,13 +159,13 @@ try {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
-| 404 | Exercise metric not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise type not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
-# Delete an Exercise Metric
+# Delete an Exercise Type
 
 ```ts
-async deleteAnExerciseMetric(  metricCode: string,
+async deleteAnExerciseType(  exerciseTypeCode: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
@@ -169,7 +173,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `metricCode` | `string` | Template, Required | - |
+| `exerciseTypeCode` | `string` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -179,10 +183,10 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ## Example Usage
 
 ```ts
-const metricCode = 'metricCode4';
+const exerciseTypeCode = 'exerciseTypeCode8';
 
 try {
-  const { result, ...httpResponse } = await exerciseMetricsController.deleteAnExerciseMetric(metricCode);
+  const { result, ...httpResponse } = await exerciseTypesController.deleteAnExerciseType(exerciseTypeCode);
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -197,5 +201,5 @@ try {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 404 | Exercise metric not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Exercise type not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

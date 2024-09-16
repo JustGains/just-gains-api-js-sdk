@@ -13,7 +13,7 @@ const exercisesExerciseVideosController = new ExercisesExerciseVideosController(
 * [Get Exercise Video On](../../doc/controllers/exercises-exercise-videos.md#get-exercise-video-on)
 * [Add New Exercise Videos](../../doc/controllers/exercises-exercise-videos.md#add-new-exercise-videos)
 * [Update Exercise Videos](../../doc/controllers/exercises-exercise-videos.md#update-exercise-videos)
-* [Get Exercise Video by User Id](../../doc/controllers/exercises-exercise-videos.md#get-exercise-video-by-user-id)
+* [Get Exercise Video by Creator Profile Id](../../doc/controllers/exercises-exercise-videos.md#get-exercise-video-by-creator-profile-id)
 * [Delete an Exercise Video](../../doc/controllers/exercises-exercise-videos.md#delete-an-exercise-video)
 
 
@@ -90,6 +90,7 @@ const exerciseCode = 'exerciseCode8';
 const body: ExerciseVideo = {
   exerciseCode: 'BARBELL_SQUAT',
   userId: '123e4567-e89b-12d3-a456-426614174000',
+  userName: 'john_doe',
   sortOrder: 1,
 };
 
@@ -145,6 +146,7 @@ const body: ExerciseVideo[] = [
   {
     exerciseCode: 'BARBELL_SQUAT',
     userId: '123e4567-e89b-12d3-a456-426614174000',
+    userName: 'john_doe',
     sortOrder: 1,
   }
 ];
@@ -173,13 +175,13 @@ try {
 | 404 | Exercise videos not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
-# Get Exercise Video by User Id
+# Get Exercise Video by Creator Profile Id
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```ts
-async getExerciseVideoByUserId(  exerciseCode: string,
-  userId: string,
+async getExerciseVideoByCreatorProfileId(  exerciseCode: string,
+  creatorProfileId: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesVideosResponse2>>
 ```
 
@@ -188,7 +190,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesVideosResponse2>>
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code to retrieve videos for |
-| `userId` | `string` | Template, Required | The userId of the creator whose videos we're referencing |
+| `creatorProfileId` | `string` | Template, Required | The creatorProfileId of the creator whose videos we're referencing |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -200,12 +202,12 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExercisesVideosResponse2>>
 ```ts
 const exerciseCode = 'exerciseCode8';
 
-const userId = 'userId0';
+const creatorProfileId = 'creatorProfileId8';
 
 try {
-  const { result, ...httpResponse } = await exercisesExerciseVideosController.getExerciseVideoByUserId(
+  const { result, ...httpResponse } = await exercisesExerciseVideosController.getExerciseVideoByCreatorProfileId(
   exerciseCode,
-  userId
+  creatorProfileId
 );
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
@@ -229,7 +231,7 @@ try {
 
 ```ts
 async deleteAnExerciseVideo(  exerciseCode: string,
-  userId: string,
+  creatorProfileId: string,
   exerciseVideoId: number,
 requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
@@ -239,7 +241,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string` | Template, Required | The exercise code |
-| `userId` | `string` | Template, Required | The userId of the video creator |
+| `creatorProfileId` | `string` | Template, Required | The creatorProfileId of the video creator |
 | `exerciseVideoId` | `number` | Template, Required | The exercise video ID to delete |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
@@ -252,14 +254,14 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```ts
 const exerciseCode = 'exerciseCode8';
 
-const userId = 'userId0';
+const creatorProfileId = 'creatorProfileId8';
 
 const exerciseVideoId = 66;
 
 try {
   const { result, ...httpResponse } = await exercisesExerciseVideosController.deleteAnExerciseVideo(
   exerciseCode,
-  userId,
+  creatorProfileId,
   exerciseVideoId
 );
   // Get more response info...

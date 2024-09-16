@@ -18,27 +18,31 @@ import {
   JustGainsBasicResponse,
   justGainsBasicResponseSchema,
 } from '../models/justGainsBasicResponse';
-import { number, optional, string } from '../schema';
+import { boolean, number, optional, string } from '../schema';
 import { BaseController } from './baseController';
 import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseError';
 
 export class UsersCreatorProfilesController extends BaseController {
   /**
-   * @param page  Page number for pagination
-   * @param limit Number of items per page
+   * @param page          Page number for pagination
+   * @param mvpAssetsOnly Filter creator profiles with MVP assets only
+   * @param limit         Number of items per page
    * @return Response from the API call
    */
   async getCreatorProfiles(
     page?: number,
+    mvpAssetsOnly?: boolean,
     limit?: number,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<CreatorProfileListResponse>> {
     const req = this.createRequest('GET', '/creator-profiles');
     const mapped = req.prepareArgs({
       page: [page, optional(number())],
+      mvpAssetsOnly: [mvpAssetsOnly, optional(boolean())],
       limit: [limit, optional(number())],
     });
     req.query('page', mapped.page);
+    req.query('mvpAssetsOnly', mapped.mvpAssetsOnly);
     req.query('limit', mapped.limit);
     req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
     req.authenticate(false);

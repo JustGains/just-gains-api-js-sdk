@@ -52,29 +52,30 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 
 | Name | Description |
 |  --- | --- |
+| status | Gets StatusController |
 | authentication | Gets AuthenticationController |
 | users | Gets UsersController |
+| usersRoles | Gets UsersRolesController |
 | usersCreatorProfiles | Gets UsersCreatorProfilesController |
-| exercises | Gets ExercisesController |
-| exercisesExerciseInstructions | Gets ExercisesExerciseInstructionsController |
-| exercisesExerciseVideos | Gets ExercisesExerciseVideosController |
+| locales | Gets LocalesController |
+| mediaAssets | Gets MediaAssetsController |
+| publishedStatus | Gets PublishedStatusController |
 | muscles | Gets MusclesController |
 | musclesMuscleGroups | Gets MusclesMuscleGroupsController |
 | equipment | Gets EquipmentController |
 | equipmentEquipmentGroups | Gets EquipmentEquipmentGroupsController |
+| exerciseMetrics | Gets ExerciseMetricsController |
+| exerciseTypes | Gets ExerciseTypesController |
+| exerciseCategories | Gets ExerciseCategoriesController |
+| exercises | Gets ExercisesController |
+| exercisesExerciseInstructions | Gets ExercisesExerciseInstructionsController |
+| exercisesExerciseVideos | Gets ExercisesExerciseVideosController |
+| exerciseDrafts | Gets ExerciseDraftsController |
 | workouts | Gets WorkoutsController |
 | workoutsWorkoutData | Gets WorkoutsWorkoutDataController |
-| exerciseDrafts | Gets ExerciseDraftsController |
-| exerciseCategories | Gets ExerciseCategoriesController |
 | programs | Gets ProgramsController |
 | programsProgramWeeks | Gets ProgramsProgramWeeksController |
 | programsProgramAnalytics | Gets ProgramsProgramAnalyticsController |
-| status | Gets StatusController |
-| usersRoleManagement | Gets UsersRoleManagementController |
-| mediaAssets | Gets MediaAssetsController |
-| locales | Gets LocalesController |
-| publishedStatus | Gets PublishedStatusController |
-| exerciseMetrics | Gets ExerciseMetricsController |
 | programsProgramViews | Gets ProgramsProgramViewsController |
 | programsProgramReviews | Gets ProgramsProgramReviewsController |
 | exercisesExerciseThumbnails | Gets ExercisesExerciseThumbnailsController |

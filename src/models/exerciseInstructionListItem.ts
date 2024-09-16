@@ -8,6 +8,8 @@ import { object, optional, Schema, string } from '../schema';
 
 export interface ExerciseInstructionListItem {
   userId?: string;
+  /** Username of the user who created this instruction. */
+  userName?: string;
   /** Language code for the instructions */
   localeCode?: string;
   dateUpdated?: string;
@@ -17,6 +19,7 @@ export interface ExerciseInstructionListItem {
 export const exerciseInstructionListItemSchema: Schema<ExerciseInstructionListItem> = object(
   {
     userId: ['userId', optional(string())],
+    userName: ['userName', optional(string())],
     localeCode: ['localeCode', optional(string())],
     dateUpdated: ['dateUpdated', optional(string())],
     dateCreated: ['dateCreated', optional(string())],

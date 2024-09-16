@@ -73,7 +73,7 @@ export class ExerciseCategoriesController extends BaseController {
    * @param body
    * @return Response from the API call
    */
-  async updateAnExerciseCategory(
+  async updateExerciseCategory(
     exerciseCategoryCode: string,
     body: ExerciseCategory,
     requestOptions?: RequestOptions

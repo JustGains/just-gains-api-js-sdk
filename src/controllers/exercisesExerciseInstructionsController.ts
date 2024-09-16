@@ -81,24 +81,24 @@ export class ExercisesExerciseInstructionsController extends BaseController {
   }
 
   /**
-   * @param exerciseCode The exercise code to retrieve instructions for
-   * @param localeCode   The locale for the instructions (e.g., 'en-US', 'es-ES')
-   * @param userId       The UserID that belongs to the instructions being requested
+   * @param exerciseCode     The exercise code to retrieve instructions for
+   * @param localeCode       The locale for the instructions (e.g., 'en-US', 'es-ES')
+   * @param creatorProfileId The creatorProfileId that belongs to the instructions being requested
    * @return Response from the API call
    */
   async getExerciseInstruction(
     exerciseCode: string,
     localeCode: string,
-    userId: string,
+    creatorProfileId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ExerciseInstructionResponse>> {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({
       exerciseCode: [exerciseCode, string()],
       localeCode: [localeCode, string()],
-      userId: [userId, string()],
+      creatorProfileId: [creatorProfileId, string()],
     });
-    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/instructions/${mapped.localeCode}/${mapped.userId}`;
+    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/instructions/${mapped.localeCode}/${mapped.creatorProfileId}`;
     req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
     req.throwOn(
       404,
@@ -110,16 +110,17 @@ export class ExercisesExerciseInstructionsController extends BaseController {
   }
 
   /**
-   * @param exerciseCode The exercise code of the instructions to update
-   * @param localeCode   The locale code for the instructions to update
-   * @param userId       The userId of the creator for the instructions to update
+   * @param exerciseCode     The exercise code of the instructions to update
+   * @param localeCode       The locale code for the instructions to update
+   * @param creatorProfileId The creatorProfileId of the creator for the instructions to
+   *                                                       update
    * @param body
    * @return Response from the API call
    */
   async updateExerciseInstructions(
     exerciseCode: string,
     localeCode: string,
-    userId: string,
+    creatorProfileId: string,
     body: ExerciseInstruction,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ExerciseInstructionResponse>> {
@@ -127,12 +128,12 @@ export class ExercisesExerciseInstructionsController extends BaseController {
     const mapped = req.prepareArgs({
       exerciseCode: [exerciseCode, string()],
       localeCode: [localeCode, string()],
-      userId: [userId, string()],
+      creatorProfileId: [creatorProfileId, string()],
       body: [body, exerciseInstructionSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/instructions/${mapped.localeCode}/${mapped.userId}`;
+    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/instructions/${mapped.localeCode}/${mapped.creatorProfileId}`;
     req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
     req.throwOn(401, JustGainsErrorResponseError, 'Unauthorized');
     req.throwOn(
@@ -145,24 +146,24 @@ export class ExercisesExerciseInstructionsController extends BaseController {
   }
 
   /**
-   * @param exerciseCode The exercise code of the instructions to delete
-   * @param localeCode   The locale code for the instructions to delete
-   * @param userId       The user ID of the instructions to delete
+   * @param exerciseCode     The exercise code of the instructions to delete
+   * @param localeCode       The locale code for the instructions to delete
+   * @param creatorProfileId The creatorProfileId of the instructions to delete
    * @return Response from the API call
    */
   async deleteExerciseInstructions(
     exerciseCode: string,
     localeCode: string,
-    userId: string,
+    creatorProfileId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('DELETE');
     const mapped = req.prepareArgs({
       exerciseCode: [exerciseCode, string()],
       localeCode: [localeCode, string()],
-      userId: [userId, string()],
+      creatorProfileId: [creatorProfileId, string()],
     });
-    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/instructions/${mapped.localeCode}/${mapped.userId}`;
+    req.appendTemplatePath`/exercises/${mapped.exerciseCode}/instructions/${mapped.localeCode}/${mapped.creatorProfileId}`;
     req.throwOn(401, JustGainsErrorResponseError, 'Unauthorized');
     req.throwOn(
       404,

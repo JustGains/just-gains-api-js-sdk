@@ -5,51 +5,42 @@
  */
 
 import { ApiResponse, RequestOptions } from '../core';
-import { ExerciseMetric, exerciseMetricSchema } from '../models/exerciseMetric';
+import { ExerciseType, exerciseTypeSchema } from '../models/exerciseType';
 import {
-  ExerciseMetricListResponse,
-  exerciseMetricListResponseSchema,
-} from '../models/exerciseMetricListResponse';
+  ExerciseTypeListResponse,
+  exerciseTypeListResponseSchema,
+} from '../models/exerciseTypeListResponse';
 import {
   JustGainsResponse,
   justGainsResponseSchema,
 } from '../models/justGainsResponse';
-import { optional, string } from '../schema';
+import { string } from '../schema';
 import { BaseController } from './baseController';
 import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseError';
 
-export class ExerciseMetricsController extends BaseController {
+export class ExerciseTypesController extends BaseController {
   /**
-   * Retrieve a list of all exercise metrics - Since the exercise type is never displayed, we don't have
-   * a translation for it.
-   *
-   * @param localeCode The locale for the metric names and measurement data
    * @return Response from the API call
    */
-  async getExerciseMetrics(
-    localeCode?: string,
+  async getExerciseTypes(
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<ExerciseMetricListResponse>> {
-    const req = this.createRequest('GET', '/exercise-metrics');
-    const mapped = req.prepareArgs({
-      localeCode: [localeCode, optional(string())],
-    });
-    req.query('localeCode', mapped.localeCode);
+  ): Promise<ApiResponse<ExerciseTypeListResponse>> {
+    const req = this.createRequest('GET', '/exercise-types');
     req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
     req.authenticate(false);
-    return req.callAsJson(exerciseMetricListResponseSchema, requestOptions);
+    return req.callAsJson(exerciseTypeListResponseSchema, requestOptions);
   }
 
   /**
    * @param body
    * @return Response from the API call
    */
-  async createANewExerciseMetric(
-    body: ExerciseMetric,
+  async createANewExerciseType(
+    body: ExerciseType,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsResponse>> {
-    const req = this.createRequest('POST', '/exercise-metrics');
-    const mapped = req.prepareArgs({ body: [body, exerciseMetricSchema] });
+    const req = this.createRequest('POST', '/exercise-types');
+    const mapped = req.prepareArgs({ body: [body, exerciseTypeSchema] });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
@@ -58,41 +49,43 @@ export class ExerciseMetricsController extends BaseController {
   }
 
   /**
-   * @param metricCode
+   * @param exerciseTypeCode
    * @param body
    * @return Response from the API call
    */
-  async updateAnExerciseMetric(
-    metricCode: string,
-    body: ExerciseMetric,
+  async updateAnExerciseType(
+    exerciseTypeCode: string,
+    body: ExerciseType,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      metricCode: [metricCode, string()],
-      body: [body, exerciseMetricSchema],
+      exerciseTypeCode: [exerciseTypeCode, string()],
+      body: [body, exerciseTypeSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.appendTemplatePath`/exercise-metrics/${mapped.metricCode}`;
+    req.appendTemplatePath`/exercise-types/${mapped.exerciseTypeCode}`;
     req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
-    req.throwOn(404, JustGainsErrorResponseError, 'Exercise metric not found');
+    req.throwOn(404, JustGainsErrorResponseError, 'Exercise type not found');
     req.authenticate([{ bearerAuth: true }]);
     return req.callAsJson(justGainsResponseSchema, requestOptions);
   }
 
   /**
-   * @param metricCode
+   * @param exerciseTypeCode
    * @return Response from the API call
    */
-  async deleteAnExerciseMetric(
-    metricCode: string,
+  async deleteAnExerciseType(
+    exerciseTypeCode: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsResponse>> {
     const req = this.createRequest('DELETE');
-    const mapped = req.prepareArgs({ metricCode: [metricCode, string()] });
-    req.appendTemplatePath`/exercise-metrics/${mapped.metricCode}`;
-    req.throwOn(404, JustGainsErrorResponseError, 'Exercise metric not found');
+    const mapped = req.prepareArgs({
+      exerciseTypeCode: [exerciseTypeCode, string()],
+    });
+    req.appendTemplatePath`/exercise-types/${mapped.exerciseTypeCode}`;
+    req.throwOn(404, JustGainsErrorResponseError, 'Exercise type not found');
     req.authenticate([{ bearerAuth: true }]);
     return req.callAsJson(justGainsResponseSchema, requestOptions);
   }

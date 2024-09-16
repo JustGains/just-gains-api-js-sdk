@@ -5,23 +5,20 @@
  */
 
 import { array, lazy, object, Schema, string } from '../schema';
-import {
-  ExerciseMetricData,
-  exerciseMetricDataSchema,
-} from './exerciseMetricData';
+import { ExerciseType, exerciseTypeSchema } from './exerciseType';
 
-export interface ExerciseMetricListResponse {
+export interface ExerciseTypeListResponse {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  data: ExerciseMetricData[];
+  data: ExerciseType[];
 }
 
-export const exerciseMetricListResponseSchema: Schema<ExerciseMetricListResponse> = object(
+export const exerciseTypeListResponseSchema: Schema<ExerciseTypeListResponse> = object(
   {
     status: ['status', string()],
     message: ['message', string()],
-    data: ['data', array(lazy(() => exerciseMetricDataSchema))],
+    data: ['data', array(lazy(() => exerciseTypeSchema))],
   }
 );

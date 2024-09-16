@@ -1,9 +1,9 @@
 
-# Exercise Video List Response
+# Exercise Type List Response
 
 ## Structure
 
-`ExerciseVideoListResponse`
+`ExerciseTypeListResponse`
 
 ## Fields
 
@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `data` | [`ExerciseVideoListItem[]`](../../doc/models/exercise-video-list-item.md) | Required | - |
+| `data` | [`ExerciseType[]`](../../doc/models/exercise-type.md) | Required | - |
 
 ## Example (as JSON)
 
@@ -21,10 +21,12 @@
   "message": "Operation completed successfully.",
   "data": [
     {
-      "userId": "9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1",
-      "userName": "john_doe",
-      "dateUpdated": "2023-07-10T11:45:00Z",
-      "dateCreated": "2023-06-15T08:30:00Z"
+      "exerciseTypeCode": "WEIGHT_REPS",
+      "exerciseTypeName": "Weight and Repetitions",
+      "exerciseTypeExerciseMetrics": [
+        "WEIGHT",
+        "REPS"
+      ]
     }
   ]
 }

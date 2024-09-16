@@ -48,7 +48,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseListResponse>>
 | `exerciseCategoryCodes` | `string[] \| undefined` | Query, Optional | List of exercise category codes to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `exerciseTypeCodes` | `string[] \| undefined` | Query, Optional | List of exercise types to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `exerciseEquipmentCodes` | `string[] \| undefined` | Query, Optional | List of exercise equipment to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
-| `exerciseMuscleCodes` | `string[] \| undefined` | Query, Optional | **Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `exerciseMuscleCodes` | `string[] \| undefined` | Query, Optional | List of exercise muscles to filter by (not muscle group)<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `exerciseMetricCodes` | `string[] \| undefined` | Query, Optional | List of exercise metrics to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `publishedStatusCodes` | `string[] \| undefined` | Query, Optional | List of publish statuses to filter by<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
 | `localeCode` | `string \| undefined` | Query, Optional | Locale to filter by<br>**Default**: `'en-US'`<br>**Constraints**: *Pattern*: `^[a-z]{2}-[A-Z]{2}$` |

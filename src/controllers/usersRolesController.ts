@@ -10,10 +10,6 @@ import {
   justGainsResponseSchema,
 } from '../models/justGainsResponse';
 import {
-  RoleAssignmentRequest,
-  roleAssignmentRequestSchema,
-} from '../models/roleAssignmentRequest';
-import {
   RoleCreateRequest,
   roleCreateRequestSchema,
 } from '../models/roleCreateRequest';
@@ -27,10 +23,10 @@ import {
   UsersRolesResponse,
   usersRolesResponseSchema,
 } from '../models/usersRolesResponse';
-import { string } from '../schema';
+import { array, string } from '../schema';
 import { BaseController } from './baseController';
 
-export class UsersRoleManagementController extends BaseController {
+export class UsersRolesController extends BaseController {
   /**
    * @param userId
    * @param body
@@ -38,13 +34,13 @@ export class UsersRoleManagementController extends BaseController {
    */
   async assignARoleToAUser(
     userId: string,
-    body: RoleAssignmentRequest,
+    body: string[],
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<UsersRolesResponse>> {
-    const req = this.createRequest('POST');
+    const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
       userId: [userId, string()],
-      body: [body, roleAssignmentRequestSchema],
+      body: [body, array(string())],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -66,26 +62,6 @@ export class UsersRoleManagementController extends BaseController {
     req.appendTemplatePath`/users/${mapped.userId}/roles`;
     req.authenticate([]);
     return req.callAsJson(usersRolesResponseSchema, requestOptions);
-  }
-
-  /**
-   * @param userId
-   * @param roleName
-   * @return Response from the API call
-   */
-  async removeARoleFromAUser(
-    userId: string,
-    roleName: string,
-    requestOptions?: RequestOptions
-  ): Promise<ApiResponse<JustGainsResponse>> {
-    const req = this.createRequest('DELETE');
-    const mapped = req.prepareArgs({
-      userId: [userId, string()],
-      roleName: [roleName, string()],
-    });
-    req.appendTemplatePath`/users/${mapped.userId}/roles/${mapped.roleName}`;
-    req.authenticate([]);
-    return req.callAsJson(justGainsResponseSchema, requestOptions);
   }
 
   /**

@@ -7,8 +7,7 @@
 import { lazy, object, Schema, string } from '../schema';
 import { Data1, data1Schema } from './data1';
 
-/** Response object for authentication operations */
-export interface AuthResponse {
+export interface AuthSigninResponse {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
@@ -16,7 +15,7 @@ export interface AuthResponse {
   data: Data1;
 }
 
-export const authResponseSchema: Schema<AuthResponse> = object({
+export const authSigninResponseSchema: Schema<AuthSigninResponse> = object({
   status: ['status', string()],
   message: ['message', string()],
   data: ['data', lazy(() => data1Schema)],

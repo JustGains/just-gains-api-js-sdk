@@ -7,7 +7,10 @@
 import { object, optional, Schema, string } from '../schema';
 
 export interface ExerciseVideoListItem {
+  /** Unique identifier for the user. */
   userId?: string;
+  /** Username of the user who created the video. */
+  userName?: string;
   dateUpdated?: string;
   dateCreated?: string;
 }
@@ -15,6 +18,7 @@ export interface ExerciseVideoListItem {
 export const exerciseVideoListItemSchema: Schema<ExerciseVideoListItem> = object(
   {
     userId: ['userId', optional(string())],
+    userName: ['userName', optional(string())],
     dateUpdated: ['dateUpdated', optional(string())],
     dateCreated: ['dateCreated', optional(string())],
   }
