@@ -21,19 +21,26 @@ export interface ExerciseListItem {
   exerciseCode?: string;
   /** Translated Primary Exercise Name for the chosen Locale */
   exerciseName?: string;
-  exerciseMuscles?: ExerciseMuscle[];
-  exerciseThumbnail?: MediaAsset;
-  /** Used for sorting by most recently used exercises. */
-  recentOrder?: number;
   /** The exerciseTypeCode of the exercise */
   exerciseTypeCode?: string;
+  /** Array of category codes associated with this exercise */
+  exerciseCategories?: string[];
+  /** The publish status of the exercise */
+  publishedStatus?: string;
+  exerciseMuscles?: ExerciseMuscle[];
+  exerciseThumbnail?: MediaAsset;
   /** Array of metric codes associated with this exercise */
   exerciseMetrics?: string[];
+  /** Used for sorting by most recently used exercises. */
+  recentOrder?: number;
 }
 
 export const exerciseListItemSchema: Schema<ExerciseListItem> = object({
   exerciseCode: ['exerciseCode', optional(string())],
   exerciseName: ['exerciseName', optional(string())],
+  exerciseTypeCode: ['exerciseTypeCode', optional(string())],
+  exerciseCategories: ['exerciseCategories', optional(array(string()))],
+  publishedStatus: ['publishedStatus', optional(string())],
   exerciseMuscles: [
     'exerciseMuscles',
     optional(array(lazy(() => exerciseMuscleSchema))),
@@ -42,7 +49,6 @@ export const exerciseListItemSchema: Schema<ExerciseListItem> = object({
     'exerciseThumbnail',
     optional(lazy(() => mediaAssetSchema)),
   ],
-  recentOrder: ['recentOrder', optional(number())],
-  exerciseTypeCode: ['exerciseTypeCode', optional(string())],
   exerciseMetrics: ['exerciseMetrics', optional(array(string()))],
+  recentOrder: ['recentOrder', optional(number())],
 });

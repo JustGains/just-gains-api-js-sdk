@@ -18,7 +18,7 @@ export interface MediaAsset {
   /** File size in bytes */
   fileSize: number;
   /** File format, extension */
-  fileFormat: string;
+  fileFormat?: string;
   /** Description of the media element */
   description?: string;
 }
@@ -29,6 +29,6 @@ export const mediaAssetSchema: Schema<MediaAsset> = object({
   filePath: ['filePath', string()],
   fileUrl: ['fileUrl', optional(string())],
   fileSize: ['fileSize', number()],
-  fileFormat: ['fileFormat', string()],
+  fileFormat: ['fileFormat', optional(string())],
   description: ['description', optional(string())],
 });

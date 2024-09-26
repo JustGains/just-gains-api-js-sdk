@@ -7,6 +7,7 @@
 import {
   accessTokenAuthenticationProvider,
   compositeAuthenticationProvider,
+  customHeaderAuthenticationProvider,
 } from './authentication';
 import { Configuration } from './configuration';
 
@@ -15,6 +16,9 @@ export function createAuthProviderFromConfig(config: Partial<Configuration>) {
     bearerAuth:
       config.bearerAuthCredentials &&
       accessTokenAuthenticationProvider(config.bearerAuthCredentials),
+    userRoles:
+      config.userRolesCredentials &&
+      customHeaderAuthenticationProvider(config.userRolesCredentials),
   };
 
   return compositeAuthenticationProvider<

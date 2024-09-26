@@ -14,7 +14,7 @@
 | `filePath` | `string` | Required | The relative path to the file within the storage system, useful for constructing URLs. |
 | `fileUrl` | `string \| undefined` | Optional | The URL to the media file, which may be useful for embedding or downloading. |
 | `fileSize` | `number` | Required | File size in bytes |
-| `fileFormat` | `string` | Required | File format, extension |
+| `fileFormat` | `string \| undefined` | Optional | File format, extension |
 | `description` | `string \| undefined` | Optional | Description of the media element |
 
 ## Example (as JSON)

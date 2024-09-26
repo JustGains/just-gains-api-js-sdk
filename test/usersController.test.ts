@@ -15,9 +15,9 @@ describe('UsersController', () => {
     controller = new UsersController(testClient);
   });
 
-  it('should Test Get a list of all users', async () => {
+  it('should Test Get a list of all users for admin management', async () => {
     const response = await makeApiCall(
-      () => controller.getAListOfAllUsers()
+      () => controller.getAListOfAllUsersForAdminManagement()
     );
 
     expect(response.statusCode).toBe(200);

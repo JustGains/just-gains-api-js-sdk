@@ -26,7 +26,7 @@ export interface Data {
   oAuthProvider?: string;
   /** The user's role in the system, determining their permissions. */
   roles?: string[];
-  /** refreshToken value to get next accesstoken */
+  /** refreshToken value to get next accessToken */
   refreshToken?: string;
   /** Represents a creator's profile information. */
   userCreatorProfile?: CreatorProfile;

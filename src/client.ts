@@ -48,16 +48,9 @@ export class Client implements ClientInterface {
       typeof this._config.httpClientOptions?.timeout != 'undefined'
         ? this._config.httpClientOptions.timeout
         : this._config.timeout;
-    const clonedConfig = {
-      ...this._config,
-      bearerAuthCredentials: this._config.bearerAuthCredentials || {
-        accessToken: this._config.accessToken || '',
-      },
-    };
-
     this._requestBuilderFactory = createRequestHandlerFactory(
       (server) => getBaseUri(server, this._config),
-      createAuthProviderFromConfig(clonedConfig),
+      createAuthProviderFromConfig(this._config),
       new HttpClient(AbortError, {
         timeout: this._timeout,
         clientConfigOverrides: this._config.unstable_httpClientOptions,

@@ -10,6 +10,7 @@ The following parameters are configurable for the API Client:
 | `httpClientOptions` | `Partial<HttpClientOptions>` | Stable configurable http client options. |
 | `unstableHttpClientOptions` | `any` | Unstable configurable http client options. |
 | `bearerAuthCredentials` | [`BearerAuthCredentials`](auth/oauth-2-bearer-token.md) | The credential object for bearerAuth |
+| `userRolesCredentials` | [`UserRolesCredentials`](auth/custom-header-signature.md) | The credential object for userRoles |
 
 ## HttpClientOptions
 
@@ -39,6 +40,9 @@ const client = new Client({
   bearerAuthCredentials: {
     accessToken: 'AccessToken'
   },
+  userRolesCredentials: {
+    'X-User-Role': 'X-User-Role'
+  },
   timeout: 0,
   environment: Environment.Testing,
 });
@@ -57,26 +61,21 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | users | Gets UsersController |
 | usersRoles | Gets UsersRolesController |
 | usersCreatorProfiles | Gets UsersCreatorProfilesController |
-| locales | Gets LocalesController |
-| mediaAssets | Gets MediaAssetsController |
-| publishedStatus | Gets PublishedStatusController |
-| muscles | Gets MusclesController |
-| musclesMuscleGroups | Gets MusclesMuscleGroupsController |
-| equipment | Gets EquipmentController |
-| equipmentEquipmentGroups | Gets EquipmentEquipmentGroupsController |
-| exerciseMetrics | Gets ExerciseMetricsController |
-| exerciseTypes | Gets ExerciseTypesController |
-| exerciseCategories | Gets ExerciseCategoriesController |
-| exercises | Gets ExercisesController |
-| exercisesExerciseInstructions | Gets ExercisesExerciseInstructionsController |
-| exercisesExerciseVideos | Gets ExercisesExerciseVideosController |
-| exerciseDrafts | Gets ExerciseDraftsController |
+| usersSocialMediaAccounts | Gets UsersSocialMediaAccountsController |
+| exerciseLibraryExercises | Gets ExerciseLibraryExercisesController |
+| exerciseLibraryExercisesExerciseInstructions | Gets ExerciseLibraryExercisesExerciseInstructionsController |
+| exerciseLibraryExercisesExerciseVideos | Gets ExerciseLibraryExercisesExerciseVideosController |
+| exerciseLibraryExercisesExerciseThumbnails | Gets ExerciseLibraryExercisesExerciseThumbnailsController |
+| exerciseLibraryMuscles | Gets ExerciseLibraryMusclesController |
+| exerciseLibraryMusclesMuscleGroups | Gets ExerciseLibraryMusclesMuscleGroupsController |
+| exerciseLibraryEquipment | Gets ExerciseLibraryEquipmentController |
+| exerciseLibraryEquipmentEquipmentGroups | Gets ExerciseLibraryEquipmentEquipmentGroupsController |
+| exerciseLibraryExerciseDrafts | Gets ExerciseLibraryExerciseDraftsController |
+| exerciseLibraryExerciseCategories | Gets ExerciseLibraryExerciseCategoriesController |
+| exerciseLibraryExerciseMetrics | Gets ExerciseLibraryExerciseMetricsController |
 | workouts | Gets WorkoutsController |
 | workoutsWorkoutData | Gets WorkoutsWorkoutDataController |
-| programs | Gets ProgramsController |
-| programsProgramWeeks | Gets ProgramsProgramWeeksController |
-| programsProgramAnalytics | Gets ProgramsProgramAnalyticsController |
-| programsProgramViews | Gets ProgramsProgramViewsController |
-| programsProgramReviews | Gets ProgramsProgramReviewsController |
-| exercisesExerciseThumbnails | Gets ExercisesExerciseThumbnailsController |
+| commonMediaAssets | Gets CommonMediaAssetsController |
+| commonLocales | Gets CommonLocalesController |
+| commonPublishedStatus | Gets CommonPublishedStatusController |
 

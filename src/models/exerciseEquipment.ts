@@ -7,9 +7,9 @@
 import { array, object, optional, Schema, string } from '../schema';
 
 export interface ExerciseEquipment {
-  /** Array of equipment codes that are required for this exercise */
+  /** Array of equipment code arrays that are required for this exercise */
   required?: string[];
-  /** Array of equipment codes that are optional for this exercise */
+  /** Array of equipment code arrays that are optional for this exercise */
   optional?: string[];
 }
 

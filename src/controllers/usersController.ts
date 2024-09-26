@@ -10,6 +10,10 @@ import {
   justGainsBasicResponseSchema,
 } from '../models/justGainsBasicResponse';
 import {
+  JustGainsResponse,
+  justGainsResponseSchema,
+} from '../models/justGainsResponse';
+import {
   UserInfoListResponse,
   userInfoListResponseSchema,
 } from '../models/userInfoListResponse';
@@ -30,7 +34,7 @@ export class UsersController extends BaseController {
   /**
    * @return Response from the API call
    */
-  async getAListOfAllUsers(
+  async getAListOfAllUsersForAdminManagement(
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<UserInfoListResponse>> {
     const req = this.createRequest('GET', '/users');
@@ -100,5 +104,35 @@ export class UsersController extends BaseController {
     req.throwOn(404, JustGainsErrorResponseError, 'User not found');
     req.authenticate([{ bearerAuth: true }]);
     return req.callAsJson(justGainsBasicResponseSchema, requestOptions);
+  }
+
+  /**
+   * @param creatorProfileId The ID of the creator profile to assign to the user
+   * @param userId           The ID of the user to assign the creator profile to
+   * @return Response from the API call
+   */
+  async assignUserCreatorProfile(
+    creatorProfileId: string,
+    userId: string,
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<JustGainsResponse>> {
+    const req = this.createRequest('PUT');
+    const mapped = req.prepareArgs({
+      creatorProfileId: [creatorProfileId, string()],
+      userId: [userId, string()],
+    });
+    req.appendTemplatePath`/user/${mapped.userId}/${mapped.creatorProfileId}`;
+    req.throwOn(
+      400,
+      JustGainsErrorResponseError,
+      'Failed to assign creator profile to user'
+    );
+    req.throwOn(
+      409,
+      JustGainsErrorResponseError,
+      'Creator profile is already assigned to another user'
+    );
+    req.authenticate([{ bearerAuth: true }, { userRoles: true }]);
+    return req.callAsJson(justGainsResponseSchema, requestOptions);
   }
 }

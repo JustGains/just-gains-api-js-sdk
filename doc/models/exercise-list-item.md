@@ -11,11 +11,13 @@
 |  --- | --- | --- | --- |
 | `exerciseCode` | `string \| undefined` | Optional | Unique identifier for the exercise. |
 | `exerciseName` | `string \| undefined` | Optional | Translated Primary Exercise Name for the chosen Locale |
+| `exerciseTypeCode` | `string \| undefined` | Optional | The exerciseTypeCode of the exercise |
+| `exerciseCategories` | `string[] \| undefined` | Optional | Array of category codes associated with this exercise |
+| `publishedStatus` | `string \| undefined` | Optional | The publish status of the exercise |
 | `exerciseMuscles` | [`ExerciseMuscle[] \| undefined`](../../doc/models/exercise-muscle.md) | Optional | - |
 | `exerciseThumbnail` | [`MediaAsset \| undefined`](../../doc/models/media-asset.md) | Optional | - |
-| `recentOrder` | `number \| undefined` | Optional | Used for sorting by most recently used exercises. |
-| `exerciseTypeCode` | `string \| undefined` | Optional | The exerciseTypeCode of the exercise |
 | `exerciseMetrics` | `string[] \| undefined` | Optional | Array of metric codes associated with this exercise |
+| `recentOrder` | `number \| undefined` | Optional | Used for sorting by most recently used exercises. |
 
 ## Example (as JSON)
 
@@ -23,6 +25,12 @@
 {
   "exerciseCode": "BENCH_PRESS",
   "exerciseName": "Bench Press",
+  "exerciseTypeCode": "STRENGTH",
+  "exerciseCategories": [
+    "STRENGTH",
+    "CARDIO"
+  ],
+  "publishedStatus": "PUBLISHED",
   "exerciseMuscles": [
     {
       "muscleCode": "PECTORALIS_MAJOR",
@@ -40,22 +48,12 @@
       "isPrimary": false
     }
   ],
-  "recentOrder": 1,
-  "exerciseTypeCode": "STRENGTH",
   "exerciseMetrics": [
     "WEIGHT",
     "REPS",
     "DISTANCE"
   ],
-  "exerciseThumbnail": {
-    "mediaId": "000024ec-0000-0000-0000-000000000000",
-    "fileName": "fileName8",
-    "filePath": "filePath6",
-    "fileUrl": "fileUrl8",
-    "fileSize": 240,
-    "fileFormat": "fileFormat0",
-    "description": "description6"
-  }
+  "recentOrder": 1
 }
 ```
 

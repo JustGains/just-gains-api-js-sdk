@@ -12,16 +12,17 @@ const usersController = new UsersController(client);
 
 ## Methods
 
-* [Get a List of All Users](../../doc/controllers/users.md#get-a-list-of-all-users)
+* [Get a List of All Users for Admin Management](../../doc/controllers/users.md#get-a-list-of-all-users-for-admin-management)
 * [Get a User by ID](../../doc/controllers/users.md#get-a-user-by-id)
 * [Update a User](../../doc/controllers/users.md#update-a-user)
 * [Delete a User](../../doc/controllers/users.md#delete-a-user)
+* [Assign User Creator Profile](../../doc/controllers/users.md#assign-user-creator-profile)
 
 
-# Get a List of All Users
+# Get a List of All Users for Admin Management
 
 ```ts
-async getAListOfAllUsers(requestOptions?: RequestOptions): Promise<ApiResponse<UserInfoListResponse>>
+async getAListOfAllUsersForAdminManagement(requestOptions?: RequestOptions): Promise<ApiResponse<UserInfoListResponse>>
 ```
 
 ## Parameters
@@ -38,7 +39,7 @@ async getAListOfAllUsers(requestOptions?: RequestOptions): Promise<ApiResponse<U
 
 ```ts
 try {
-  const { result, ...httpResponse } = await usersController.getAListOfAllUsers();
+  const { result, ...httpResponse } = await usersController.getAListOfAllUsersForAdminManagement();
   // Get more response info...
   // const { statusCode, headers } = httpResponse;
 } catch (error) {
@@ -204,4 +205,60 @@ try {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 404 | User not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+
+
+# Assign User Creator Profile
+
+```ts
+async assignUserCreatorProfile(  creatorProfileId: string,
+  userId: string,
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `creatorProfileId` | `string` | Template, Required | The ID of the creator profile to assign to the user |
+| `userId` | `string` | Template, Required | The ID of the user to assign the creator profile to |
+| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Requires scope
+
+### userRoles
+
+`ADMIN`
+
+## Response Type
+
+[`JustGainsResponse`](../../doc/models/just-gains-response.md)
+
+## Example Usage
+
+```ts
+const creatorProfileId = '12345678-1234-1234-1234-123456789012';
+
+const userId = '12345678-1234-1234-1234-123456789012';
+
+try {
+  const { result, ...httpResponse } = await usersController.assignUserCreatorProfile(
+  creatorProfileId,
+  userId
+);
+  // Get more response info...
+  // const { statusCode, headers } = httpResponse;
+} catch (error) {
+  if (error instanceof ApiError) {
+    const errors = error.result;
+    // const { statusCode, headers } = error;
+  }
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Failed to assign creator profile to user | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 409 | Creator profile is already assigned to another user | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

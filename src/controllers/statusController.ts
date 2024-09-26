@@ -7,6 +7,7 @@
 import { ApiResponse, RequestOptions } from '../core';
 import { BaseController } from './baseController';
 import { ApiError } from '@apimatic/core';
+import { JustGainsResponseError } from '../errors/justGainsResponseError';
 
 export class StatusController extends BaseController {
   /**
@@ -22,5 +23,19 @@ export class StatusController extends BaseController {
     req.throwOn(404, ApiError, 'Not found');
     req.authenticate(false);
     return req.callAsText(requestOptions);
+  }
+
+  /**
+   * Returns a JSON response simulating an unauthorized access attempt.
+   *
+   * @return Response from the API call
+   */
+  async testUnauthorized(
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<void>> {
+    const req = this.createRequest('GET', '/test/unauthorized');
+    req.throwOn(401, JustGainsResponseError, 'Unauthorized response');
+    req.authenticate(false);
+    return req.call(requestOptions);
   }
 }

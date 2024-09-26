@@ -10,8 +10,8 @@ import { MediaAsset, mediaAssetSchema } from './mediaAsset';
 export interface ExerciseVideo {
   /** Unique identifier for the exercise. */
   exerciseCode?: string;
-  /** The user ID of the user who created the exercise. */
-  userId?: string;
+  /** Unique identifier for the creator profile. */
+  creatorProfileId?: string;
   /** Username of the user who created the video. */
   userName?: string;
   mediaAsset?: MediaAsset;
@@ -21,7 +21,7 @@ export interface ExerciseVideo {
 
 export const exerciseVideoSchema: Schema<ExerciseVideo> = object({
   exerciseCode: ['exerciseCode', optional(string())],
-  userId: ['userId', optional(string())],
+  creatorProfileId: ['creatorProfileId', optional(string())],
   userName: ['userName', optional(string())],
   mediaAsset: ['mediaAsset', optional(lazy(() => mediaAssetSchema))],
   sortOrder: ['sortOrder', optional(number())],

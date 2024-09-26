@@ -24,7 +24,7 @@ export interface EquipmentGroup {
   /** parent group CODE for hierarchical structuring. */
   equipmentGroupParent?: string | null;
   equipmentGroupEquipment?: string[];
-  equipmentThumbnail?: MediaAsset;
+  equipmentGroupThumbnail?: MediaAsset;
   /** Used to sort the equipment groups */
   sortOrder?: number;
 }
@@ -37,8 +37,8 @@ export const equipmentGroupSchema: Schema<EquipmentGroup> = object({
     'equipmentGroupEquipment',
     optional(array(string())),
   ],
-  equipmentThumbnail: [
-    'equipmentThumbnail',
+  equipmentGroupThumbnail: [
+    'equipmentGroupThumbnail',
     optional(lazy(() => mediaAssetSchema)),
   ],
   sortOrder: ['sortOrder', optional(number())],

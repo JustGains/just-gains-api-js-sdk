@@ -20,7 +20,7 @@ Represents a user in the system.
 | `fullName` | `string \| undefined` | Optional | The user's full name, typically a combination of first and last name. |
 | `oAuthProvider` | `string \| undefined` | Optional | The name of the OAuth provider if the user signed up using OAuth. |
 | `roles` | `string[] \| undefined` | Optional | The user's role in the system, determining their permissions. |
-| `refreshToken` | `string \| undefined` | Optional | refreshToken value to get next accesstoken |
+| `refreshToken` | `string \| undefined` | Optional | refreshToken value to get next accessToken |
 | `userCreatorProfile` | [`CreatorProfile \| undefined`](../../doc/models/creator-profile.md) | Optional | Represents a creator's profile information. |
 
 ## Example (as JSON)

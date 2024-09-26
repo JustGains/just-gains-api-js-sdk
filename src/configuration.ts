@@ -10,10 +10,11 @@ import { HttpClientOptions } from './clientAdapter';
 export interface Configuration {
   timeout: number;
   environment: Environment;
-  /** @deprecated use bearerAuthCredentials field instead */
-  accessToken?: string;
   bearerAuthCredentials?: {
     accessToken: string;
+  };
+  userRolesCredentials?: {
+    'X-User-Role': string;
   };
   httpClientOptions?: Partial<HttpClientOptions>;
   unstable_httpClientOptions?: any;

@@ -14,6 +14,7 @@ function createConfigurationFromEnvironment(): Partial<Configuration> {
   const environment = process.env.JUST_GAINS_API_LIB_ENVIRONMENT;
   const timeout = process.env.JUST_GAINS_API_LIB_TIMEOUT;
   const accessToken = process.env.JUST_GAINS_API_LIB_ACCESS_TOKEN;
+  const xUserRole = process.env.JUST_GAINS_API_LIB_X_USER_ROLE;
 
   if (environment !== undefined) {
     config.environment = environment as Environment;
@@ -25,6 +26,10 @@ function createConfigurationFromEnvironment(): Partial<Configuration> {
 
   if (accessToken !== undefined) {
     config.bearerAuthCredentials = { accessToken: accessToken };
+  }
+
+  if (xUserRole !== undefined) {
+    config.userRolesCredentials = { 'X-User-Role': xUserRole };
   }
 
   return config;

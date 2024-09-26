@@ -10,10 +10,10 @@ API for managing workout programs, exercises, and user accounts. Includes endpoi
 Run the following command from your project directory to install the package from npm:
 
 ```ts
-npm install just-gains-api-sdk@0.0.7
+npm install just-gains-api-sdk@0.0.8
 ```
 
-For additional package details, see the [Npm page for the just-gains-api-sdk@0.0.7 npm](https://www.npmjs.com/package/just-gains-api-sdk/v/0.0.7).
+For additional package details, see the [Npm page for the just-gains-api-sdk@0.0.8 npm](https://www.npmjs.com/package/just-gains-api-sdk/v/0.0.8).
 
 ## Test the SDK
 
@@ -33,7 +33,7 @@ npm run test:coverage
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
@@ -43,7 +43,8 @@ The following parameters are configurable for the API Client:
 | `timeout` | `number` | Timeout for API calls.<br>*Default*: `0` |
 | `httpClientOptions` | `Partial<HttpClientOptions>` | Stable configurable http client options. |
 | `unstableHttpClientOptions` | `any` | Unstable configurable http client options. |
-| `bearerAuthCredentials` | [`BearerAuthCredentials`](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/auth/oauth-2-bearer-token.md) | The credential object for bearerAuth |
+| `bearerAuthCredentials` | [`BearerAuthCredentials`](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/auth/oauth-2-bearer-token.md) | The credential object for bearerAuth |
+| `userRolesCredentials` | [`UserRolesCredentials`](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/auth/custom-header-signature.md) | The credential object for userRoles |
 
 ### HttpClientOptions
 
@@ -73,6 +74,9 @@ const client = new Client({
   bearerAuthCredentials: {
     accessToken: 'AccessToken'
   },
+  userRolesCredentials: {
+    'X-User-Role': 'X-User-Role'
+  },
   timeout: 0,
   environment: Environment.Testing,
 });
@@ -94,40 +98,36 @@ The SDK can be configured to use a different environment for making API calls. A
 
 This API uses the following authentication schemes.
 
-* [`bearerAuth (OAuth 2 Bearer token)`](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/auth/oauth-2-bearer-token.md)
+* [`bearerAuth (OAuth 2 Bearer token)`](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/auth/oauth-2-bearer-token.md)
+* [`userRoles (Custom Header Signature)`](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/auth/custom-header-signature.md)
 
 ## List of APIs
 
-* [Users Creator Profiles](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/users-creator-profiles.md)
-* [Media Assets](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/media-assets.md)
-* [Published Status](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/published-status.md)
-* [Muscles Muscle Groups](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/muscles-muscle-groups.md)
-* [Equipment Equipment Groups](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/equipment-equipment-groups.md)
-* [Exercise Metrics](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/exercise-metrics.md)
-* [Exercise Types](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/exercise-types.md)
-* [Exercise Categories](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/exercise-categories.md)
-* [Exercises Exercise Instructions](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/exercises-exercise-instructions.md)
-* [Exercises Exercise Videos](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/exercises-exercise-videos.md)
-* [Exercise Drafts](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/exercise-drafts.md)
-* [Workouts Workout Data](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/workouts-workout-data.md)
-* [Programs Program Weeks](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/programs-program-weeks.md)
-* [Programs Program Analytics](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/programs-program-analytics.md)
-* [Programs Program Views](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/programs-program-views.md)
-* [Programs Program Reviews](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/programs-program-reviews.md)
-* [Exercises Exercise Thumbnails](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/exercises-exercise-thumbnails.md)
-* [Status](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/status.md)
-* [Authentication](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/authentication.md)
-* [Users](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/users.md)
-* [Users Roles](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/users-roles.md)
-* [Locales](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/locales.md)
-* [Muscles](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/muscles.md)
-* [Equipment](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/equipment.md)
-* [Exercises](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/exercises.md)
-* [Workouts](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/workouts.md)
-* [Programs](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/controllers/programs.md)
+* [Users Creator Profiles](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/users-creator-profiles.md)
+* [Users Social Media Accounts](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/users-social-media-accounts.md)
+* [Exercise Library Exercises](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/exercise-library-exercises.md)
+* [Exercise Library Exercises Exercise Instructions](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/exercise-library-exercises-exercise-instructions.md)
+* [Exercise Library Exercises Exercise Videos](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/exercise-library-exercises-exercise-videos.md)
+* [Exercise Library Exercises Exercise Thumbnails](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/exercise-library-exercises-exercise-thumbnails.md)
+* [Exercise Library Muscles](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/exercise-library-muscles.md)
+* [Exercise Library Muscles Muscle Groups](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/exercise-library-muscles-muscle-groups.md)
+* [Exercise Library Equipment](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/exercise-library-equipment.md)
+* [Exercise Library Equipment Equipment Groups](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/exercise-library-equipment-equipment-groups.md)
+* [Exercise Library Exercise Drafts](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/exercise-library-exercise-drafts.md)
+* [Exercise Library Exercise Categories](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/exercise-library-exercise-categories.md)
+* [Exercise Library Exercise Metrics](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/exercise-library-exercise-metrics.md)
+* [Workouts Workout Data](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/workouts-workout-data.md)
+* [Common Media Assets](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/common-media-assets.md)
+* [Common Locales](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/common-locales.md)
+* [Common Published Status](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/common-published-status.md)
+* [Status](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/status.md)
+* [Authentication](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/authentication.md)
+* [Users](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/users.md)
+* [Users Roles](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/users-roles.md)
+* [Workouts](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/controllers/workouts.md)
 
 ## Classes Documentation
 
-* [ApiResponse](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/api-response.md)
-* [ApiError](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.7/doc/api-error.md)
+* [ApiResponse](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/api-response.md)
+* [ApiError](https://www.github.com/JustGains/just-gains-api-js-sdk/tree/0.0.8/doc/api-error.md)
 
