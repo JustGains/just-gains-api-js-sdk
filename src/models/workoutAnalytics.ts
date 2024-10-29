@@ -9,15 +9,15 @@ import { number, object, optional, Schema } from '../schema';
 /** Analytics data for the workout. */
 export interface WorkoutAnalytics {
   /** Number of views for the workout. */
-  views?: number;
-  /** The number of times this workout has been used. */
-  totalUses?: number;
+  totalViews?: number;
   /** The average rating of the workout. */
-  averageRating?: number;
+  ratingAverage?: number;
+  /** The number of ratings for the workout. */
+  ratingCount?: number;
 }
 
 export const workoutAnalyticsSchema: Schema<WorkoutAnalytics> = object({
-  views: ['views', optional(number())],
-  totalUses: ['totalUses', optional(number())],
-  averageRating: ['averageRating', optional(number())],
+  totalViews: ['totalViews', optional(number())],
+  ratingAverage: ['ratingAverage', optional(number())],
+  ratingCount: ['ratingCount', optional(number())],
 });

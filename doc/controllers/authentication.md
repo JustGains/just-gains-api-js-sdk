@@ -21,6 +21,9 @@ const authenticationController = new AuthenticationController(client);
 * [Reset Password](../../doc/controllers/authentication.md#reset-password)
 * [Refresh Token](../../doc/controllers/authentication.md#refresh-token)
 * [Signout](../../doc/controllers/authentication.md#signout)
+* [Initiate Auth](../../doc/controllers/authentication.md#initiate-auth)
+* [Handle Callback](../../doc/controllers/authentication.md#handle-callback)
+* [Get Settings](../../doc/controllers/authentication.md#get-settings)
 
 
 # Get User Info
@@ -421,4 +424,156 @@ try {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Failed to sign out user | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+
+
+# Initiate Auth
+
+:information_source: **Note** This endpoint does not require authentication.
+
+```ts
+async initiateAuth(  provider: string,
+  body: InitiateAuthRequest,
+requestOptions?: RequestOptions): Promise<ApiResponse<AuthInitiateResponse>>
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `provider` | `string` | Template, Required | OAuth provider name (e.g., 'google', 'facebook') |
+| `body` | [`InitiateAuthRequest`](../../doc/models/initiate-auth-request.md) | Body, Required | - |
+| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Response Type
+
+[`AuthInitiateResponse`](../../doc/models/auth-initiate-response.md)
+
+## Example Usage
+
+```ts
+const provider = 'google';
+
+const body: InitiateAuthRequest = {
+  redirectUrl: 'https://example.com/callback',
+};
+
+try {
+  const { result, ...httpResponse } = await authenticationController.initiateAuth(
+  provider,
+  body
+);
+  // Get more response info...
+  // const { statusCode, headers } = httpResponse;
+} catch (error) {
+  if (error instanceof ApiError) {
+    const errors = error.result;
+    // const { statusCode, headers } = error;
+  }
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Failed to initiate OAuth flow | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+
+
+# Handle Callback
+
+:information_source: **Note** This endpoint does not require authentication.
+
+```ts
+async handleCallback(  provider: string,
+  code: string,
+  error?: string,
+  errorDescription?: string,
+requestOptions?: RequestOptions): Promise<ApiResponse<AuthCallbackResponse>>
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `provider` | `string` | Template, Required | OAuth provider name (e.g., 'google', 'facebook') |
+| `code` | `string` | Query, Required | Authorization code from OAuth provider |
+| `error` | `string \| undefined` | Query, Optional | Error code from OAuth provider |
+| `errorDescription` | `string \| undefined` | Query, Optional | Detailed error description from OAuth provider |
+| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Response Type
+
+[`AuthCallbackResponse`](../../doc/models/auth-callback-response.md)
+
+## Example Usage
+
+```ts
+const provider = 'google';
+
+const code = 'code8';
+
+try {
+  const { result, ...httpResponse } = await authenticationController.handleCallback(
+  provider,
+  code
+);
+  // Get more response info...
+  // const { statusCode, headers } = httpResponse;
+} catch (error) {
+  if (error instanceof ApiError) {
+    const errors = error.result;
+    // const { statusCode, headers } = error;
+  }
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Failed to handle OAuth callback | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+
+
+# Get Settings
+
+:information_source: **Note** This endpoint does not require authentication.
+
+```ts
+async getSettings(  provider: string,
+requestOptions?: RequestOptions): Promise<ApiResponse<AuthSettingsResponse>>
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `provider` | `string` | Template, Required | OAuth provider name (e.g., 'google', 'facebook') |
+| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Response Type
+
+[`AuthSettingsResponse`](../../doc/models/auth-settings-response.md)
+
+## Example Usage
+
+```ts
+const provider = 'google';
+
+try {
+  const { result, ...httpResponse } = await authenticationController.getSettings(provider);
+  // Get more response info...
+  // const { statusCode, headers } = httpResponse;
+} catch (error) {
+  if (error instanceof ApiError) {
+    const errors = error.result;
+    // const { statusCode, headers } = error;
+  }
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Failed to retrieve OAuth provider settings | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

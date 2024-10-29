@@ -179,12 +179,9 @@ const mediaAssetId = '9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1';
 
 const body: MediaAsset = {
   mediaId: '7b8e9f2a-c1d3-45e6-a7b8-9c0d1e2f3a4b',
-  fileName: 'workout_routine.mp4',
-  filePath: 'media/videos/routines/workout_routine.mp4',
-  fileSize: 15728640,
-  fileUrl: 'https://api.justsuperhuman.com/media/videos/routines/workout_routine.mp4',
-  fileFormat: 'video/mp4',
-  description: 'High-intensity interval training (HIIT) workout routine for beginners',
+  fileName: '',
+  filePath: '',
+  fileSize: 0,
 };
 
 try {

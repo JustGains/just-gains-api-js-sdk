@@ -12,7 +12,6 @@ export interface WorkoutDataResponse {
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** Represents a single exercise within a workout, including its data, order, and grouping information. */
   data: WorkoutData;
 }
 

@@ -27,12 +27,20 @@ export class UsersCreatorProfilesController extends BaseController {
    * @param page          Page number for pagination
    * @param mvpAssetsOnly Filter creator profiles with MVP assets only
    * @param limit         Number of items per page
+   * @param search        Optional search term to filter creator profiles. The search is case-insensitive
+   *                                 and matches against: - Creator's username - Creator's social media account
+   *                                 usernames - Creator's full name (first name + last name)  Examples: - search=john
+   *                                 (matches usernames, social media accounts, or names containing "john") -
+   *                                 search=@twitter (matches social media accounts containing "@twitter") -
+   *                                 search="John Doe" (matches full names containing "John Doe")  Leave empty to
+   *                                 retrieve all profiles without filtering.
    * @return Response from the API call
    */
   async getCreatorProfiles(
     page?: number,
     mvpAssetsOnly?: boolean,
     limit?: number,
+    search?: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<CreatorProfileListResponse>> {
     const req = this.createRequest('GET', '/creator-profiles');
@@ -40,10 +48,12 @@ export class UsersCreatorProfilesController extends BaseController {
       page: [page, optional(number())],
       mvpAssetsOnly: [mvpAssetsOnly, optional(boolean())],
       limit: [limit, optional(number())],
+      search: [search, optional(string())],
     });
     req.query('page', mapped.page);
     req.query('mvpAssetsOnly', mapped.mvpAssetsOnly);
     req.query('limit', mapped.limit);
+    req.query('search', mapped.search);
     req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
     req.authenticate(false);
     return req.callAsJson(creatorProfileListResponseSchema, requestOptions);

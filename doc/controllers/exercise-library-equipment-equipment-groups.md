@@ -85,7 +85,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```ts
 const body: EquipmentGroup = {
   equipmentGroupCode: 'DUMBBELLS',
-  equipmentGroupName: 'Dumbbells',
   equipmentGroupParent: 'FREE_WEIGHTS',
   sortOrder: 0,
 };
@@ -136,7 +135,6 @@ const equipmentGroupCode = 'equipmentGroupCode8';
 
 const body: EquipmentGroup = {
   equipmentGroupCode: 'DUMBBELLS',
-  equipmentGroupName: 'Dumbbells',
   equipmentGroupParent: 'FREE_WEIGHTS',
   sortOrder: 0,
 };

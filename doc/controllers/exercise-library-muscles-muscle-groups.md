@@ -79,7 +79,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```ts
 const body: MuscleGroup = {
   muscleGroupCode: 'CHEST',
-  muscleGroupName: 'Chest',
   muscleGroupParent: 'UPPER_BODY',
   muscleGroupMuscles: [
     'PECTORALIS_MAJOR_STERNAL_HEAD',
@@ -142,7 +141,6 @@ const muscleGroupCode = 'muscleGroupCode2';
 
 const body: MuscleGroup = {
   muscleGroupCode: 'CHEST',
-  muscleGroupName: 'Chest',
   muscleGroupParent: 'UPPER_BODY',
   muscleGroupMuscles: [
     'PECTORALIS_MAJOR_STERNAL_HEAD',

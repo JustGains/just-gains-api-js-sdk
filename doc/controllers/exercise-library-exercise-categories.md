@@ -79,7 +79,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```ts
 const body: ExerciseCategory = {
   exerciseCategoryCode: 'STRENGTH_TRAINING',
-  exerciseCategoryName: 'Strength Training',
 };
 
 try {
@@ -128,7 +127,6 @@ const exerciseCategoryCode = 'exerciseCategoryCode8';
 
 const body: ExerciseCategory = {
   exerciseCategoryCode: 'STRENGTH_TRAINING',
-  exerciseCategoryName: 'Strength Training',
 };
 
 try {

@@ -161,13 +161,12 @@ const localeCode = 'localeCode2';
 const creatorProfileId = 'creatorProfileId8';
 
 const body: ExerciseInstruction = {
-  exerciseCode: 'BARBELL-BENCH-PRESS',
+  exerciseCode: '',
   localeCode: 'en-US',
   instructionJSON: {
     time: BigInt(1625832000000),
     version: '2.24.3',
   },
-  userId: '9fdd12f5-c7b9-82a8-f6cc-cceac14c13c1',
 };
 
 try {

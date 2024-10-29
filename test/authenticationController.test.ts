@@ -50,4 +50,18 @@ describe('AuthenticationController', () => {
 
     expectHeadersToMatch(response.headers, expectedHeaders);
   });
+
+  it('should Test getSettings', async () => {
+    const provider = 'google';
+
+    const response = await makeApiCall(
+      () => controller.getSettings(provider)
+    );
+
+    expect(response.statusCode).toBe(200);
+
+    const expectedHeaders = { 'Content-Type': ['application/json', true] };
+
+    expectHeadersToMatch(response.headers, expectedHeaders);
+  });
 });

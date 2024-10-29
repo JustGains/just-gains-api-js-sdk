@@ -37,4 +37,32 @@ describe('WorkoutsController', () => {
 
     expectHeadersToMatch(response.headers, expectedHeaders);
   });
+
+  it('should Test Get a workout by ID', async () => {
+    const workoutId = '9f897bfa-716d-4caa-b8fb-20bf3f2f3416';
+
+    const response = await makeApiCall(
+      () => controller.getAWorkoutByID(workoutId)
+    );
+
+    expect(response.statusCode).toBe(200);
+
+    const expectedHeaders = { 'Content-Type': ['application/json', true] };
+
+    expectHeadersToMatch(response.headers, expectedHeaders);
+  });
+
+  it('should Test Get a workout by workout slug', async () => {
+    const workoutSlug = 'full-body-strength-training';
+
+    const response = await makeApiCall(
+      () => controller.getAWorkoutByWorkoutSlug(workoutSlug)
+    );
+
+    expect(response.statusCode).toBe(200);
+
+    const expectedHeaders = { 'Content-Type': ['application/json', true] };
+
+    expectHeadersToMatch(response.headers, expectedHeaders);
+  });
 });

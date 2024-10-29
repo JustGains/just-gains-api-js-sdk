@@ -129,7 +129,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<ExerciseResponse>>
 ```ts
 const body: ExerciseUpdateRequest = {
   exerciseCode: 'BARBELL_SQUAT',
-  exerciseName: 'Barbell Squat',
   exerciseCategories: [
     'STRENGTH',
     'CARDIO'
@@ -256,7 +255,6 @@ const exerciseCode = 'exerciseCode8';
 
 const body: ExerciseUpdateRequest = {
   exerciseCode: 'BARBELL_SQUAT',
-  exerciseName: 'Barbell Squat',
   exerciseCategories: [
     'STRENGTH',
     'CARDIO'

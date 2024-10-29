@@ -8,7 +8,6 @@ import {
   array,
   boolean,
   lazy,
-  number,
   object,
   optional,
   Schema,
@@ -22,12 +21,16 @@ import { WorkoutSummary, workoutSummarySchema } from './workoutSummary';
 /** Represents a workout in the system from the My Workouts Page. */
 export interface WorkoutTableItem {
   /** Unique identifier for the workout. */
-  workoutId?: number;
+  workoutId?: string;
+  /** ID of the original workout if this is a duplicate. */
+  originalWorkoutId?: string;
   /** The title of the workout. */
   workoutTitle?: string;
+  /** The URL slug of the workout. */
+  workoutSlug?: string;
   workoutImage?: MediaAsset;
-  /** Indicates if the workout is a user's own workout. */
-  isMyWorkout?: boolean;
+  /** Indicates if the workout is a user's own workout or a bookmarked one from another user. */
+  isBookmark?: boolean;
   /** List of creator credits associated with this workout. */
   creatorCredits?: CreatorCredit[];
   /** List of primary muscle group codes targeted in the workout. */
@@ -41,22 +44,22 @@ export interface WorkoutTableItem {
   /** The date and time when the workout was last updated. */
   updatedAt?: string;
   /** The date and time when the workout was last used. */
-  lastUsedAt?: string;
+  lastViewedAt?: string;
   /** NOT IMPLEMENTED:- TODO- List of tags associated with the workout. */
   tags?: string[];
   /** Summary information about the workout. */
   workoutSummary?: WorkoutSummary;
   /** Analytics data for the workout. */
-  analytics?: WorkoutAnalytics;
-  /** ID of the original workout if this is a duplicate. */
-  originalWorkoutId?: number;
+  workoutAnalytics?: WorkoutAnalytics;
 }
 
 export const workoutTableItemSchema: Schema<WorkoutTableItem> = object({
-  workoutId: ['workoutId', optional(number())],
+  workoutId: ['workoutId', optional(string())],
+  originalWorkoutId: ['originalWorkoutId', optional(string())],
   workoutTitle: ['workoutTitle', optional(string())],
+  workoutSlug: ['workoutSlug', optional(string())],
   workoutImage: ['workoutImage', optional(lazy(() => mediaAssetSchema))],
-  isMyWorkout: ['isMyWorkout', optional(boolean())],
+  isBookmark: ['isBookmark', optional(boolean())],
   creatorCredits: [
     'creatorCredits',
     optional(array(lazy(() => creatorCreditSchema))),
@@ -66,12 +69,14 @@ export const workoutTableItemSchema: Schema<WorkoutTableItem> = object({
   secondaryMuscleGroups: ['secondaryMuscleGroups', optional(array(string()))],
   createdAt: ['createdAt', optional(string())],
   updatedAt: ['updatedAt', optional(string())],
-  lastUsedAt: ['lastUsedAt', optional(string())],
+  lastViewedAt: ['lastViewedAt', optional(string())],
   tags: ['tags', optional(array(string()))],
   workoutSummary: [
     'workoutSummary',
     optional(lazy(() => workoutSummarySchema)),
   ],
-  analytics: ['analytics', optional(lazy(() => workoutAnalyticsSchema))],
-  originalWorkoutId: ['originalWorkoutId', optional(number())],
+  workoutAnalytics: [
+    'workoutAnalytics',
+    optional(lazy(() => workoutAnalyticsSchema)),
+  ],
 });

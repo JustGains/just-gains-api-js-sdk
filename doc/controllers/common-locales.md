@@ -77,7 +77,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 
 ```ts
 const body: Locale = {
-  localeCode: 'en-US',
   localeName: 'English (United States)',
   published: true,
 };
@@ -159,7 +158,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 const localeCode = 'localeCode2';
 
 const body: Locale = {
-  localeCode: 'en-US',
   localeName: 'English (United States)',
   published: true,
 };

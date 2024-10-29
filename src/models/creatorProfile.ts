@@ -19,8 +19,12 @@ export interface CreatorProfile {
   userId?: string;
   /** Creator's username. */
   userName?: string;
-  /** Creator's email address. */
-  creatorEmail?: string;
+  /** Creator's first name. */
+  firstName?: string;
+  /** Creator's last name. */
+  lastName?: string;
+  /** Creator's full name. */
+  fullName?: string;
   profilePhoto?: MediaAsset;
   /** List of creator's social media accounts. */
   socialMediaAccounts?: CreatorSocialMediaAccount[];
@@ -30,7 +34,9 @@ export const creatorProfileSchema: Schema<CreatorProfile> = object({
   creatorProfileId: ['creatorProfileId', optional(string())],
   userId: ['userId', optional(string())],
   userName: ['userName', optional(string())],
-  creatorEmail: ['creatorEmail', optional(string())],
+  firstName: ['firstName', optional(string())],
+  lastName: ['lastName', optional(string())],
+  fullName: ['fullName', optional(string())],
   profilePhoto: ['profilePhoto', optional(lazy(() => mediaAssetSchema))],
   socialMediaAccounts: [
     'socialMediaAccounts',

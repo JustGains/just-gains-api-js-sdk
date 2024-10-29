@@ -19,37 +19,45 @@ import {
   exerciseGroupTypeEnumSchema,
 } from './exerciseGroupTypeEnum';
 import { ExerciseMetric1, exerciseMetric1Schema } from './exerciseMetric1';
+import { ExerciseSet, exerciseSetSchema } from './exerciseSet';
+import { MediaAsset, mediaAssetSchema } from './mediaAsset';
 
-/** Represents a single exercise within a workout, including its data, order, and grouping information. */
 export interface WorkoutData {
   /** Unique identifier for the exercise. */
   exerciseCode?: string;
   /** Additional notes or instructions for this specific instance of the exercise. */
   exerciseNotes?: string;
+  exerciseThumbnail?: MediaAsset;
   /** List of metric codes and their units used for this exercise, in order */
   exerciseMetrics?: ExerciseMetric1[];
-  /** Array of sets, each containing the set number and metric values in order. */
-  exerciseData?: number[];
   /** The order of this exercise within the workout or its group. */
   exerciseOrder?: number;
   /** Identifier for the group this exercise belongs to, if any. Null if not part of a group. */
   exerciseGroupID?: number | null;
   /** The type of group this exercise belongs to, if any. Null if not part of a group. */
   exerciseGroupType?: ExerciseGroupTypeEnum | null;
+  exerciseData?: ExerciseSet[];
 }
 
 export const workoutDataSchema: Schema<WorkoutData> = object({
   exerciseCode: ['exerciseCode', optional(string())],
   exerciseNotes: ['exerciseNotes', optional(string())],
+  exerciseThumbnail: [
+    'exerciseThumbnail',
+    optional(lazy(() => mediaAssetSchema)),
+  ],
   exerciseMetrics: [
     'exerciseMetrics',
     optional(array(lazy(() => exerciseMetric1Schema))),
   ],
-  exerciseData: ['exerciseData', optional(array(number()))],
   exerciseOrder: ['exerciseOrder', optional(number())],
   exerciseGroupID: ['exerciseGroupID', optional(nullable(number()))],
   exerciseGroupType: [
     'exerciseGroupType',
     optional(nullable(exerciseGroupTypeEnumSchema)),
+  ],
+  exerciseData: [
+    'exerciseData',
+    optional(array(lazy(() => exerciseSetSchema))),
   ],
 });

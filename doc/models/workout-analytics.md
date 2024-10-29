@@ -11,17 +11,17 @@ Analytics data for the workout.
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `views` | `number \| undefined` | Optional | Number of views for the workout. |
-| `totalUses` | `number \| undefined` | Optional | The number of times this workout has been used.<br>**Default**: `0` |
-| `averageRating` | `number \| undefined` | Optional | The average rating of the workout. |
+| `totalViews` | `number \| undefined` | Optional | Number of views for the workout. |
+| `ratingAverage` | `number \| undefined` | Optional | The average rating of the workout. |
+| `ratingCount` | `number \| undefined` | Optional | The number of ratings for the workout. |
 
 ## Example (as JSON)
 
 ```json
 {
-  "views": 1000,
-  "totalUses": 15,
-  "averageRating": 4.7
+  "totalViews": 1000,
+  "ratingAverage": 4.7,
+  "ratingCount": 4578
 }
 ```
 

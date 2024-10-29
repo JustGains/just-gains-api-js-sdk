@@ -131,7 +131,7 @@ const muscleCode = 'muscleCode0';
 
 const body: MuscleTranslation[] = [
   {
-    muscleCode: 'QUAD',
+    muscleCode: '',
     localeCode: 'en-US',
     muscleName: 'Quadriceps',
   }

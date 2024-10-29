@@ -75,6 +75,8 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | exerciseLibraryExerciseMetrics | Gets ExerciseLibraryExerciseMetricsController |
 | workouts | Gets WorkoutsController |
 | workoutsWorkoutData | Gets WorkoutsWorkoutDataController |
+| workoutsWorkoutContent | Gets WorkoutsWorkoutContentController |
+| workoutsWorkoutPreview | Gets WorkoutsWorkoutPreviewController |
 | commonMediaAssets | Gets CommonMediaAssetsController |
 | commonLocales | Gets CommonLocalesController |
 | commonPublishedStatus | Gets CommonPublishedStatusController |

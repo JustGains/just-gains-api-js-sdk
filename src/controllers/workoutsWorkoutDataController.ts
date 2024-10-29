@@ -18,7 +18,7 @@ import {
   WorkoutDataResponse,
   workoutDataResponseSchema,
 } from '../models/workoutDataResponse';
-import { number, string } from '../schema';
+import { array, string } from '../schema';
 import { BaseController } from './baseController';
 import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseError';
 
@@ -28,11 +28,11 @@ export class WorkoutsWorkoutDataController extends BaseController {
    * @return Response from the API call
    */
   async getWorkoutDataById(
-    workoutId: number,
+    workoutId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<WorkoutDataListResponse>> {
     const req = this.createRequest('GET');
-    const mapped = req.prepareArgs({ workoutId: [workoutId, number()] });
+    const mapped = req.prepareArgs({ workoutId: [workoutId, string()] });
     req.appendTemplatePath`/workouts/${mapped.workoutId}/data`;
     req.throwOn(404, JustGainsErrorResponseError, 'Workout not found');
     req.authenticate(false);
@@ -41,17 +41,41 @@ export class WorkoutsWorkoutDataController extends BaseController {
 
   /**
    * @param workoutId
-   * @param exerciseCode
+   * @param body
+   * @return Response from the API call
+   */
+  async updateWorkoutDataByWorkoutID(
+    workoutId: string,
+    body: WorkoutData[],
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<WorkoutDataListResponse>> {
+    const req = this.createRequest('PUT');
+    const mapped = req.prepareArgs({
+      workoutId: [workoutId, string()],
+      body: [body, array(workoutDataSchema)],
+    });
+    req.header('Content-Type', 'application/json');
+    req.json(mapped.body);
+    req.appendTemplatePath`/workouts/${mapped.workoutId}/data`;
+    req.throwOn(400, JustGainsErrorResponseError, 'Invalid workout data');
+    req.throwOn(404, JustGainsErrorResponseError, 'Workout not found');
+    req.authenticate([{ bearerAuth: true }]);
+    return req.callAsJson(workoutDataListResponseSchema, requestOptions);
+  }
+
+  /**
+   * @param workoutId    The unique identifier code of the workout to retrieve the exercise from
+   * @param exerciseCode The unique identifier code of the exercise to retrieve
    * @return Response from the API call
    */
   async getWorkoutDetailById(
-    workoutId: number,
+    workoutId: string,
     exerciseCode: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<WorkoutDataResponse>> {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({
-      workoutId: [workoutId, number()],
+      workoutId: [workoutId, string()],
       exerciseCode: [exerciseCode, string()],
     });
     req.appendTemplatePath`/workouts/${mapped.workoutId}/data/${mapped.exerciseCode}`;
@@ -65,47 +89,20 @@ export class WorkoutsWorkoutDataController extends BaseController {
   }
 
   /**
-   * @param workoutId
-   * @param exerciseCode
-   * @param body
-   * @return Response from the API call
-   */
-  async addNewExerciseToTheWorkout(
-    workoutId: number,
-    exerciseCode: string,
-    body: WorkoutData,
-    requestOptions?: RequestOptions
-  ): Promise<ApiResponse<WorkoutDataResponse>> {
-    const req = this.createRequest('POST');
-    const mapped = req.prepareArgs({
-      workoutId: [workoutId, number()],
-      exerciseCode: [exerciseCode, string()],
-      body: [body, workoutDataSchema],
-    });
-    req.header('Content-Type', 'application/json');
-    req.json(mapped.body);
-    req.appendTemplatePath`/workouts/${mapped.workoutId}/data/${mapped.exerciseCode}`;
-    req.throwOn(400, JustGainsErrorResponseError, 'Invalid exercise data');
-    req.throwOn(404, JustGainsErrorResponseError, 'Workout not found');
-    req.authenticate([{ bearerAuth: true }]);
-    return req.callAsJson(workoutDataResponseSchema, requestOptions);
-  }
-
-  /**
-   * @param workoutId
-   * @param exerciseCode
+   * @param workoutId    The unique identifier code of the workout to update the exercise in
+   * @param exerciseCode The unique identifier code of the exercise to update
    * @param body
    * @return Response from the API call
    */
   async updateExerciseInTheWorkout(
-    workoutId: number,
+    workoutId: string,
     exerciseCode: string,
     body: WorkoutData,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<WorkoutDataResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
-      workoutId: [workoutId, number()],
+      workoutId: [workoutId, string()],
       exerciseCode: [exerciseCode, string()],
       body: [body, workoutDataSchema],
     });
@@ -123,18 +120,18 @@ export class WorkoutsWorkoutDataController extends BaseController {
   }
 
   /**
-   * @param workoutId
-   * @param exerciseCode
+   * @param workoutId    The unique identifier code of the workout to remove the exercise from
+   * @param exerciseCode The unique identifier code of the exercise to remove
    * @return Response from the API call
    */
   async deletesAnExerciseFromTheWorkout(
-    workoutId: number,
+    workoutId: string,
     exerciseCode: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('DELETE');
     const mapped = req.prepareArgs({
-      workoutId: [workoutId, number()],
+      workoutId: [workoutId, string()],
       exerciseCode: [exerciseCode, string()],
     });
     req.appendTemplatePath`/workouts/${mapped.workoutId}/data/${mapped.exerciseCode}`;

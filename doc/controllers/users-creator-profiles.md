@@ -25,6 +25,7 @@ const usersCreatorProfilesController = new UsersCreatorProfilesController(client
 async getCreatorProfiles(  page?: number,
   mvpAssetsOnly?: boolean,
   limit?: number,
+  search?: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileListResponse>>
 ```
 
@@ -35,6 +36,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileListResponse
 | `page` | `number \| undefined` | Query, Optional | Page number for pagination<br>**Default**: `1`<br>**Constraints**: `>= 1` |
 | `mvpAssetsOnly` | `boolean \| undefined` | Query, Optional | Filter creator profiles with MVP assets only |
 | `limit` | `number \| undefined` | Query, Optional | Number of items per page<br>**Default**: `20`<br>**Constraints**: `>= 1`, `<= 100` |
+| `search` | `string \| undefined` | Query, Optional | Optional search term to filter creator profiles. The search is case-insensitive and matches against:<br><br>- Creator's username<br>- Creator's social media account usernames<br>- Creator's full name (first name + last name)<br><br>Examples:<br><br>- search=john (matches usernames, social media accounts, or names containing "john")<br>- search=@twitter (matches social media accounts containing "@twitter")<br>- search="John Doe" (matches full names containing "John Doe")<br><br>Leave empty to retrieve all profiles without filtering. |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -93,10 +95,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileResponse>>
 
 ```ts
 const body: CreatorProfile = {
-  creatorProfileId: '123e4567-e89b-12d3-a456-426614174000',
-  userId: '123e4567-e89b-12d3-a456-426614174000',
-  userName: 'TheRock',
-  creatorEmail: 'dwayne@therockjohnson.com',
+  firstName: 'Dwayne',
+  lastName: 'Johnson',
 };
 
 try {
@@ -189,10 +189,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<CreatorProfileResponse>>
 const creatorProfileId = '000008d2-0000-0000-0000-000000000000';
 
 const body: CreatorProfile = {
-  creatorProfileId: '123e4567-e89b-12d3-a456-426614174000',
-  userId: '123e4567-e89b-12d3-a456-426614174000',
-  userName: 'TheRock',
-  creatorEmail: 'dwayne@therockjohnson.com',
+  firstName: 'Dwayne',
+  lastName: 'Johnson',
 };
 
 try {

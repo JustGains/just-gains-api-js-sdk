@@ -6,9 +6,21 @@
 
 import { ApiResponse, RequestOptions } from '../core';
 import {
+  AuthCallbackResponse,
+  authCallbackResponseSchema,
+} from '../models/authCallbackResponse';
+import {
+  AuthInitiateResponse,
+  authInitiateResponseSchema,
+} from '../models/authInitiateResponse';
+import {
   AuthRefreshTokenResponse,
   authRefreshTokenResponseSchema,
 } from '../models/authRefreshTokenResponse';
+import {
+  AuthSettingsResponse,
+  authSettingsResponseSchema,
+} from '../models/authSettingsResponse';
 import {
   AuthSigninResponse,
   authSigninResponseSchema,
@@ -21,6 +33,10 @@ import {
   ForgotPasswordRequest,
   forgotPasswordRequestSchema,
 } from '../models/forgotPasswordRequest';
+import {
+  InitiateAuthRequest,
+  initiateAuthRequestSchema,
+} from '../models/initiateAuthRequest';
 import {
   JustGainsBasicResponse,
   justGainsBasicResponseSchema,
@@ -49,6 +65,7 @@ import {
   UserRegisterRequest,
   userRegisterRequestSchema,
 } from '../models/userRegisterRequest';
+import { optional, string } from '../schema';
 import { BaseController } from './baseController';
 import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseError';
 
@@ -209,5 +226,86 @@ export class AuthenticationController extends BaseController {
     req.throwOn(400, JustGainsErrorResponseError, 'Failed to sign out user');
     req.authenticate([{ bearerAuth: true }]);
     return req.callAsJson(justGainsBasicResponseSchema, requestOptions);
+  }
+
+  /**
+   * @param provider     OAuth provider name (e.g., 'google', 'facebook')
+   * @param body
+   * @return Response from the API call
+   */
+  async initiateAuth(
+    provider: string,
+    body: InitiateAuthRequest,
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<AuthInitiateResponse>> {
+    const req = this.createRequest('POST');
+    const mapped = req.prepareArgs({
+      provider: [provider, string()],
+      body: [body, initiateAuthRequestSchema],
+    });
+    req.header('Content-Type', 'application/json');
+    req.json(mapped.body);
+    req.appendTemplatePath`/auth/${mapped.provider}/initiate`;
+    req.throwOn(
+      400,
+      JustGainsErrorResponseError,
+      'Failed to initiate OAuth flow'
+    );
+    req.authenticate([]);
+    return req.callAsJson(authInitiateResponseSchema, requestOptions);
+  }
+
+  /**
+   * @param provider         OAuth provider name (e.g., 'google', 'facebook')
+   * @param code             Authorization code from OAuth provider
+   * @param error            Error code from OAuth provider
+   * @param errorDescription Detailed error description from OAuth provider
+   * @return Response from the API call
+   */
+  async handleCallback(
+    provider: string,
+    code: string,
+    error?: string,
+    errorDescription?: string,
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<AuthCallbackResponse>> {
+    const req = this.createRequest('GET');
+    const mapped = req.prepareArgs({
+      provider: [provider, string()],
+      code: [code, string()],
+      error: [error, optional(string())],
+      errorDescription: [errorDescription, optional(string())],
+    });
+    req.query('code', mapped.code);
+    req.query('error', mapped.error);
+    req.query('errorDescription', mapped.errorDescription);
+    req.appendTemplatePath`/auth/${mapped.provider}/callback`;
+    req.throwOn(
+      400,
+      JustGainsErrorResponseError,
+      'Failed to handle OAuth callback'
+    );
+    req.authenticate([]);
+    return req.callAsJson(authCallbackResponseSchema, requestOptions);
+  }
+
+  /**
+   * @param provider OAuth provider name (e.g., 'google', 'facebook')
+   * @return Response from the API call
+   */
+  async getSettings(
+    provider: string,
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<AuthSettingsResponse>> {
+    const req = this.createRequest('GET');
+    const mapped = req.prepareArgs({ provider: [provider, string()] });
+    req.appendTemplatePath`/auth/${mapped.provider}/settings`;
+    req.throwOn(
+      400,
+      JustGainsErrorResponseError,
+      'Failed to retrieve OAuth provider settings'
+    );
+    req.authenticate([]);
+    return req.callAsJson(authSettingsResponseSchema, requestOptions);
   }
 }

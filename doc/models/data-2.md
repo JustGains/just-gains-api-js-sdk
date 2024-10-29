@@ -9,13 +9,15 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `text` | `string \| null \| undefined` | Optional | - |
+| `uri` | `string \| undefined` | Optional | The authorization URL to redirect the user to |
+| `pkceVerifier` | `string \| undefined` | Optional | The PKCE verifier code for the OAuth flow |
 
 ## Example (as JSON)
 
 ```json
 {
-  "text": "Lie on a flat bench with your feet flat on the ground."
+  "uri": "https://oauth-provider.com/auth?client_id=123&redirect_uri=...",
+  "pkceVerifier": "dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk"
 }
 ```
 

@@ -5,8 +5,12 @@
  */
 
 import { ApiResponse, RequestOptions } from '../core';
+import {
+  JustGainsBasicResponse,
+  justGainsBasicResponseSchema,
+} from '../models/justGainsBasicResponse';
 import { SortOrderEnum, sortOrderEnumSchema } from '../models/sortOrderEnum';
-import { Workout, workoutSchema } from '../models/workout';
+import { WorkoutRequest, workoutRequestSchema } from '../models/workoutRequest';
 import {
   WorkoutResponse,
   workoutResponseSchema,
@@ -19,8 +23,10 @@ import {
   WorkoutTableListResponse,
   workoutTableListResponseSchema,
 } from '../models/workoutTableListResponse';
+import { WorkoutUpdate, workoutUpdateSchema } from '../models/workoutUpdate';
 import { number, optional, string } from '../schema';
 import { BaseController } from './baseController';
+import { ApiError } from '@apimatic/core';
 import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseError';
 
 export class WorkoutsController extends BaseController {
@@ -63,11 +69,11 @@ export class WorkoutsController extends BaseController {
    * @return Response from the API call
    */
   async createANewWorkout(
-    body: Workout,
+    body: WorkoutRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<WorkoutResponse>> {
     const req = this.createRequest('POST', '/workouts');
-    const mapped = req.prepareArgs({ body: [body, workoutSchema] });
+    const mapped = req.prepareArgs({ body: [body, workoutRequestSchema] });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.throwOn(400, JustGainsErrorResponseError, 'Invalid workout data');
@@ -76,19 +82,102 @@ export class WorkoutsController extends BaseController {
   }
 
   /**
-   * @param workoutId
+   * @param workoutId The ID of the workout to retrieve
    * @return Response from the API call
    */
   async getAWorkoutByID(
-    workoutId: number,
+    workoutId: string,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<WorkoutResponse>> {
     const req = this.createRequest('GET');
-    const mapped = req.prepareArgs({ workoutId: [workoutId, number()] });
+    const mapped = req.prepareArgs({ workoutId: [workoutId, string()] });
     req.appendTemplatePath`/workouts/${mapped.workoutId}`;
     req.throwOn(404, JustGainsErrorResponseError, 'Workout not found');
     req.authenticate([{ bearerAuth: true }]);
     return req.callAsJson(workoutResponseSchema, requestOptions);
+  }
+
+  /**
+   * @param workoutId    The ID of the workout to update
+   * @param body
+   * @return Response from the API call
+   */
+  async updateAWorkoutByID(
+    workoutId: string,
+    body: WorkoutUpdate,
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<WorkoutResponse>> {
+    const req = this.createRequest('PUT');
+    const mapped = req.prepareArgs({
+      workoutId: [workoutId, string()],
+      body: [body, workoutUpdateSchema],
+    });
+    req.header('Content-Type', 'application/json');
+    req.json(mapped.body);
+    req.appendTemplatePath`/workouts/${mapped.workoutId}`;
+    req.throwOn(400, JustGainsErrorResponseError, 'Invalid workout data');
+    req.throwOn(403, JustGainsErrorResponseError, 'Permission denied');
+    req.throwOn(404, JustGainsErrorResponseError, 'Workout not found');
+    req.authenticate([{ bearerAuth: true }]);
+    return req.callAsJson(workoutResponseSchema, requestOptions);
+  }
+
+  /**
+   * @param workoutSlug The URL slug of the workout
+   * @return Response from the API call
+   */
+  async getAWorkoutByWorkoutSlug(
+    workoutSlug: string,
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<WorkoutResponse>> {
+    const req = this.createRequest('GET');
+    const mapped = req.prepareArgs({ workoutSlug: [workoutSlug, string()] });
+    req.appendTemplatePath`/workouts/${mapped.workoutSlug}`;
+    req.throwOn(404, JustGainsErrorResponseError, 'Workout not found');
+    req.authenticate([{ bearerAuth: true }]);
+    return req.callAsJson(workoutResponseSchema, requestOptions);
+  }
+
+  /**
+   * Adds the specified workout to the current user's bookmarks. If the workout is already bookmarked,
+   * the request is idempotent and will not create a duplicate.
+   *
+   * @param workoutId The unique identifier of the workout to bookmark
+   * @return Response from the API call
+   */
+  async bookmarkWorkout(
+    workoutId: string,
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<JustGainsBasicResponse>> {
+    const req = this.createRequest('PUT');
+    const mapped = req.prepareArgs({ workoutId: [workoutId, string()] });
+    req.appendTemplatePath`/workouts/${mapped.workoutId}/bookmark`;
+    req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
+    req.throwOn(401, ApiError, '');
+    req.throwOn(404, JustGainsErrorResponseError, 'Workout not found');
+    req.authenticate([]);
+    return req.callAsJson(justGainsBasicResponseSchema, requestOptions);
+  }
+
+  /**
+   * Removes the specified workout from the current user's bookmarks. If the workout is not bookmarked,
+   * the request is idempotent and will not result in an error.
+   *
+   * @param workoutId The unique identifier of the workout to remove from bookmarks
+   * @return Response from the API call
+   */
+  async removeWorkoutBookmark(
+    workoutId: string,
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<JustGainsBasicResponse>> {
+    const req = this.createRequest('DELETE');
+    const mapped = req.prepareArgs({ workoutId: [workoutId, string()] });
+    req.appendTemplatePath`/workouts/${mapped.workoutId}/bookmark`;
+    req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
+    req.throwOn(401, ApiError, '');
+    req.throwOn(404, JustGainsErrorResponseError, 'Workout not found');
+    req.authenticate([]);
+    return req.callAsJson(justGainsBasicResponseSchema, requestOptions);
   }
 
   /**
@@ -100,13 +189,13 @@ export class WorkoutsController extends BaseController {
    * @return Response from the API call
    */
   async duplicateAWorkout(
-    workoutId: number,
+    workoutId: string,
     body: WorkoutsDuplicateRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<WorkoutResponse>> {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({
-      workoutId: [workoutId, number()],
+      workoutId: [workoutId, string()],
       body: [body, workoutsDuplicateRequestSchema],
     });
     req.header('Content-Type', 'application/json');

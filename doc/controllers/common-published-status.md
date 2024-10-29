@@ -92,9 +92,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 
 ```ts
 const body: PublishedStatus = {
-  publishedStatusCode: 'PUBLISHED',
   userRoleAccess: 'ADMIN,USER',
-  publishedStatusName: 'Published',
 };
 
 try {
@@ -142,9 +140,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 const publishedStatusCode = 'publishedStatusCode2';
 
 const body: PublishedStatus = {
-  publishedStatusCode: 'PUBLISHED',
   userRoleAccess: 'ADMIN,USER',
-  publishedStatusName: 'Published',
 };
 
 try {

@@ -15,6 +15,10 @@ const workoutsController = new WorkoutsController(client);
 * [Get a Paginated List of Workouts](../../doc/controllers/workouts.md#get-a-paginated-list-of-workouts)
 * [Create a New Workout](../../doc/controllers/workouts.md#create-a-new-workout)
 * [Get a Workout by ID](../../doc/controllers/workouts.md#get-a-workout-by-id)
+* [Update a Workout by ID](../../doc/controllers/workouts.md#update-a-workout-by-id)
+* [Get a Workout by Workout Slug](../../doc/controllers/workouts.md#get-a-workout-by-workout-slug)
+* [Bookmark Workout](../../doc/controllers/workouts.md#bookmark-workout)
+* [Remove Workout Bookmark](../../doc/controllers/workouts.md#remove-workout-bookmark)
 * [Duplicate a Workout](../../doc/controllers/workouts.md#duplicate-a-workout)
 
 
@@ -78,7 +82,7 @@ try {
 # Create a New Workout
 
 ```ts
-async createANewWorkout(  body: Workout,
+async createANewWorkout(  body: WorkoutRequest,
 requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ```
 
@@ -86,7 +90,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`Workout`](../../doc/models/workout.md) | Body, Required | - |
+| `body` | [`WorkoutRequest`](../../doc/models/workout-request.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -96,13 +100,9 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ## Example Usage
 
 ```ts
-const body: Workout = {
-  workoutId: 1234,
+const body: WorkoutRequest = {
   workoutTitle: 'Full Body Strength Training',
-  updatedAt: '07/08/2023 14:30:00',
-  lastUsedAt: '07/07/2023 09:15:00',
-  totalUses: 15,
-  averageRating: 4.7,
+  workoutSlug: 'full-body-strength-training',
 };
 
 try {
@@ -127,7 +127,7 @@ try {
 # Get a Workout by ID
 
 ```ts
-async getAWorkoutByID(  workoutId: number,
+async getAWorkoutByID(  workoutId: string,
 requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ```
 
@@ -135,7 +135,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `workoutId` | `number` | Template, Required | - |
+| `workoutId` | `string` | Template, Required | The ID of the workout to retrieve |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -145,7 +145,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ## Example Usage
 
 ```ts
-const workoutId = 250;
+const workoutId = '9f897bfa-716d-4caa-b8fb-20bf3f2f3416';
 
 try {
   const { result, ...httpResponse } = await workoutsController.getAWorkoutByID(workoutId);
@@ -166,12 +166,209 @@ try {
 | 404 | Workout not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 
 
+# Update a Workout by ID
+
+```ts
+async updateAWorkoutByID(  workoutId: string,
+  body: WorkoutUpdate,
+requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `workoutId` | `string` | Template, Required | The ID of the workout to update |
+| `body` | [`WorkoutUpdate`](../../doc/models/workout-update.md) | Body, Required | - |
+| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Response Type
+
+[`WorkoutResponse`](../../doc/models/workout-response.md)
+
+## Example Usage
+
+```ts
+const workoutId = '9f897bfa-716d-4caa-b8fb-20bf3f2f3416';
+
+const body: WorkoutUpdate = {
+  workoutTitle: 'Full Body Strength Training',
+  workoutSlug: 'full-body-strength-training',
+  tags: [
+    'strength',
+    'fullbody',
+    'beginner'
+  ],
+};
+
+try {
+  const { result, ...httpResponse } = await workoutsController.updateAWorkoutByID(
+  workoutId,
+  body
+);
+  // Get more response info...
+  // const { statusCode, headers } = httpResponse;
+} catch (error) {
+  if (error instanceof ApiError) {
+    const errors = error.result;
+    // const { statusCode, headers } = error;
+  }
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Invalid workout data | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 403 | Permission denied | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Workout not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+
+
+# Get a Workout by Workout Slug
+
+```ts
+async getAWorkoutByWorkoutSlug(  workoutSlug: string,
+requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `workoutSlug` | `string` | Template, Required | The URL slug of the workout |
+| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Response Type
+
+[`WorkoutResponse`](../../doc/models/workout-response.md)
+
+## Example Usage
+
+```ts
+const workoutSlug = 'full-body-strength-training';
+
+try {
+  const { result, ...httpResponse } = await workoutsController.getAWorkoutByWorkoutSlug(workoutSlug);
+  // Get more response info...
+  // const { statusCode, headers } = httpResponse;
+} catch (error) {
+  if (error instanceof ApiError) {
+    const errors = error.result;
+    // const { statusCode, headers } = error;
+  }
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 404 | Workout not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+
+
+# Bookmark Workout
+
+Adds the specified workout to the current user's bookmarks. If the workout is already bookmarked, the request is idempotent and will not create a duplicate.
+
+:information_source: **Note** This endpoint does not require authentication.
+
+```ts
+async bookmarkWorkout(  workoutId: string,
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `workoutId` | `string` | Template, Required | The unique identifier of the workout to bookmark |
+| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Response Type
+
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
+
+## Example Usage
+
+```ts
+const workoutId = '00000e9a-0000-0000-0000-000000000000';
+
+try {
+  const { result, ...httpResponse } = await workoutsController.bookmarkWorkout(workoutId);
+  // Get more response info...
+  // const { statusCode, headers } = httpResponse;
+} catch (error) {
+  if (error instanceof ApiError) {
+    const errors = error.result;
+    // const { statusCode, headers } = error;
+  }
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 401 | - | `ApiError` |
+| 404 | Workout not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+
+
+# Remove Workout Bookmark
+
+Removes the specified workout from the current user's bookmarks. If the workout is not bookmarked, the request is idempotent and will not result in an error.
+
+:information_source: **Note** This endpoint does not require authentication.
+
+```ts
+async removeWorkoutBookmark(  workoutId: string,
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `workoutId` | `string` | Template, Required | The unique identifier of the workout to remove from bookmarks |
+| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Response Type
+
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
+
+## Example Usage
+
+```ts
+const workoutId = '00000e9a-0000-0000-0000-000000000000';
+
+try {
+  const { result, ...httpResponse } = await workoutsController.removeWorkoutBookmark(workoutId);
+  // Get more response info...
+  // const { statusCode, headers } = httpResponse;
+} catch (error) {
+  if (error instanceof ApiError) {
+    const errors = error.result;
+    // const { statusCode, headers } = error;
+  }
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 401 | - | `ApiError` |
+| 404 | Workout not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+
+
 # Duplicate a Workout
 
 Creates a copy of an existing workout, preserving creator credits and adding the current user as a new contributor.
 
 ```ts
-async duplicateAWorkout(  workoutId: number,
+async duplicateAWorkout(  workoutId: string,
   body: WorkoutsDuplicateRequest,
 requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ```
@@ -180,7 +377,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `workoutId` | `number` | Template, Required | The ID of the workout to duplicate |
+| `workoutId` | `string` | Template, Required | The ID of the workout to duplicate |
 | `body` | [`WorkoutsDuplicateRequest`](../../doc/models/workouts-duplicate-request.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
@@ -191,7 +388,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ## Example Usage
 
 ```ts
-const workoutId = 250;
+const workoutId = '9f897bfa-716d-4caa-b8fb-20bf3f2f3416';
 
 const body: WorkoutsDuplicateRequest = {
   newWorkoutTitle: 'My Modified Full Body Workout',

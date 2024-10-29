@@ -21,7 +21,7 @@ describe('UsersCreatorProfilesController', () => {
     const limit = 20;
 
     const response = await makeApiCall(
-      () => controller.getCreatorProfiles(page, undefined, limit)
+      () => controller.getCreatorProfiles(page, undefined, limit, undefined)
     );
 
     expect(response.statusCode).toBe(200);

@@ -80,7 +80,6 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```ts
 const body: Equipment = {
   equipmentCode: 'BARBELL',
-  equipmentName: 'Barbell',
   equipmentEquipmentGroups: [
     'WEIGHTS',
     'FREE_WEIGHTS'
@@ -184,7 +183,6 @@ const equipmentCode = 'equipmentCode6';
 
 const body: Equipment = {
   equipmentCode: 'BARBELL',
-  equipmentName: 'Barbell',
   equipmentEquipmentGroups: [
     'WEIGHTS',
     'FREE_WEIGHTS'
