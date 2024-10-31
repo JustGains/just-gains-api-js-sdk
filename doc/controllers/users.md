@@ -107,8 +107,8 @@ try {
 
 ```ts
 async updateAUser(  userId: string,
-  body: UserWithoutCreatorProfile,
-requestOptions?: RequestOptions): Promise<ApiResponse<UserWithoutCreatorProfileResponse>>
+  body: UpdateUserRequest,
+requestOptions?: RequestOptions): Promise<ApiResponse<UserResponse>>
 ```
 
 ## Parameters
@@ -116,30 +116,21 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UserWithoutCreatorProfileR
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `userId` | `string` | Template, Required | - |
-| `body` | [`UserWithoutCreatorProfile`](../../doc/models/user-without-creator-profile.md) | Body, Required | - |
+| `body` | [`UpdateUserRequest`](../../doc/models/update-user-request.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
 
-[`UserWithoutCreatorProfileResponse`](../../doc/models/user-without-creator-profile-response.md)
+[`UserResponse`](../../doc/models/user-response.md)
 
 ## Example Usage
 
 ```ts
 const userId = 'userId0';
 
-const body: UserWithoutCreatorProfile = {
-  userId: '123e4567-e89b-12d3-a456-426614174000',
-  userName: 'fitness_enthusiast_42',
+const body: UpdateUserRequest = {
+  creatorProfileId: '123e4567-e89b-12d3-a456-426614174000',
   email: 'jane.doe@example.com',
-  password: '$2a$10$Ks6Qr5Yl.Y5iY5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5',
-  firstName: 'Jane',
-  lastName: 'Doe',
-  fullName: 'Jane Doe',
-  oAuthProvider: 'Google',
-  roles: [
-    'user'
-  ],
 };
 
 try {

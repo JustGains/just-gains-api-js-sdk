@@ -29,7 +29,7 @@ const authenticationController = new AuthenticationController(client);
 # Get User Info
 
 ```ts
-async getUserInfo(requestOptions?: RequestOptions): Promise<ApiResponse<UserInfoResponse>>
+async getUserInfo(requestOptions?: RequestOptions): Promise<ApiResponse<UserResponse>>
 ```
 
 ## Parameters
@@ -40,7 +40,7 @@ async getUserInfo(requestOptions?: RequestOptions): Promise<ApiResponse<UserInfo
 
 ## Response Type
 
-[`UserInfoResponse`](../../doc/models/user-info-response.md)
+[`UserResponse`](../../doc/models/user-response.md)
 
 ## Example Usage
 
@@ -86,11 +86,8 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 
 ```ts
 const body: UpdateUserRequest = {
-  userId: '123e4567-e89b-12d3-a456-426614174000',
+  creatorProfileId: '123e4567-e89b-12d3-a456-426614174000',
   email: 'jane.doe@example.com',
-  firstName: 'Jane',
-  lastName: 'Doe',
-  fullName: 'Jane Doe',
 };
 
 try {
@@ -118,7 +115,7 @@ try {
 
 ```ts
 async registerUser(  body: UserRegisterRequest,
-requestOptions?: RequestOptions): Promise<ApiResponse<UserInfoResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<UserResponse>>
 ```
 
 ## Parameters
@@ -130,7 +127,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UserInfoResponse>>
 
 ## Response Type
 
-[`UserInfoResponse`](../../doc/models/user-info-response.md)
+[`UserResponse`](../../doc/models/user-response.md)
 
 ## Example Usage
 

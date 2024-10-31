@@ -7,22 +7,13 @@
 import { object, optional, Schema, string } from '../schema';
 
 export interface UpdateUserRequest {
-  /** Unique identifier for the user. */
-  userId?: string;
+  /** Unique identifier for the creator profile. */
+  creatorProfileId?: string;
   /** The user's email address. */
   email?: string;
-  /** The user's first name. */
-  firstName?: string;
-  /** The user's last name. */
-  lastName?: string;
-  /** The user's full name, typically a combination of first and last name. */
-  fullName?: string;
 }
 
 export const updateUserRequestSchema: Schema<UpdateUserRequest> = object({
-  userId: ['userId', optional(string())],
+  creatorProfileId: ['creatorProfileId', optional(string())],
   email: ['email', optional(string())],
-  firstName: ['firstName', optional(string())],
-  lastName: ['lastName', optional(string())],
-  fullName: ['fullName', optional(string())],
 });

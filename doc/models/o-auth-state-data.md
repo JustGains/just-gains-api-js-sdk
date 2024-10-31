@@ -1,16 +1,18 @@
 
-# Data 2
+# O Auth State Data
+
+Data object containing OAuth state information
 
 ## Structure
 
-`Data2`
+`OAuthStateData`
 
 ## Fields
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `uri` | `string \| undefined` | Optional | The authorization URL to redirect the user to |
-| `pkceVerifier` | `string \| undefined` | Optional | The PKCE verifier code for the OAuth flow |
+| `uri` | `string` | Required | The authorization URL to redirect the user to |
+| `pkceVerifier` | `string` | Required | The PKCE verifier code for the OAuth flow |
 
 ## Example (as JSON)
 

@@ -1,9 +1,11 @@
 
-# Data 1
+# Auth Data
+
+Authentication data containing tokens and user information
 
 ## Structure
 
-`Data1`
+`AuthData`
 
 ## Fields
 
@@ -12,21 +14,21 @@
 | `accessToken` | `string \| undefined` | Optional | JWT access token for authenticated requests |
 | `refreshToken` | `string \| undefined` | Optional | JWT refresh token for obtaining new access tokens |
 | `tokenExpiration` | `string \| undefined` | Optional | Expiration time of the access token |
-| `userInfo` | [`UserInfo \| undefined`](../../doc/models/user-info.md) | Optional | User information object |
+| `userInfo` | [`User \| undefined`](../../doc/models/user.md) | Optional | Represents a user in the system. |
 
 ## Example (as JSON)
 
 ```json
 {
-  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "tokenExpiration": "06/15/2023 14:30:00",
+  "accessToken": "accessToken8",
+  "refreshToken": "refreshToken8",
+  "tokenExpiration": "tokenExpiration4",
   "userInfo": {
-    "id": "00000bce-0000-0000-0000-000000000000",
-    "email": "email4",
+    "userId": "0000084a-0000-0000-0000-000000000000",
     "userName": "userName4",
-    "firstName": "firstName2",
-    "lastName": "lastName6"
+    "emailConfirmed": false,
+    "email": "email4",
+    "password": "password6"
   }
 }
 ```

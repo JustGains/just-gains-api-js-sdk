@@ -9,25 +9,32 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
-| `message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `data` | [`Data3`](../../doc/models/data-3.md) | Required | - |
+| `data` | [`AuthData \| undefined`](../../doc/models/auth-data.md) | Optional | Authentication data containing tokens and user information |
+| `status` | `unknown \| undefined` | Optional | - |
+| `message` | `unknown \| undefined` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "status": "OK",
-  "message": "Operation completed successfully.",
+  "status": {
+    "key1": "val1",
+    "key2": "val2"
+  },
+  "message": {
+    "key1": "val1",
+    "key2": "val2"
+  },
   "data": {
     "accessToken": "accessToken8",
     "refreshToken": "refreshToken8",
-    "user": {
-      "id": "0000143c-0000-0000-0000-000000000000",
-      "email": "email6",
-      "userName": "userName2",
-      "firstName": "firstName4",
-      "lastName": "lastName4"
+    "tokenExpiration": "tokenExpiration4",
+    "userInfo": {
+      "userId": "0000084a-0000-0000-0000-000000000000",
+      "userName": "userName4",
+      "emailConfirmed": false,
+      "email": "email4",
+      "password": "password6"
     }
   }
 }

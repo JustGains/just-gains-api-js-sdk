@@ -5,22 +5,23 @@
  */
 
 import { lazy, object, optional, Schema, string } from '../schema';
-import { UserInfo, userInfoSchema } from './userInfo';
+import { User, userSchema } from './user';
 
-export interface Data1 {
+/** Authentication data containing tokens and user information */
+export interface AuthData {
   /** JWT access token for authenticated requests */
   accessToken?: string;
   /** JWT refresh token for obtaining new access tokens */
   refreshToken?: string;
   /** Expiration time of the access token */
   tokenExpiration?: string;
-  /** User information object */
-  userInfo?: UserInfo;
+  /** Represents a user in the system. */
+  userInfo?: User;
 }
 
-export const data1Schema: Schema<Data1> = object({
+export const authDataSchema: Schema<AuthData> = object({
   accessToken: ['accessToken', optional(string())],
   refreshToken: ['refreshToken', optional(string())],
   tokenExpiration: ['tokenExpiration', optional(string())],
-  userInfo: ['userInfo', optional(lazy(() => userInfoSchema))],
+  userInfo: ['userInfo', optional(lazy(() => userSchema))],
 });

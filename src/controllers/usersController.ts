@@ -14,18 +14,14 @@ import {
   justGainsResponseSchema,
 } from '../models/justGainsResponse';
 import {
+  UpdateUserRequest,
+  updateUserRequestSchema,
+} from '../models/updateUserRequest';
+import {
   UserInfoListResponse,
   userInfoListResponseSchema,
 } from '../models/userInfoListResponse';
 import { UserResponse, userResponseSchema } from '../models/userResponse';
-import {
-  UserWithoutCreatorProfile,
-  userWithoutCreatorProfileSchema,
-} from '../models/userWithoutCreatorProfile';
-import {
-  UserWithoutCreatorProfileResponse,
-  userWithoutCreatorProfileResponseSchema,
-} from '../models/userWithoutCreatorProfileResponse';
 import { string } from '../schema';
 import { BaseController } from './baseController';
 import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseError';
@@ -70,13 +66,13 @@ export class UsersController extends BaseController {
    */
   async updateAUser(
     userId: string,
-    body: UserWithoutCreatorProfile,
+    body: UpdateUserRequest,
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<UserWithoutCreatorProfileResponse>> {
+  ): Promise<ApiResponse<UserResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
       userId: [userId, string()],
-      body: [body, userWithoutCreatorProfileSchema],
+      body: [body, updateUserRequestSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -84,10 +80,7 @@ export class UsersController extends BaseController {
     req.throwOn(400, JustGainsErrorResponseError, 'Invalid user data');
     req.throwOn(404, JustGainsErrorResponseError, 'User not found');
     req.authenticate([{ bearerAuth: true }]);
-    return req.callAsJson(
-      userWithoutCreatorProfileResponseSchema,
-      requestOptions
-    );
+    return req.callAsJson(userResponseSchema, requestOptions);
   }
 
   /**

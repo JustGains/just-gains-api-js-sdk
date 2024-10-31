@@ -9,16 +9,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
-| `message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `data` | [`Data4`](../../doc/models/data-4.md) | Required | - |
+| `data` | [`OAuthSettingsData \| undefined`](../../doc/models/o-auth-settings-data.md) | Optional | Data object containing OAuth provider settings |
+| `status` | `unknown \| undefined` | Optional | - |
+| `message` | `unknown \| undefined` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "status": "OK",
-  "message": "Operation completed successfully.",
+  "status": {
+    "key1": "val1",
+    "key2": "val2"
+  },
+  "message": {
+    "key1": "val1",
+    "key2": "val2"
+  },
   "data": {
     "clientId": "clientId4",
     "authorizeUrl": "authorizeUrl6",

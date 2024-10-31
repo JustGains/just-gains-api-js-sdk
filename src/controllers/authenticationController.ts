@@ -54,10 +54,6 @@ import {
   updateUserRequestSchema,
 } from '../models/updateUserRequest';
 import {
-  UserInfoResponse,
-  userInfoResponseSchema,
-} from '../models/userInfoResponse';
-import {
   UserLoginRequest,
   userLoginRequestSchema,
 } from '../models/userLoginRequest';
@@ -65,6 +61,7 @@ import {
   UserRegisterRequest,
   userRegisterRequestSchema,
 } from '../models/userRegisterRequest';
+import { UserResponse, userResponseSchema } from '../models/userResponse';
 import { optional, string } from '../schema';
 import { BaseController } from './baseController';
 import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseError';
@@ -75,7 +72,7 @@ export class AuthenticationController extends BaseController {
    */
   async getUserInfo(
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<UserInfoResponse>> {
+  ): Promise<ApiResponse<UserResponse>> {
     const req = this.createRequest('GET', '/auth/user');
     req.throwOn(
       401,
@@ -83,7 +80,7 @@ export class AuthenticationController extends BaseController {
       'Failed to retrieve user information'
     );
     req.authenticate([{ bearerAuth: true }]);
-    return req.callAsJson(userInfoResponseSchema, requestOptions);
+    return req.callAsJson(userResponseSchema, requestOptions);
   }
 
   /**
@@ -114,14 +111,14 @@ export class AuthenticationController extends BaseController {
   async registerUser(
     body: UserRegisterRequest,
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<UserInfoResponse>> {
+  ): Promise<ApiResponse<UserResponse>> {
     const req = this.createRequest('POST', '/auth/signup');
     const mapped = req.prepareArgs({ body: [body, userRegisterRequestSchema] });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.throwOn(400, JustGainsErrorResponseError, 'Invalid parameters');
     req.authenticate([]);
-    return req.callAsJson(userInfoResponseSchema, requestOptions);
+    return req.callAsJson(userResponseSchema, requestOptions);
   }
 
   /**

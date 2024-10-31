@@ -9,19 +9,25 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
-| `message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `data` | [`Data2`](../../doc/models/data-2.md) | Required | - |
+| `data` | [`OAuthStateData \| undefined`](../../doc/models/o-auth-state-data.md) | Optional | Data object containing OAuth state information |
+| `message` | `unknown \| undefined` | Optional | - |
+| `status` | `unknown \| undefined` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "status": "OK",
-  "message": "Operation completed successfully.",
+  "message": {
+    "key1": "val1",
+    "key2": "val2"
+  },
+  "status": {
+    "key1": "val1",
+    "key2": "val2"
+  },
   "data": {
-    "uri": "https://oauth-provider.com/auth?client_id=123&redirect_uri=...",
-    "pkceVerifier": "dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk"
+    "uri": "uri4",
+    "pkceVerifier": "pkceVerifier2"
   }
 }
 ```
