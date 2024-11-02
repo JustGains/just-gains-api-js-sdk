@@ -16,6 +16,7 @@ const workoutsController = new WorkoutsController(client);
 * [Create a New Workout](../../doc/controllers/workouts.md#create-a-new-workout)
 * [Get a Workout by ID](../../doc/controllers/workouts.md#get-a-workout-by-id)
 * [Update a Workout by ID](../../doc/controllers/workouts.md#update-a-workout-by-id)
+* [Delete a Workout](../../doc/controllers/workouts.md#delete-a-workout)
 * [Get a Workout by Workout Slug](../../doc/controllers/workouts.md#get-a-workout-by-workout-slug)
 * [Bookmark Workout](../../doc/controllers/workouts.md#bookmark-workout)
 * [Remove Workout Bookmark](../../doc/controllers/workouts.md#remove-workout-bookmark)
@@ -221,6 +222,52 @@ try {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Invalid workout data | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 403 | Permission denied | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+| 404 | Workout not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
+
+
+# Delete a Workout
+
+Soft-deletes a workout and all associated data
+
+```ts
+async deleteAWorkout(  workoutId: string,
+requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `workoutId` | `string` | Template, Required | The ID of the workout to delete |
+| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Response Type
+
+[`WorkoutResponse`](../../doc/models/workout-response.md)
+
+## Example Usage
+
+```ts
+const workoutId = '9f897bfa-716d-4caa-b8fb-20bf3f2f3416';
+
+try {
+  const { result, ...httpResponse } = await workoutsController.deleteAWorkout(workoutId);
+  // Get more response info...
+  // const { statusCode, headers } = httpResponse;
+} catch (error) {
+  if (error instanceof ApiError) {
+    const errors = error.result;
+    // const { statusCode, headers } = error;
+  }
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Invalid workout ID format | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 | 403 | Permission denied | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 | 404 | Workout not found | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

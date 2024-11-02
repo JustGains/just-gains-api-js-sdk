@@ -123,6 +123,26 @@ export class WorkoutsController extends BaseController {
   }
 
   /**
+   * Soft-deletes a workout and all associated data
+   *
+   * @param workoutId The ID of the workout to delete
+   * @return Response from the API call
+   */
+  async deleteAWorkout(
+    workoutId: string,
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<WorkoutResponse>> {
+    const req = this.createRequest('DELETE');
+    const mapped = req.prepareArgs({ workoutId: [workoutId, string()] });
+    req.appendTemplatePath`/workouts/${mapped.workoutId}`;
+    req.throwOn(400, JustGainsErrorResponseError, 'Invalid workout ID format');
+    req.throwOn(403, JustGainsErrorResponseError, 'Permission denied');
+    req.throwOn(404, JustGainsErrorResponseError, 'Workout not found');
+    req.authenticate([{ bearerAuth: true }]);
+    return req.callAsJson(workoutResponseSchema, requestOptions);
+  }
+
+  /**
    * @param workoutSlug The URL slug of the workout
    * @return Response from the API call
    */

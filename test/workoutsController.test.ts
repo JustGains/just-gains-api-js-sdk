@@ -52,6 +52,20 @@ describe('WorkoutsController', () => {
     expectHeadersToMatch(response.headers, expectedHeaders);
   });
 
+  it('should Test Delete a workout', async () => {
+    const workoutId = '9f897bfa-716d-4caa-b8fb-20bf3f2f3416';
+
+    const response = await makeApiCall(
+      () => controller.deleteAWorkout(workoutId)
+    );
+
+    expect(response.statusCode).toBe(204);
+
+    const expectedHeaders = { 'Content-Type': ['application/json', true] };
+
+    expectHeadersToMatch(response.headers, expectedHeaders);
+  });
+
   it('should Test Get a workout by workout slug', async () => {
     const workoutSlug = 'full-body-strength-training';
 
