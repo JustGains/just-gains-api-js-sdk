@@ -9,6 +9,10 @@ import {
   JustGainsBasicResponse,
   justGainsBasicResponseSchema,
 } from '../models/justGainsBasicResponse';
+import {
+  JustGainsResponse,
+  justGainsResponseSchema,
+} from '../models/justGainsResponse';
 import { SortOrderEnum, sortOrderEnumSchema } from '../models/sortOrderEnum';
 import { WorkoutRequest, workoutRequestSchema } from '../models/workoutRequest';
 import {
@@ -131,7 +135,7 @@ export class WorkoutsController extends BaseController {
   async deleteAWorkout(
     workoutId: string,
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<WorkoutResponse>> {
+  ): Promise<ApiResponse<JustGainsResponse>> {
     const req = this.createRequest('DELETE');
     const mapped = req.prepareArgs({ workoutId: [workoutId, string()] });
     req.appendTemplatePath`/workouts/${mapped.workoutId}`;
@@ -139,7 +143,7 @@ export class WorkoutsController extends BaseController {
     req.throwOn(403, JustGainsErrorResponseError, 'Permission denied');
     req.throwOn(404, JustGainsErrorResponseError, 'Workout not found');
     req.authenticate([{ bearerAuth: true }]);
-    return req.callAsJson(workoutResponseSchema, requestOptions);
+    return req.callAsJson(justGainsResponseSchema, requestOptions);
   }
 
   /**

@@ -232,7 +232,7 @@ Soft-deletes a workout and all associated data
 
 ```ts
 async deleteAWorkout(  workoutId: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 ```
 
 ## Parameters
@@ -244,7 +244,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 
 ## Response Type
 
-[`WorkoutResponse`](../../doc/models/workout-response.md)
+[`JustGainsResponse`](../../doc/models/just-gains-response.md)
 
 ## Example Usage
 
