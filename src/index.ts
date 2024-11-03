@@ -55,10 +55,12 @@ export type { ConfirmEmailRequest } from './models/confirmEmailRequest';
 export { ContributionTypeEnum } from './models/contributionTypeEnum';
 export type { CreatorCredit } from './models/creatorCredit';
 export type { CreatorProfile } from './models/creatorProfile';
+export type { CreatorProfile2 } from './models/creatorProfile2';
 export type { CreatorProfileListResponse } from './models/creatorProfileListResponse';
 export type { CreatorProfileResponse } from './models/creatorProfileResponse';
 export type { CreatorSocialMediaAccount } from './models/creatorSocialMediaAccount';
 export type { Data } from './models/data';
+export type { Data1 } from './models/data1';
 export type { Equipment } from './models/equipment';
 export type { EquipmentGroup } from './models/equipmentGroup';
 export type { EquipmentGroupListResponse } from './models/equipmentGroupListResponse';
@@ -179,4 +181,3 @@ export type { WorkoutsDuplicateRequest } from './models/workoutsDuplicateRequest
 export type { WorkoutSummary } from './models/workoutSummary';
 export type { WorkoutTableItem } from './models/workoutTableItem';
 export type { WorkoutTableListResponse } from './models/workoutTableListResponse';
-export type { WorkoutUpdate } from './models/workoutUpdate';

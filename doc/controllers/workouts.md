@@ -82,6 +82,8 @@ try {
 
 # Create a New Workout
 
+Creates a new workout with the provided data. Requires authentication. All fields are optional and update based on what's submitted.
+
 ```ts
 async createANewWorkout(  body: WorkoutRequest,
 requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
@@ -103,7 +105,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ```ts
 const body: WorkoutRequest = {
   workoutTitle: 'Full Body Strength Training',
-  workoutSlug: 'full-body-strength-training',
+  workoutContent: {  },
 };
 
 try {
@@ -169,9 +171,11 @@ try {
 
 # Update a Workout by ID
 
+Updates an existing workout with the provided data. Requires authentication. All fields are optional and update based on what's submitted.
+
 ```ts
 async updateAWorkoutByID(  workoutId: string,
-  body: WorkoutUpdate,
+  body: WorkoutRequest,
 requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ```
 
@@ -180,7 +184,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `workoutId` | `string` | Template, Required | The ID of the workout to update |
-| `body` | [`WorkoutUpdate`](../../doc/models/workout-update.md) | Body, Required | - |
+| `body` | [`WorkoutRequest`](../../doc/models/workout-request.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
 ## Response Type
@@ -192,14 +196,9 @@ requestOptions?: RequestOptions): Promise<ApiResponse<WorkoutResponse>>
 ```ts
 const workoutId = '9f897bfa-716d-4caa-b8fb-20bf3f2f3416';
 
-const body: WorkoutUpdate = {
+const body: WorkoutRequest = {
   workoutTitle: 'Full Body Strength Training',
-  workoutSlug: 'full-body-strength-training',
-  tags: [
-    'strength',
-    'fullbody',
-    'beginner'
-  ],
+  workoutContent: {  },
 };
 
 try {
@@ -232,7 +231,7 @@ Soft-deletes a workout and all associated data
 
 ```ts
 async deleteAWorkout(  workoutId: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsBasicResponse>>
 ```
 
 ## Parameters
@@ -244,7 +243,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<JustGainsResponse>>
 
 ## Response Type
 
-[`JustGainsResponse`](../../doc/models/just-gains-response.md)
+[`JustGainsBasicResponse`](../../doc/models/just-gains-basic-response.md)
 
 ## Example Usage
 

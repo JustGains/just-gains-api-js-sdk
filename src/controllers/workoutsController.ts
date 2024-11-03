@@ -9,10 +9,6 @@ import {
   JustGainsBasicResponse,
   justGainsBasicResponseSchema,
 } from '../models/justGainsBasicResponse';
-import {
-  JustGainsResponse,
-  justGainsResponseSchema,
-} from '../models/justGainsResponse';
 import { SortOrderEnum, sortOrderEnumSchema } from '../models/sortOrderEnum';
 import { WorkoutRequest, workoutRequestSchema } from '../models/workoutRequest';
 import {
@@ -27,7 +23,6 @@ import {
   WorkoutTableListResponse,
   workoutTableListResponseSchema,
 } from '../models/workoutTableListResponse';
-import { WorkoutUpdate, workoutUpdateSchema } from '../models/workoutUpdate';
 import { number, optional, string } from '../schema';
 import { BaseController } from './baseController';
 import { ApiError } from '@apimatic/core';
@@ -69,6 +64,9 @@ export class WorkoutsController extends BaseController {
   }
 
   /**
+   * Creates a new workout with the provided data. Requires authentication. All fields are optional and
+   * update based on what's submitted.
+   *
    * @param body
    * @return Response from the API call
    */
@@ -102,19 +100,22 @@ export class WorkoutsController extends BaseController {
   }
 
   /**
+   * Updates an existing workout with the provided data. Requires authentication. All fields are optional
+   * and update based on what's submitted.
+   *
    * @param workoutId    The ID of the workout to update
    * @param body
    * @return Response from the API call
    */
   async updateAWorkoutByID(
     workoutId: string,
-    body: WorkoutUpdate,
+    body: WorkoutRequest,
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<WorkoutResponse>> {
     const req = this.createRequest('PUT');
     const mapped = req.prepareArgs({
       workoutId: [workoutId, string()],
-      body: [body, workoutUpdateSchema],
+      body: [body, workoutRequestSchema],
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
@@ -135,7 +136,7 @@ export class WorkoutsController extends BaseController {
   async deleteAWorkout(
     workoutId: string,
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<JustGainsResponse>> {
+  ): Promise<ApiResponse<JustGainsBasicResponse>> {
     const req = this.createRequest('DELETE');
     const mapped = req.prepareArgs({ workoutId: [workoutId, string()] });
     req.appendTemplatePath`/workouts/${mapped.workoutId}`;
@@ -143,7 +144,7 @@ export class WorkoutsController extends BaseController {
     req.throwOn(403, JustGainsErrorResponseError, 'Permission denied');
     req.throwOn(404, JustGainsErrorResponseError, 'Workout not found');
     req.authenticate([{ bearerAuth: true }]);
-    return req.callAsJson(justGainsResponseSchema, requestOptions);
+    return req.callAsJson(justGainsBasicResponseSchema, requestOptions);
   }
 
   /**

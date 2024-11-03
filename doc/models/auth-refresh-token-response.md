@@ -9,22 +9,16 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `data` | [`AuthData \| undefined`](../../doc/models/auth-data.md) | Optional | Authentication data containing tokens and user information |
-| `status` | `unknown \| undefined` | Optional | - |
-| `message` | `unknown \| undefined` | Optional | - |
+| `status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
+| `message` | `string` | Required | A human-readable message describing the result of the operation. |
+| `data` | [`Data`](../../doc/models/data.md) | Required | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "status": {
-    "key1": "val1",
-    "key2": "val2"
-  },
-  "message": {
-    "key1": "val1",
-    "key2": "val2"
-  },
+  "status": "OK",
+  "message": "Operation completed successfully.",
   "data": {
     "accessToken": "accessToken8",
     "refreshToken": "refreshToken8",

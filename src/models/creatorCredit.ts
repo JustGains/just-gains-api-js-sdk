@@ -9,7 +9,7 @@ import {
   ContributionTypeEnum,
   contributionTypeEnumSchema,
 } from './contributionTypeEnum';
-import { CreatorProfile, creatorProfileSchema } from './creatorProfile';
+import { CreatorProfile2, creatorProfile2Schema } from './creatorProfile2';
 
 /** Represents a creator credit for a workout. */
 export interface CreatorCredit {
@@ -19,8 +19,7 @@ export interface CreatorCredit {
   workoutSourceURL?: string;
   /** Type of contribution made by the creator. */
   contributionType?: ContributionTypeEnum;
-  /** Represents a creator's profile information. */
-  creatorProfile?: CreatorProfile;
+  creatorProfile?: CreatorProfile2;
 }
 
 export const creatorCreditSchema: Schema<CreatorCredit> = object({
@@ -29,6 +28,6 @@ export const creatorCreditSchema: Schema<CreatorCredit> = object({
   contributionType: ['contributionType', optional(contributionTypeEnumSchema)],
   creatorProfile: [
     'creatorProfile',
-    optional(lazy(() => creatorProfileSchema)),
+    optional(lazy(() => creatorProfile2Schema)),
   ],
 });
