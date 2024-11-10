@@ -23,6 +23,10 @@ import {
   UsersRolesResponse,
   usersRolesResponseSchema,
 } from '../models/usersRolesResponse';
+import {
+  UsersRolesResponse1,
+  usersRolesResponse1Schema,
+} from '../models/usersRolesResponse1';
 import { array, string } from '../schema';
 import { BaseController } from './baseController';
 
@@ -56,12 +60,12 @@ export class UsersRolesController extends BaseController {
   async getUserRoles(
     userId: string,
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<UsersRolesResponse>> {
+  ): Promise<ApiResponse<UsersRolesResponse1>> {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({ userId: [userId, string()] });
     req.appendTemplatePath`/users/${mapped.userId}/roles`;
     req.authenticate([]);
-    return req.callAsJson(usersRolesResponseSchema, requestOptions);
+    return req.callAsJson(usersRolesResponse1Schema, requestOptions);
   }
 
   /**

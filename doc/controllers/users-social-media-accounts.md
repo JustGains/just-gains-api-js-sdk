@@ -15,6 +15,7 @@ const usersSocialMediaAccountsController = new UsersSocialMediaAccountsControlle
 * [Get Social Media Platform](../../doc/controllers/users-social-media-accounts.md#get-social-media-platform)
 * [Update Social Media Platform](../../doc/controllers/users-social-media-accounts.md#update-social-media-platform)
 * [Delete Social Media Platform](../../doc/controllers/users-social-media-accounts.md#delete-social-media-platform)
+* [Validate Social Media Username](../../doc/controllers/users-social-media-accounts.md#validate-social-media-username)
 
 
 # List Users Social Media Accounts
@@ -229,4 +230,55 @@ try {
   }
 }
 ```
+
+
+# Validate Social Media Username
+
+:information_source: **Note** This endpoint does not require authentication.
+
+```ts
+async validateSocialMediaUsername(  socialMediaPlatformCode: string,
+  username: string,
+requestOptions?: RequestOptions): Promise<ApiResponse<SocialMediaPlatformsValidateUsernameResponse>>
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `socialMediaPlatformCode` | `string` | Template, Required | The code of the social media platform to check against<br>**Constraints**: *Pattern*: `^[A-Z_]+$` |
+| `username` | `string` | Template, Required | The username to validate |
+| `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Response Type
+
+[`SocialMediaPlatformsValidateUsernameResponse`](../../doc/models/social-media-platforms-validate-username-response.md)
+
+## Example Usage
+
+```ts
+const socialMediaPlatformCode = 'INSTAGRAM';
+
+const username = 'fitness_guru';
+
+try {
+  const { result, ...httpResponse } = await usersSocialMediaAccountsController.validateSocialMediaUsername(
+  socialMediaPlatformCode,
+  username
+);
+  // Get more response info...
+  // const { statusCode, headers } = httpResponse;
+} catch (error) {
+  if (error instanceof ApiError) {
+    const errors = error.result;
+    // const { statusCode, headers } = error;
+  }
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad request | [`JustGainsErrorResponseError`](../../doc/models/just-gains-error-response-error.md) |
 

@@ -13,7 +13,7 @@ import {
   Schema,
   string,
 } from '../schema';
-import { CreatorProfile, creatorProfileSchema } from './creatorProfile';
+import { CreatorProfile1, creatorProfile1Schema } from './creatorProfile1';
 
 /** Represents a user in the system. */
 export interface User {
@@ -33,8 +33,7 @@ export interface User {
   roles?: string[];
   /** Timestamp of the user's last login */
   lastSignInAt?: string;
-  /** Represents a creator's profile information. */
-  creatorProfile?: CreatorProfile;
+  creatorProfile?: CreatorProfile1;
 }
 
 export const userSchema: Schema<User> = object({
@@ -48,6 +47,6 @@ export const userSchema: Schema<User> = object({
   lastSignInAt: ['LastSignInAt', optional(string())],
   creatorProfile: [
     'creatorProfile',
-    optional(lazy(() => creatorProfileSchema)),
+    optional(lazy(() => creatorProfile1Schema)),
   ],
 });

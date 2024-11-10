@@ -15,6 +15,10 @@ import {
 } from '../schema';
 import { ExerciseMuscle, exerciseMuscleSchema } from './exerciseMuscle';
 import { MediaAsset, mediaAssetSchema } from './mediaAsset';
+import {
+  RelatedExerciseListItem,
+  relatedExerciseListItemSchema,
+} from './relatedExerciseListItem';
 
 export interface ExerciseListItem {
   /** Unique identifier for the exercise. */
@@ -31,6 +35,7 @@ export interface ExerciseListItem {
   exerciseThumbnail?: MediaAsset;
   /** Array of metric codes associated with this exercise */
   exerciseMetrics?: string[];
+  relatedExercises?: RelatedExerciseListItem[];
   /** Used for sorting by most recently used exercises. */
   recentOrder?: number;
 }
@@ -50,5 +55,9 @@ export const exerciseListItemSchema: Schema<ExerciseListItem> = object({
     optional(lazy(() => mediaAssetSchema)),
   ],
   exerciseMetrics: ['exerciseMetrics', optional(array(string()))],
+  relatedExercises: [
+    'relatedExercises',
+    optional(array(lazy(() => relatedExerciseListItemSchema))),
+  ],
   recentOrder: ['recentOrder', optional(number())],
 });

@@ -11,7 +11,7 @@ import {
 } from './creatorSocialMediaAccount';
 import { MediaAsset, mediaAssetSchema } from './mediaAsset';
 
-export interface CreatorProfile2 {
+export interface CreatorProfile1 {
   /** Unique identifier for the creator profile. */
   creatorProfileId?: string;
   /** Associated user ID, if applicable. */
@@ -29,7 +29,7 @@ export interface CreatorProfile2 {
   socialMediaAccounts?: CreatorSocialMediaAccount[];
 }
 
-export const creatorProfile2Schema: Schema<CreatorProfile2> = object({
+export const creatorProfile1Schema: Schema<CreatorProfile1> = object({
   creatorProfileId: ['creatorProfileId', optional(string())],
   userId: ['userId', optional(string())],
   userName: ['userName', optional(string())],

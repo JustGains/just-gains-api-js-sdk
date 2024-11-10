@@ -16,13 +16,8 @@ describe('CommonPublishedStatusController', () => {
   });
 
   it('should Test getAllPublishedStatus', async () => {
-    const localeCodes: string[] = [
-      'en-US',
-      'es-ES'
-    ];
-
     const response = await makeApiCall(
-      () => controller.getAllPublishedStatus(undefined, localeCodes)
+      () => controller.getAllPublishedStatus()
     );
 
     expect(response.statusCode).toBe(200);

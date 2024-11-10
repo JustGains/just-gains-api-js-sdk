@@ -1,9 +1,9 @@
 
-# Published Status Translation List Response
+# Social Media Platforms Validate Username Response
 
 ## Structure
 
-`PublishedStatusTranslationListResponse`
+`SocialMediaPlatformsValidateUsernameResponse`
 
 ## Fields
 
@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `status` | `string` | Required | The status of the response, corresponding to standard HTTP status codes. |
 | `message` | `string` | Required | A human-readable message describing the result of the operation. |
-| `data` | [`PublishedStatusTranslation[]`](../../doc/models/published-status-translation.md) | Required | - |
+| `data` | [`Data2`](../../doc/models/data-2.md) | Required | - |
 
 ## Example (as JSON)
 
@@ -19,12 +19,12 @@
 {
   "status": "OK",
   "message": "Operation completed successfully.",
-  "data": [
-    {
-      "localeCode": "en-US",
-      "publishedStatusName": "Published"
-    }
-  ]
+  "data": {
+    "isAvailable": true,
+    "isValid": true,
+    "validation": "Valid",
+    "creatorProfileId": "123e4567-e89b-12d3-a456-426614174000"
+  }
 }
 ```
 

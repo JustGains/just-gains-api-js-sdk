@@ -26,4 +26,23 @@ describe('UsersSocialMediaAccountsController', () => {
 
     expectHeadersToMatch(response.headers, expectedHeaders);
   });
+
+  it('should Test validateSocialMediaUsername', async () => {
+    const socialMediaPlatformCode = 'INSTAGRAM';
+
+    const username = 'fitness_guru';
+
+    const response = await makeApiCall(
+      () => controller.validateSocialMediaUsername(
+        socialMediaPlatformCode,
+        username
+      )
+    );
+
+    expect(response.statusCode).toBe(200);
+
+    const expectedHeaders = { 'Content-Type': ['application/json', true] };
+
+    expectHeadersToMatch(response.headers, expectedHeaders);
+  });
 });

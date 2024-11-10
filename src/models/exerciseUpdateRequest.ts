@@ -23,6 +23,10 @@ import {
   PublishStatusCodeEnum,
   publishStatusCodeEnumSchema,
 } from './publishStatusCodeEnum';
+import {
+  RelatedExerciseListItem,
+  relatedExerciseListItemSchema,
+} from './relatedExerciseListItem';
 
 export interface ExerciseUpdateRequest {
   /** A unique identifier for the exercise. */
@@ -33,6 +37,7 @@ export interface ExerciseUpdateRequest {
   exerciseMuscles?: ExerciseMuscle[];
   /** Array of category codes associated with this exercise */
   exerciseCategories?: string[];
+  relatedExercises?: RelatedExerciseListItem[];
   /** The exerciseTypeCode of the exercise */
   exerciseTypeCode?: string;
   /** The publish status of the exercise */
@@ -65,6 +70,8 @@ export interface ExerciseUpdateRequest {
   isUnilateral?: boolean;
   /** Indicates if the exercise is bodyweight */
   isBodyweight?: boolean;
+  /** Indicates if the exercise is a variant. When true, the exercise won't show up without being searched. */
+  isVariant?: boolean;
   /** Admin notes for the exercise */
   adminNotes?: string;
 }
@@ -82,6 +89,10 @@ export const exerciseUpdateRequestSchema: Schema<ExerciseUpdateRequest> = object
       optional(array(lazy(() => exerciseMuscleSchema))),
     ],
     exerciseCategories: ['exerciseCategories', optional(array(string()))],
+    relatedExercises: [
+      'relatedExercises',
+      optional(array(lazy(() => relatedExerciseListItemSchema))),
+    ],
     exerciseTypeCode: ['exerciseTypeCode', optional(string())],
     publishStatusCode: [
       'publishStatusCode',
@@ -101,6 +112,7 @@ export const exerciseUpdateRequestSchema: Schema<ExerciseUpdateRequest> = object
     isWeighted: ['isWeighted', optional(boolean())],
     isUnilateral: ['isUnilateral', optional(boolean())],
     isBodyweight: ['isBodyweight', optional(boolean())],
+    isVariant: ['isVariant', optional(boolean())],
     adminNotes: ['adminNotes', optional(string())],
   }
 );

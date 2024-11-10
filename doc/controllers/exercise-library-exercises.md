@@ -149,6 +149,7 @@ const body: ExerciseUpdateRequest = {
   isWeighted: false,
   isUnilateral: true,
   isBodyweight: true,
+  isVariant: false,
   adminNotes: 'This exercise requires supervision.',
 };
 
@@ -275,6 +276,7 @@ const body: ExerciseUpdateRequest = {
   isWeighted: false,
   isUnilateral: true,
   isBodyweight: true,
+  isVariant: false,
   adminNotes: 'This exercise requires supervision.',
 };
 

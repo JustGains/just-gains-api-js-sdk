@@ -74,7 +74,7 @@ try {
 
 ```ts
 async getUserRoles(  userId: string,
-requestOptions?: RequestOptions): Promise<ApiResponse<UsersRolesResponse>>
+requestOptions?: RequestOptions): Promise<ApiResponse<UsersRolesResponse1>>
 ```
 
 ## Parameters
@@ -86,7 +86,7 @@ requestOptions?: RequestOptions): Promise<ApiResponse<UsersRolesResponse>>
 
 ## Response Type
 
-[`UsersRolesResponse`](../../doc/models/users-roles-response.md)
+[`UsersRolesResponse1`](../../doc/models/users-roles-response-1.md)
 
 ## Example Usage
 

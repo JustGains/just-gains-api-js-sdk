@@ -5,7 +5,7 @@
  */
 
 import { lazy, object, Schema, string } from '../schema';
-import { Data, dataSchema } from './data';
+import { AuthData, authDataSchema } from './authData';
 
 /** Response object for authentication operations */
 export interface AuthResponse {
@@ -13,11 +13,12 @@ export interface AuthResponse {
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  data: Data;
+  /** Authentication data containing tokens and user information */
+  data: AuthData;
 }
 
 export const authResponseSchema: Schema<AuthResponse> = object({
   status: ['status', string()],
   message: ['message', string()],
-  data: ['data', lazy(() => dataSchema)],
+  data: ['data', lazy(() => authDataSchema)],
 });

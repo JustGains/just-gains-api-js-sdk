@@ -5,21 +5,20 @@
  */
 
 import { lazy, object, Schema, string } from '../schema';
-import { AuthData, authDataSchema } from './authData';
+import { Data2, data2Schema } from './data2';
 
-export interface AuthRefreshTokenResponse {
+export interface SocialMediaPlatformsValidateUsernameResponse {
   /** The status of the response, corresponding to standard HTTP status codes. */
   status: string;
   /** A human-readable message describing the result of the operation. */
   message: string;
-  /** Authentication data containing tokens and user information */
-  data: AuthData;
+  data: Data2;
 }
 
-export const authRefreshTokenResponseSchema: Schema<AuthRefreshTokenResponse> = object(
+export const socialMediaPlatformsValidateUsernameResponseSchema: Schema<SocialMediaPlatformsValidateUsernameResponse> = object(
   {
     status: ['status', string()],
     message: ['message', string()],
-    data: ['data', lazy(() => authDataSchema)],
+    data: ['data', lazy(() => data2Schema)],
   }
 );

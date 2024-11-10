@@ -5,17 +5,17 @@
  */
 
 import { lazy, object, optional, Schema, string } from '../schema';
-import { Data1, data1Schema } from './data1';
+import { Data, dataSchema } from './data';
 import { TypeEnum, typeEnumSchema } from './typeEnum';
 
 export interface InstructionBlock {
   id?: string;
   type?: TypeEnum;
-  data?: Data1;
+  data?: Data;
 }
 
 export const instructionBlockSchema: Schema<InstructionBlock> = object({
   id: ['id', optional(string())],
   type: ['type', optional(typeEnumSchema)],
-  data: ['data', optional(lazy(() => data1Schema))],
+  data: ['data', optional(lazy(() => dataSchema))],
 });

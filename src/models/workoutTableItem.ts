@@ -28,7 +28,7 @@ export interface WorkoutTableItem {
   workoutTitle?: string;
   /** The URL slug of the workout. */
   workoutSlug?: string;
-  workoutImage?: MediaAsset;
+  workoutBackgroundImage?: MediaAsset;
   /** Indicates if the workout is a user's own workout or a bookmarked one from another user. */
   isBookmark?: boolean;
   /** List of creator credits associated with this workout. */
@@ -58,7 +58,10 @@ export const workoutTableItemSchema: Schema<WorkoutTableItem> = object({
   originalWorkoutId: ['originalWorkoutId', optional(string())],
   workoutTitle: ['workoutTitle', optional(string())],
   workoutSlug: ['workoutSlug', optional(string())],
-  workoutImage: ['workoutImage', optional(lazy(() => mediaAssetSchema))],
+  workoutBackgroundImage: [
+    'WorkoutBackgroundImage',
+    optional(lazy(() => mediaAssetSchema)),
+  ],
   isBookmark: ['isBookmark', optional(boolean())],
   creatorCredits: [
     'creatorCredits',

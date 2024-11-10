@@ -22,11 +22,16 @@ import {
   socialMediaPlatformResponseSchema,
 } from '../models/socialMediaPlatformResponse';
 import {
+  SocialMediaPlatformsValidateUsernameResponse,
+  socialMediaPlatformsValidateUsernameResponseSchema,
+} from '../models/socialMediaPlatformsValidateUsernameResponse';
+import {
   SocialMediaPlatformUpdate,
   socialMediaPlatformUpdateSchema,
 } from '../models/socialMediaPlatformUpdate';
 import { optional, string } from '../schema';
 import { BaseController } from './baseController';
+import { JustGainsErrorResponseError } from '../errors/justGainsErrorResponseError';
 
 export class UsersSocialMediaAccountsController extends BaseController {
   /**
@@ -129,5 +134,29 @@ export class UsersSocialMediaAccountsController extends BaseController {
     req.appendTemplatePath`/social-media-platforms/${mapped.socialMediaPlatformCode}`;
     req.authenticate([]);
     return req.callAsJson(justGainsBasicResponseSchema, requestOptions);
+  }
+
+  /**
+   * @param socialMediaPlatformCode The code of the social media platform to check against
+   * @param username                The username to validate
+   * @return Response from the API call
+   */
+  async validateSocialMediaUsername(
+    socialMediaPlatformCode: string,
+    username: string,
+    requestOptions?: RequestOptions
+  ): Promise<ApiResponse<SocialMediaPlatformsValidateUsernameResponse>> {
+    const req = this.createRequest('GET');
+    const mapped = req.prepareArgs({
+      socialMediaPlatformCode: [socialMediaPlatformCode, string()],
+      username: [username, string()],
+    });
+    req.appendTemplatePath`/social-media-platforms/${mapped.socialMediaPlatformCode}/validate-username/${mapped.username}`;
+    req.throwOn(400, JustGainsErrorResponseError, 'Bad request');
+    req.authenticate(false);
+    return req.callAsJson(
+      socialMediaPlatformsValidateUsernameResponseSchema,
+      requestOptions
+    );
   }
 }
