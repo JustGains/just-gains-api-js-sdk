@@ -1,13 +1,10 @@
 name: Combine Markdown Files
-
 on:
   push:
     branches:
       - '**'
-
 permissions:
   contents: write
-
 jobs:
   combine-md:
     runs-on: ubuntu-latest
@@ -18,23 +15,28 @@ jobs:
       
       - name: Find and combine markdown files
         run: |
-          # Clear or create the output file
-          > LLM-Output.md
-          
-          # Find all .md files and combine them with separators
-          find . -name "*.md" -type f -print0 | while IFS= read -r -d '' file; do
+          # Find all .md files (excluding those with LLM in the name) and combine them with separators
+          find . -name "*.md" -type f ! -name "*LLM*.md" -print0 | while IFS= read -r -d '' file; do
             echo "Processing: $file"
-            echo "# $file" >> LLM-Output.md
-            echo "" >> LLM-Output.md
-            cat "$file" >> LLM-Output.md
-            echo "" >> LLM-Output.md
-            echo "------------------------------------------" >> LLM-Output.md
-            echo "" >> LLM-Output.md
+            echo "# $file" >> temp_output.md
+            echo "" >> temp_output.md
+            cat "$file" >> temp_output.md
+            echo "" >> temp_output.md
+            echo "---" >> temp_output.md
+            echo "" >> temp_output.md
           done
           
-          # Fix markdown links
-          perl -i -pe 's/\[(.*?)\]\(.*?\)/[\1]/g' LLM-Output.md
-
+          echo "Debug - showing a few lines of temp_output.md:"
+          head -n 20 temp_output.md
+          
+          # Keep the text inside brackets and remove the URL part
+          # Using perl instead of sed for better regex support
+          perl -pe 's/\[(.*?)\]\(.*?\)/[\1]/g' temp_output.md > LLM-Output.md
+          
+          echo "Debug - showing a few lines of processed LLM-Output.md:"
+          head -n 20 LLM-Output.md
+          
+          rm temp_output.md
       - name: Commit combined file
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
