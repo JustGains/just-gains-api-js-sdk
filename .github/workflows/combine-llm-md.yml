@@ -25,12 +25,24 @@ jobs:
             echo "" >> temp_output.md
             cat "$file" >> temp_output.md
             echo "" >> temp_output.md
-            echo "---------------------------------------" >> temp_output.md
+            echo "------------------------" >> temp_output.md
             echo "" >> temp_output.md
           done
           
-          # Keep the text inside brackets and remove the URL part
-          sed -E 's/\[(.*?)\]\(([^)]*)\)/[\1]/g' temp_output.md > LLM-Output.md
+          echo "Debug - Original content:"
+          head -n 20 temp_output.md
+          
+          # Remove JSON code blocks and fix markdown links
+          perl -0777 -pe '
+            # Remove JSON code blocks
+            s/```json.*?```\n//gs;
+            # Fix markdown links
+            s/\[(.*?)\]\(.*?\)/[\1]/g;
+          ' temp_output.md > LLM-Output.md
+          
+          echo "Debug - After processing:"
+          head -n 20 LLM-Output.md
+          
           rm temp_output.md
 
       - name: Commit combined file
