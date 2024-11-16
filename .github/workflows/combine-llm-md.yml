@@ -5,11 +5,16 @@ on:
     branches:
       - '**'
 
+permissions:
+  contents: write  # Add explicit permission to write to repo
+
 jobs:
   combine-md:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # Explicit token usage
       
       - name: Find and combine markdown files
         run: |
@@ -20,7 +25,7 @@ jobs:
             echo "" >> temp_output.md
             cat "$file" >> temp_output.md
             echo "" >> temp_output.md
-            echo "------------------------------------" >> temp_output.md
+            echo "-----------------------------------" >> temp_output.md
             echo "" >> temp_output.md
           done
           
@@ -30,8 +35,8 @@ jobs:
 
       - name: Commit combined file
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add LLM-Output.md
           git diff --staged --quiet || git commit -m "Update combined markdown file"
           git push
