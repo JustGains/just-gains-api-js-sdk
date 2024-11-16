@@ -1,0 +1,37 @@
+name: Combine Markdown Files
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  combine-md:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Find and combine markdown files
+        run: |
+          # Find all .md files and combine them with separators
+          find . -name "*.md" -type f -print0 | while IFS= read -r -d '' file; do
+            echo "Processing: $file"
+            echo "# $file" >> temp_output.md
+            echo "" >> temp_output.md
+            cat "$file" >> temp_output.md
+            echo "" >> temp_output.md
+            echo "------------------------------------" >> temp_output.md
+            echo "" >> temp_output.md
+          done
+          
+          # Clean up markdown links but keep titles
+          sed -E 's/\[(.*?)\]\(.*?\)/[\1]/g' temp_output.md > LLM-Output.md
+          rm temp_output.md
+
+      - name: Commit combined file
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add LLM-Output.md
+          git diff --staged --quiet || git commit -m "Update combined markdown file"
+          git push
