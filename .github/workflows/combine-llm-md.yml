@@ -6,7 +6,7 @@ on:
       - '**'
 
 permissions:
-  contents: write  # Add explicit permission to write to repo
+  contents: write
 
 jobs:
   combine-md:
@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # Explicit token usage
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Find and combine markdown files
         run: |
@@ -25,12 +25,12 @@ jobs:
             echo "" >> temp_output.md
             cat "$file" >> temp_output.md
             echo "" >> temp_output.md
-            echo "-----------------------------------" >> temp_output.md
+            echo "---------------------------------------" >> temp_output.md
             echo "" >> temp_output.md
           done
           
-          # Clean up markdown links but keep titles
-          sed -E 's/\[(.*?)\]\(.*?\)/[\1]/g' temp_output.md > LLM-Output.md
+          # Keep the text inside brackets and remove the URL part
+          sed -E 's/\[(.*?)\]\(([^)]*)\)/[\1]/g' temp_output.md > LLM-Output.md
           rm temp_output.md
 
       - name: Commit combined file
